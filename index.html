@@ -14,6 +14,9 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#shadow">Closed Shadow</a></li>
+                <li><a href="#shadow-open">Open Shadow</a></li>
+                <li><a href="#iframe">Embed</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -77,6 +80,36 @@
                     <h3>Optimization</h3>
                     <p>Fast loading times and excellent performance</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="shadow" class="shadow-section">
+        <div class="container">
+            <h2 class="section-title">Closed Shadow Root</h2>
+            <p class="shadow-section-desc">This content is rendered inside a custom element with a <strong>closed</strong> shadow root. The DOM and styles are encapsulated—<code>element.shadowRoot</code> returns <code>null</code> from outside.</p>
+            <closed-shadow-demo></closed-shadow-demo>
+        </div>
+    </section>
+
+    <section id="shadow-open" class="shadow-section">
+        <div class="container">
+            <h2 class="section-title">Open Shadow Root</h2>
+            <p class="shadow-section-desc">This content is inside a custom element with an <strong>open</strong> shadow root. The shadow DOM is still encapsulated, but <code>element.shadowRoot</code> returns the root—so external scripts can inspect or modify the content inside.</p>
+            <open-shadow-demo></open-shadow-demo>
+        </div>
+    </section>
+
+    <section id="iframe" class="iframe-section">
+        <div class="container">
+            <h2 class="section-title">Embedded Content</h2>
+            <p class="iframe-section-desc">This section embeds content in an <code>&lt;iframe&gt;</code>. The iframe is a separate document with its own browsing context—scripts and styles from the parent page do not apply inside it.</p>
+            <div class="iframe-wrapper">
+                <iframe
+                    title="Embedded demo"
+                    srcdoc="<!DOCTYPE html><html><head><meta charset='UTF-8'><style>body{font-family:system-ui;margin:0;padding:2rem;background:linear-gradient(135deg,#fef3c7,#fde68a);color:#92400e;display:flex;align-items:center;justify-content:center;min-height:200px;}h2{margin:0 0 0.5rem;}p{margin:0;opacity:0.9;}</style></head><body><div><h2>Inside the iframe</h2><p>This content is in a separate document.</p></div></body></html>"
+                    class="embed-iframe"
+                ></iframe>
             </div>
         </div>
     </section>

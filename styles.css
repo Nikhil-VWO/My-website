@@ -300,6 +300,66 @@ body {
     line-height: 1.6;
 }
 
+/* Closed Shadow Root Section */
+.shadow-section {
+    padding: 80px 20px;
+    background: var(--white);
+}
+
+.shadow-section-desc {
+    max-width: 640px;
+    margin: 0 auto 2rem;
+    text-align: center;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+.shadow-section-desc code {
+    padding: 0.2em 0.4em;
+    background: #ede9fe;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: var(--primary-color);
+}
+
+/* Iframe Section */
+.iframe-section {
+    padding: 80px 20px;
+    background: var(--bg-light);
+}
+
+.iframe-section-desc {
+    max-width: 640px;
+    margin: 0 auto 2rem;
+    text-align: center;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+.iframe-section-desc code {
+    padding: 0.2em 0.4em;
+    background: #e5e7eb;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: var(--text-dark);
+}
+
+.iframe-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid #e5e7eb;
+}
+
+.embed-iframe {
+    display: block;
+    width: 100%;
+    height: 240px;
+    border: none;
+}
+
 /* Contact Section */
 .contact {
     padding: 80px 20px;

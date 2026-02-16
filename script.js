@@ -54,6 +54,99 @@ function handleSubmit(event) {
     }
 }
 
+// Custom element with closed shadow root (mode: 'closed' — not accessible via .shadowRoot from outside)
+class ClosedShadowDemo extends HTMLElement {
+    constructor() {
+        super();
+        this._shadow = null; // only reference to closed shadow root, kept internally
+    }
+
+    connectedCallback() {
+        this._shadow = this.attachShadow({ mode: 'closed' });
+        this._shadow.innerHTML = `
+            <style>
+                :host {
+                    display: block;
+                    padding: 2rem;
+                    background: linear-gradient(145deg, #1e1b4b 0%, #312e81 100%);
+                    border-radius: 16px;
+                    color: #e0e7ff;
+                    font-family: inherit;
+                    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+                }
+                .shadow-title {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    margin-bottom: 0.75rem;
+                    color: #c7d2fe;
+                }
+                .shadow-text {
+                    font-size: 1rem;
+                    line-height: 1.6;
+                    opacity: 0.95;
+                }
+                .shadow-badge {
+                    display: inline-block;
+                    margin-top: 1rem;
+                    padding: 0.35rem 0.75rem;
+                    background: rgba(99, 102, 241, 0.4);
+                    border-radius: 9999px;
+                    font-size: 0.875rem;
+                    font-weight: 600;
+                }
+            </style>
+            <div class="shadow-title">Encapsulated content</div>
+            <p class="shadow-text">This paragraph and its styles live inside the closed shadow root. External CSS and JavaScript cannot reach in here—only this custom element can update the shadow DOM.</p>
+            <span class="shadow-badge">mode: closed</span>
+        `;
+    }
+}
+customElements.define('closed-shadow-demo', ClosedShadowDemo);
+
+// Custom element with open shadow root (mode: 'open' — accessible via element.shadowRoot from outside)
+class OpenShadowDemo extends HTMLElement {
+    connectedCallback() {
+        const root = this.attachShadow({ mode: 'open' });
+        root.innerHTML = `
+            <style>
+                :host {
+                    display: block;
+                    padding: 2rem;
+                    background: linear-gradient(145deg, #064e3b 0%, #047857 100%);
+                    border-radius: 16px;
+                    color: #d1fae5;
+                    font-family: inherit;
+                    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+                }
+                .shadow-title {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    margin-bottom: 0.75rem;
+                    color: #a7f3d0;
+                }
+                .shadow-text {
+                    font-size: 1rem;
+                    line-height: 1.6;
+                    opacity: 0.95;
+                }
+                .shadow-badge {
+                    display: inline-block;
+                    margin-top: 1rem;
+                    padding: 0.35rem 0.75rem;
+                    background: rgba(16, 185, 129, 0.4);
+                    border-radius: 9999px;
+                    font-size: 0.875rem;
+                    font-weight: 600;
+                }
+            </style>
+            <div class="shadow-title">Encapsulated content (open)</div>
+            <p class="shadow-text">This paragraph lives in an open shadow root. Styles are encapsulated, but you can access this root via <code>document.querySelector('open-shadow-demo').shadowRoot</code> in the console.</p>
+            <span class="shadow-badge">mode: open</span>
+        `;
+    }
+}
+customElements.define('open-shadow-demo', OpenShadowDemo);
+
 // Add animation on scroll
 const observerOptions = {
     threshold: 0.1,
