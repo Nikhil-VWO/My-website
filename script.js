@@ -85,13 +85,39 @@ class AboutUsText extends HTMLElement {
 }
 customElements.define('about-us-text', AboutUsText);
 
-// Custom element with open shadow root (mode: 'open' — accessible via element.shadowRoot from outside)
-class OpenShadowDemo extends HTMLElement {
+// Whole section in one open shadow root (mode: 'open' — accessible via element.shadowRoot from outside)
+class OpenShadowSection extends HTMLElement {
     connectedCallback() {
         const root = this.attachShadow({ mode: 'open' });
         root.innerHTML = `
             <style>
                 :host {
+                    display: block;
+                }
+                .container {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 0 1.5rem;
+                }
+                .section-title {
+                    font-size: 2rem;
+                    font-weight: 700;
+                    margin-bottom: 1rem;
+                    color: #1f2937;
+                }
+                .shadow-section-desc {
+                    font-size: 1rem;
+                    color: #6b7280;
+                    line-height: 1.6;
+                    margin-bottom: 1.5rem;
+                }
+                .shadow-section-desc code {
+                    background: #f3f4f6;
+                    padding: 0.2em 0.4em;
+                    border-radius: 4px;
+                    font-size: 0.9em;
+                }
+                .shadow-demo-box {
                     display: block;
                     padding: 2rem;
                     background: linear-gradient(145deg, #064e3b 0%, #047857 100%);
@@ -111,6 +137,11 @@ class OpenShadowDemo extends HTMLElement {
                     line-height: 1.6;
                     opacity: 0.95;
                 }
+                .shadow-text code {
+                    background: rgba(0, 0, 0, 0.2);
+                    padding: 0.2em 0.4em;
+                    border-radius: 4px;
+                }
                 .shadow-badge {
                     display: inline-block;
                     margin-top: 1rem;
@@ -121,13 +152,19 @@ class OpenShadowDemo extends HTMLElement {
                     font-weight: 600;
                 }
             </style>
-            <div class="shadow-title">Encapsulated content (open)</div>
-            <p class="shadow-text">This paragraph lives in an open shadow root. Styles are encapsulated, but you can access this root via <code>document.querySelector('open-shadow-demo').shadowRoot</code> in the console.</p>
-            <span class="shadow-badge">mode: open</span>
+            <div class="container">
+                <h2 class="section-title">Open Shadow Root</h2>
+                <p class="shadow-section-desc">This entire section is inside a custom element with an <strong>open</strong> shadow root. The shadow DOM is still encapsulated, but <code>element.shadowRoot</code> returns the root—so external scripts can inspect or modify the content inside.</p>
+                <div class="shadow-demo-box">
+                    <div class="shadow-title">Encapsulated content (open)</div>
+                    <p class="shadow-text">This paragraph lives in the same open shadow root as the section title above. You can access this root via <code>document.querySelector('open-shadow-section').shadowRoot</code> in the console.</p>
+                    <span class="shadow-badge">mode: open</span>
+                </div>
+            </div>
         `;
     }
 }
-customElements.define('open-shadow-demo', OpenShadowDemo);
+customElements.define('open-shadow-section', OpenShadowSection);
 
 // Add animation on scroll
 const observerOptions = {
@@ -208,7 +245,7 @@ if (rapidCounterEl && rapidListEl) {
 // Observe service cards and other elements
 document.addEventListener('DOMContentLoaded', () => {
     const serviceCards = document.querySelectorAll('.service-card');
-    const aboutContent = document.querySelectorAll('about-us-text, .about-stats');
+    const aboutContent = document.querySelectorAll('about-us-text, .about-stats, open-shadow-section');
 
     serviceCards.forEach(card => {
         card.style.opacity = '0';
