@@ -181,7 +181,7 @@ if (accordionTrigger && accordionPanel) {
     });
 }
 
-// Rapid DOM mutation (counter + list update every 2.5s — slow interval for observer)
+// DOM mutation (counter + list update every 10s — slow interval for observer)
 const rapidCounterEl = document.getElementById('rapid-counter');
 const rapidListEl = document.getElementById('rapid-list');
 const rapidItems = ['Notification', 'Data synced', 'Update complete', 'Processing', 'Ready'];
@@ -202,7 +202,7 @@ if (rapidCounterEl && rapidListEl) {
     }
 
     updateRapidDOM();
-    setInterval(updateRapidDOM, 2500);
+    setInterval(updateRapidDOM, 10000);
 }
 
 // Observe service cards and other elements
