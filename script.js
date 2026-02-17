@@ -54,11 +54,11 @@ function handleSubmit(event) {
     }
 }
 
-// Custom element with closed shadow root (mode: 'closed' — not accessible via .shadowRoot from outside)
-class ClosedShadowDemo extends HTMLElement {
+// About Us paragraph in closed shadow root (plain text, no visible indication)
+class AboutUsText extends HTMLElement {
     constructor() {
         super();
-        this._shadow = null; // only reference to closed shadow root, kept internally
+        this._shadow = null;
     }
 
     connectedCallback() {
@@ -67,41 +67,23 @@ class ClosedShadowDemo extends HTMLElement {
             <style>
                 :host {
                     display: block;
-                    padding: 2rem;
-                    background: linear-gradient(145deg, #1e1b4b 0%, #312e81 100%);
-                    border-radius: 16px;
-                    color: #e0e7ff;
-                    font-family: inherit;
-                    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
                 }
-                .shadow-title {
-                    font-size: 1.5rem;
-                    font-weight: 700;
-                    margin-bottom: 0.75rem;
-                    color: #c7d2fe;
+                p {
+                    font-size: 1.1rem;
+                    color: #6b7280;
+                    margin-bottom: 1.5rem;
+                    line-height: 1.8;
                 }
-                .shadow-text {
-                    font-size: 1rem;
-                    line-height: 1.6;
-                    opacity: 0.95;
-                }
-                .shadow-badge {
-                    display: inline-block;
-                    margin-top: 1rem;
-                    padding: 0.35rem 0.75rem;
-                    background: rgba(99, 102, 241, 0.4);
-                    border-radius: 9999px;
-                    font-size: 0.875rem;
-                    font-weight: 600;
+                p:last-child {
+                    margin-bottom: 0;
                 }
             </style>
-            <div class="shadow-title">Encapsulated content</div>
-            <p class="shadow-text">This paragraph and its styles live inside the closed shadow root. External CSS and JavaScript cannot reach in here—only this custom element can update the shadow DOM.</p>
-            <span class="shadow-badge">mode: closed</span>
+            <p>We create beautiful, modern websites that are both functional and visually appealing. Our focus is on user experience and clean design.</p>
+            <p>With attention to detail and a passion for web development, we bring your ideas to life.</p>
         `;
     }
 }
-customElements.define('closed-shadow-demo', ClosedShadowDemo);
+customElements.define('about-us-text', AboutUsText);
 
 // Custom element with open shadow root (mode: 'open' — accessible via element.shadowRoot from outside)
 class OpenShadowDemo extends HTMLElement {
@@ -162,18 +144,79 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
+// Modal popup
+const modalOverlay = document.getElementById('modal-overlay');
+const modalTrigger = document.getElementById('modal-trigger');
+const modalClose = document.getElementById('modal-close');
+
+if (modalTrigger) {
+    modalTrigger.addEventListener('click', () => {
+        if (modalOverlay) {
+            modalOverlay.hidden = false;
+        }
+    });
+}
+
+if (modalClose) {
+    modalClose.addEventListener('click', () => {
+        if (modalOverlay) modalOverlay.hidden = true;
+    });
+}
+
+if (modalOverlay) {
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) modalOverlay.hidden = true;
+    });
+}
+
+// Accordion (collapsed by default)
+const accordionTrigger = document.getElementById('accordion-trigger');
+const accordionPanel = document.getElementById('accordion-panel');
+
+if (accordionTrigger && accordionPanel) {
+    accordionTrigger.addEventListener('click', () => {
+        const isExpanded = accordionPanel.hidden;
+        accordionPanel.hidden = !isExpanded;
+        accordionTrigger.setAttribute('aria-expanded', isExpanded);
+    });
+}
+
+// Rapid DOM mutation (counter + list update every 500ms)
+const rapidCounterEl = document.getElementById('rapid-counter');
+const rapidListEl = document.getElementById('rapid-list');
+const rapidItems = ['Notification', 'Data synced', 'Update complete', 'Processing', 'Ready'];
+
+if (rapidCounterEl && rapidListEl) {
+    let count = 0;
+    let index = 0;
+
+    function updateRapidDOM() {
+        count += 1;
+        index = (index + 1) % rapidItems.length;
+        rapidCounterEl.textContent = String(count);
+        rapidListEl.innerHTML = rapidItems
+            .slice(index)
+            .concat(rapidItems.slice(0, index))
+            .map((label) => `<li>${label}</li>`)
+            .join('');
+    }
+
+    updateRapidDOM();
+    setInterval(updateRapidDOM, 500);
+}
+
 // Observe service cards and other elements
 document.addEventListener('DOMContentLoaded', () => {
     const serviceCards = document.querySelectorAll('.service-card');
-    const aboutContent = document.querySelectorAll('.about-text, .about-stats');
-    
+    const aboutContent = document.querySelectorAll('about-us-text, .about-stats');
+
     serviceCards.forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(card);
     });
-    
+
     aboutContent.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(20px)';

@@ -14,7 +14,12 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#shadow">Closed Shadow</a></li>
+                <li><a href="#pseudo">::before/::after</a></li>
+                <li><a href="#parent-child">Parent-Child</a></li>
+                <li><a href="#rapid-mutation">Rapid DOM</a></li>
+                <li><a href="#modal">Modal</a></li>
+                <li><a href="#accordion">Accordion</a></li>
+                <li><a href="#display-none">Hidden</a></li>
                 <li><a href="#shadow-open">Open Shadow</a></li>
                 <li><a href="#iframe">Embed</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -39,10 +44,7 @@
         <div class="container">
             <h2 class="section-title">About Us</h2>
             <div class="about-content">
-                <div class="about-text">
-                    <p>We create beautiful, modern websites that are both functional and visually appealing. Our focus is on user experience and clean design.</p>
-                    <p>With attention to detail and a passion for web development, we bring your ideas to life.</p>
-                </div>
+                <about-us-text></about-us-text>
                 <div class="about-stats">
                     <div class="stat">
                         <div class="stat-number">100+</div>
@@ -84,11 +86,100 @@
         </div>
     </section>
 
-    <section id="shadow" class="shadow-section">
+    <section id="pseudo" class="pseudo-section">
         <div class="container">
-            <h2 class="section-title">Closed Shadow Root</h2>
-            <p class="shadow-section-desc">This content is rendered inside a custom element with a <strong>closed</strong> shadow root. The DOM and styles are encapsulated—<code>element.shadowRoot</code> returns <code>null</code> from outside.</p>
-            <closed-shadow-demo></closed-shadow-demo>
+            <h2 class="section-title">::before / ::after Content</h2>
+            <p class="section-desc">Content and decoration added via CSS pseudo-elements.</p>
+            <div class="pseudo-demo">
+                <span class="pseudo-before-after">Quote</span>
+                <span class="pseudo-before-after">Label</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="parent-child" class="parent-child-section">
+        <div class="container">
+            <h2 class="section-title">Parent-Child</h2>
+            <p class="section-desc">Nested DOM structure: parent container with child elements.</p>
+            <div class="parent-demo-grid">
+                <div class="parent-demo">
+                    <div class="parent-node">
+                        <span class="node-label">Parent</span>
+                        <p class="node-desc">Main container</p>
+                        <div class="child-node">
+                            <span class="node-label">Child 1</span>
+                            <p class="node-desc">First item</p>
+                            <div class="grandchild-node">Grandchild 1a</div>
+                            <div class="grandchild-node">Grandchild 1b</div>
+                        </div>
+                        <div class="child-node">
+                            <span class="node-label">Child 2</span>
+                            <p class="node-desc">Second item</p>
+                        </div>
+                        <div class="child-node">
+                            <span class="node-label">Child 3</span>
+                            <p class="node-desc">Third item</p>
+                            <div class="grandchild-node">Grandchild 3a</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="parent-demo">
+                    <div class="parent-node">
+                        <span class="node-label">Sidebar</span>
+                        <p class="node-desc">Another parent tree</p>
+                        <div class="child-node">Link A</div>
+                        <div class="child-node">Link B</div>
+                        <div class="child-node">Link C</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rapid-mutation" class="rapid-mutation-section">
+        <div class="container">
+            <h2 class="section-title">Rapid DOM Mutation</h2>
+            <p class="section-desc">DOM updates frequently (counter and list change every 500ms).</p>
+            <div class="rapid-demo">
+                <div class="rapid-counter" id="rapid-counter">0</div>
+                <ul class="rapid-list" id="rapid-list"></ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="modal" class="modal-section">
+        <div class="container">
+            <h2 class="section-title">Modal Popup</h2>
+            <p class="section-desc">Click the button to open a modal overlay.</p>
+            <button type="button" class="modal-trigger" id="modal-trigger">Open modal</button>
+        </div>
+    </section>
+
+    <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+        <div class="modal-box">
+            <h2 id="modal-title" class="modal-title">Modal Popup</h2>
+            <p class="modal-body">This content is inside a modal. Close with the button or by clicking outside.</p>
+            <button type="button" class="modal-close" id="modal-close">Close</button>
+        </div>
+    </div>
+
+    <section id="accordion" class="accordion-section">
+        <div class="container">
+            <h2 class="section-title">Accordion (Collapsed)</h2>
+            <p class="section-desc">Accordion panel starts collapsed; click to expand.</p>
+            <div class="accordion" id="accordion-demo">
+                <button type="button" class="accordion-trigger" id="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel">Accordion header (collapsed)</button>
+                <div class="accordion-panel" id="accordion-panel" hidden>
+                    <p>Accordion content appears here when expanded.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="display-none" class="display-none-section">
+        <div class="container">
+            <h2 class="section-title">display:none Section</h2>
+            <p class="section-desc">This section is in the DOM but hidden with <code>display: none</code>.</p>
         </div>
     </section>
 
