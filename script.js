@@ -1,13 +1,106 @@
-// Smooth scrolling for navigation links
+// Navbar as custom element with open shadow root, fixed at top (does not scroll with page)
+class NavBar extends HTMLElement {
+    connectedCallback() {
+        const root = this.attachShadow({ mode: 'open' });
+        root.innerHTML = `
+            <style>
+                :host {
+                    display: block;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    background: rgba(255, 255, 255, 0.95);
+                    backdrop-filter: blur(10px);
+                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                    z-index: 1000;
+                    transition: background 0.3s ease, box-shadow 0.3s ease;
+                }
+                .container {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 1rem 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                .logo {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                }
+                .nav-links {
+                    display: flex;
+                    list-style: none;
+                    gap: 2rem;
+                    margin: 0;
+                    padding: 0;
+                }
+                .nav-links a {
+                    text-decoration: none;
+                    color: #1f2937;
+                    font-weight: 500;
+                    transition: color 0.3s ease;
+                    position: relative;
+                }
+                .nav-links a:hover {
+                    color: #6366f1;
+                }
+                .nav-links a::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -5px;
+                    left: 0;
+                    width: 0;
+                    height: 2px;
+                    background: #6366f1;
+                    transition: width 0.3s ease;
+                }
+                .nav-links a:hover::after {
+                    width: 100%;
+                }
+            </style>
+            <div class="container">
+                <div class="logo">MyWebsite</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#pseudo">::before/::after</a></li>
+                    <li><a href="#parent-child">Parent-Child</a></li>
+                    <li><a href="#rapid-mutation">Rapid DOM</a></li>
+                    <li><a href="#modal">Modal</a></li>
+                    <li><a href="#accordion">Accordion</a></li>
+                    <li><a href="#display-none">Hidden</a></li>
+                    <li><a href="#shadow-open">Open Shadow</a></li>
+                    <li><a href="#iframe">Embed</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        `;
+        root.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    }
+}
+customElements.define('nav-bar', NavBar);
+
+// Smooth scrolling for any other anchor links in light DOM
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
 });
@@ -16,16 +109,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
-        section.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
 
-// Navbar background on scroll
+// Navbar background on scroll (style applied to host so it stays fixed at top)
 window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
+    const navbar = document.querySelector('nav-bar');
+    if (!navbar) return;
     if (window.scrollY > 50) {
         navbar.style.background = 'rgba(255, 255, 255, 0.98)';
         navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
