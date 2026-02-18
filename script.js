@@ -69,6 +69,7 @@ class NavBar extends HTMLElement {
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
+                    <li><a href="#carousel">Carousel</a></li>
                     <li><a href="#pseudo">::before/::after</a></li>
                     <li><a href="#parent-child">Parent-Child</a></li>
                     <li><a href="#rapid-mutation">Rapid DOM</a></li>
@@ -331,6 +332,84 @@ if (rapidCounterEl && rapidListEl) {
 
     updateRapidDOM();
     setInterval(updateRapidDOM, 10000);
+}
+
+// Carousel (Customer Reviews - auto-scroll + prev/next arrows)
+const carouselViewport = document.getElementById('carousel-viewport');
+const carouselTrack = document.getElementById('carousel-track');
+const carouselPrev = document.getElementById('carousel-prev');
+const carouselNext = document.getElementById('carousel-next');
+const CAROUSEL_INTERVAL_MS = 5000;
+const CARD_GAP = 20;
+
+if (carouselViewport && carouselTrack && carouselPrev && carouselNext) {
+    const cards = carouselTrack.querySelectorAll('.review-card');
+    const total = cards.length;
+    let currentIndex = 0;
+    let autoInterval = null;
+
+    function getCardWidth() {
+        return cards[0] ? cards[0].offsetWidth : 300;
+    }
+
+    function getMaxIndex() {
+        const viewportWidth = carouselViewport.offsetWidth;
+        const cardWidth = getCardWidth();
+        const cardsVisible = Math.floor((viewportWidth + CARD_GAP) / (cardWidth + CARD_GAP));
+        return Math.max(0, total - cardsVisible);
+    }
+
+    function updateArrows() {
+        carouselPrev.disabled = currentIndex <= 0;
+        carouselNext.disabled = currentIndex >= getMaxIndex();
+    }
+
+    function goToIndex(index) {
+        const maxIdx = getMaxIndex();
+        currentIndex = Math.max(0, Math.min(index, maxIdx));
+        const offset = currentIndex * (getCardWidth() + CARD_GAP);
+        carouselTrack.style.transform = `translateX(-${offset}px)`;
+        updateArrows();
+    }
+
+    function startAutoScroll() {
+        stopAutoScroll();
+        autoInterval = setInterval(() => {
+            const maxIdx = getMaxIndex();
+            goToIndex(currentIndex >= maxIdx ? 0 : currentIndex + 1);
+        }, CAROUSEL_INTERVAL_MS);
+    }
+
+    function stopAutoScroll() {
+        if (autoInterval) {
+            clearInterval(autoInterval);
+            autoInterval = null;
+        }
+    }
+
+    carouselPrev.addEventListener('click', () => {
+        goToIndex(currentIndex - 1);
+        startAutoScroll();
+    });
+
+    carouselNext.addEventListener('click', () => {
+        goToIndex(currentIndex + 1);
+        startAutoScroll();
+    });
+
+    window.addEventListener('resize', () => {
+        goToIndex(currentIndex);
+    });
+
+    const reviewsCta = document.getElementById('reviews-cta');
+    if (reviewsCta) {
+        reviewsCta.addEventListener('click', () => {
+            scrollToSection('contact');
+        });
+    }
+
+    updateArrows();
+    startAutoScroll();
 }
 
 // Observe service cards and other elements
