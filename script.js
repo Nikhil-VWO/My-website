@@ -23,6 +23,8 @@ class NavBar extends HTMLElement {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    gap: 1.5rem;
+                    flex-wrap: wrap;
                 }
                 .logo {
                     font-size: 1.5rem;
@@ -31,13 +33,19 @@ class NavBar extends HTMLElement {
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                     background-clip: text;
+                    flex-shrink: 0;
                 }
                 .nav-links {
                     display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-end;
+                    align-items: center;
                     list-style: none;
-                    gap: 2rem;
+                    gap: 1rem 1.25rem;
                     margin: 0;
                     padding: 0;
+                    flex: 1 1 auto;
+                    min-width: 0;
                 }
                 .nav-links a {
                     text-decoration: none;
@@ -68,6 +76,7 @@ class NavBar extends HTMLElement {
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
+                    <li><a href="#feature">Featured</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#carousel">Carousel</a></li>
                     <li><a href="#pseudo">::before/::after</a></li>
