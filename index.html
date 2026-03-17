@@ -191,6 +191,50 @@
         </div>
     </section>
 
+    <section id="deep-nesting" class="deep-nesting-section">
+        <div class="container">
+            <h2 class="section-title">Deeply Nested (15 levels)</h2>
+            <p class="section-desc">A long nested DOM example for testing robust selectors and scroll/visibility behavior.</p>
+            <div class="deep-nesting-root" aria-label="15-level nested container">
+                <div class="nest nest-1">
+                    <div class="nest nest-2">
+                        <div class="nest nest-3">
+                            <div class="nest nest-4">
+                                <div class="nest nest-5">
+                                    <div class="nest nest-6">
+                                        <div class="nest nest-7">
+                                            <div class="nest nest-8">
+                                                <div class="nest nest-9">
+                                                    <div class="nest nest-10">
+                                                        <div class="nest nest-11">
+                                                            <div class="nest nest-12">
+                                                                <div class="nest nest-13">
+                                                                    <div class="nest nest-14">
+                                                                        <div class="nest nest-15">
+                                                                            <div class="deep-nesting-target" id="deep-nesting-target">
+                                                                                <h3 class="deep-nesting-title">Target at level 15</h3>
+                                                                                <p class="deep-nesting-text">If you can click this button reliably, your selectors are probably solid.</p>
+                                                                                <button type="button" class="deep-nesting-button" id="deep-nesting-button">Deep nested button</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="rapid-mutation" class="rapid-mutation-section">
         <div class="container">
             <h2 class="section-title">Rapid DOM Mutation</h2>
