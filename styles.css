@@ -97,7 +97,15 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 120px 20px 80px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /*
+        Background image with gradient overlay for readability:
+        - The semi-transparent gradient sits on top of the photo
+        - background-size: cover  — scales image to fill the section
+        - background-position: center — keeps the focal point centred
+        - background-repeat: no-repeat — prevents tiling
+    */
+    background:
+        url('https://picsum.photos/1600/900') center center / cover no-repeat;
     color: var(--white);
     position: relative;
     overflow: hidden;
@@ -361,6 +369,43 @@ body {
 .service-card p {
     color: var(--text-light);
     line-height: 1.6;
+}
+
+/* Reviews section (SPA anchor target) */
+.reviews-section {
+    padding: 80px 20px;
+    background: var(--bg-light);
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.review-item {
+    background: var(--white);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 0 12px 12px 0;
+    padding: 1.5rem;
+    margin: 0;
+    box-shadow: var(--shadow);
+}
+
+.review-item p {
+    font-size: 1rem;
+    color: var(--text-dark);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.review-item footer {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
 }
 
 /* Carousel - Customer Reviews (end-to-end full width) */

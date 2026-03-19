@@ -78,6 +78,8 @@ class NavBar extends HTMLElement {
                     <li><a href="#about">About</a></li>
                     <li><a href="#feature">Featured</a></li>
                     <li><a href="#services">Services</a></li>
+                    <!-- SPA-style anchor: scrolls to the #reviews section on the same page -->
+                    <li><a href="#reviews">Reviews</a></li>
                     <li><a href="#carousel">Carousel</a></li>
                     <li><a href="#pseudo">::before/::after</a></li>
                     <li><a href="#parent-child">Parent-Child</a></li>
@@ -88,6 +90,8 @@ class NavBar extends HTMLElement {
                     <li><a href="#shadow-open">Open Shadow</a></li>
                     <li><a href="#iframe">Embed</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <!-- Opens contact.html in a new tab (same domain) -->
+                    <li><a href="contact.html" target="_blank" rel="noopener noreferrer">Contact Us ↗</a></li>
                 </ul>
             </div>
         `;

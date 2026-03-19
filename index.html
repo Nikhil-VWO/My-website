@@ -58,7 +58,39 @@
                         <p>This block is wrapped in an anchor tag—click anywhere to go to the Contact section.</p>
                     </div>
                     <div class="anchor-section-image">
-                        <img src="https://picsum.photos/600/400" alt="Featured image" width="600" height="400">
+                        <!--
+                            <picture> element for image optimization:
+                            - <source type="image/webp">: served to browsers that support WebP
+                            - <img> fallback: served to browsers that don't support WebP
+                            srcset provides 3 sizes (small/medium/large) so the browser
+                            picks the best fit based on the viewport width (sizes attribute).
+                        -->
+                        <picture>
+                            <!-- WebP source: smaller file size, better quality -->
+                            <source
+                                type="image/webp"
+                                srcset="
+                                    https://picsum.photos/400/267 400w,
+                                    https://picsum.photos/600/400 600w,
+                                    https://picsum.photos/900/600 900w
+                                "
+                                sizes="(max-width: 480px) 400px, (max-width: 768px) 600px, 900px"
+                            >
+                            <!-- JPG fallback for older browsers -->
+                            <img
+                                src="https://picsum.photos/600/400"
+                                srcset="
+                                    https://picsum.photos/400/267 400w,
+                                    https://picsum.photos/600/400 600w,
+                                    https://picsum.photos/900/600 900w
+                                "
+                                sizes="(max-width: 480px) 400px, (max-width: 768px) 600px, 900px"
+                                alt="Featured image"
+                                width="600"
+                                height="400"
+                                loading="lazy"
+                            >
+                        </picture>
                     </div>
                 </div>
             </a>
@@ -84,6 +116,28 @@
                     <h3>Optimization</h3>
                     <p>Fast loading times and excellent performance</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- #reviews: SPA-style anchor target, scrolled to from the nav "Reviews" link -->
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <h2 class="section-title">Client Reviews</h2>
+            <p class="section-desc">Real feedback from real clients about our work.</p>
+            <div class="reviews-grid">
+                <blockquote class="review-item">
+                    <p>"Working with this team was an absolute pleasure. They delivered beyond our expectations."</p>
+                    <footer>— Sarah T., CEO at NovaCo</footer>
+                </blockquote>
+                <blockquote class="review-item">
+                    <p>"Fast, clean, and professional. Our site performance improved drastically after their optimization work."</p>
+                    <footer>— James R., Founder at Buildify</footer>
+                </blockquote>
+                <blockquote class="review-item">
+                    <p>"Highly responsive team with a strong eye for design. We've now worked together on 3 projects."</p>
+                    <footer>— Priya M., Product Lead at Loopbase</footer>
+                </blockquote>
             </div>
         </div>
     </section>
@@ -325,7 +379,7 @@
                 <a href="#about">About</a>
                 <a href="#feature">Featured</a>
                 <a href="#services">Services</a>
-                <a href="#carousel">Reviews</a>
+                <a href="#reviews">Reviews</a>
                 <a href="#pseudo">Pseudo</a>
                 <a href="#parent-child">Parent-Child</a>
                 <a href="#rapid-mutation">Rapid DOM</a>
