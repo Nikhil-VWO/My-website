@@ -396,6 +396,15 @@
         </div>
     </section>
 
+    <!-- Section with no attributes on the <section> tag itself -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">No Attribute Section</h2>
+            <p class="section-desc">This section has no <code>id</code>, <code>class</code>, or any other attributes on the <code>&lt;section&gt;</code> tag.</p>
+            <p class="section-desc">It can only be targeted using structural selectors like <code>section:not([id])</code> or positional selectors like <code>section:last-of-type</code>.</p>
+        </div>
+    </section>
+
     <section id="shadow-open" class="shadow-section">
         <open-shadow-section></open-shadow-section>
     </section>
