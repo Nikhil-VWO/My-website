@@ -396,12 +396,12 @@
         </div>
     </section>
 
-    <!-- Section with no attributes on the <section> tag itself -->
+    <!-- Section with no attributes anywhere — section tag or any child elements -->
     <section>
-        <div class="container">
-            <h2 class="section-title">No Attribute Section</h2>
-            <p class="section-desc">This section has no <code>id</code>, <code>class</code>, or any other attributes on the <code>&lt;section&gt;</code> tag.</p>
-            <p class="section-desc">It can only be targeted using structural selectors like <code>section:not([id])</code> or positional selectors like <code>section:last-of-type</code>.</p>
+        <div>
+            <h2>No Attribute Section</h2>
+            <p>This section and all its child elements have no <code>id</code>, <code>class</code>, or any other attributes.</p>
+            <p>It can only be targeted using structural selectors like <code>section:not([id])</code> or positional selectors like <code>section:last-of-type</code>.</p>
         </div>
     </section>
 
