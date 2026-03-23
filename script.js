@@ -86,6 +86,7 @@ class NavBar extends HTMLElement {
                     <li><a href="#rapid-mutation">Rapid DOM</a></li>
                     <li><a href="#modal">Modal</a></li>
                     <li><a href="#accordion">Accordion</a></li>
+                    <li><a href="#form-elements">Form Elements</a></li>
                     <li><a href="#display-none">Hidden</a></li>
                     <li><a href="#shadow-open">Open Shadow</a></li>
                     <li><a href="#iframe">Embed</a></li>
