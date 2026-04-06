@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            padding: 2rem 1.5rem;
+        }
+
+        .fb-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .fb-header h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: .3rem;
+        }
+
+        .fb-header p {
+            font-size: .875rem;
+            color: #6b7280;
+        }
+
+        .fb-form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .fb-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .fb-field {
+            display: flex;
+            flex-direction: column;
+            gap: .35rem;
+        }
+
+        .fb-field label {
+            font-size: .8rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .fb-field input,
+        .fb-field select,
+        .fb-field textarea {
+            padding: .6rem .85rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: .875rem;
+            color: #1e293b;
+            background: #fff;
+            transition: border-color .2s, box-shadow .2s;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .fb-field input:focus,
+        .fb-field select:focus,
+        .fb-field textarea:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, .15);
+        }
+
+        .fb-field textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        /* Star rating */
+        .star-group {
+            display: flex;
+            flex-direction: row-reverse;
+            gap: .25rem;
+        }
+
+        .star-group input { display: none; }
+
+        .star-group label {
+            font-size: 1.6rem;
+            color: #d1d5db;
+            cursor: pointer;
+            transition: color .15s;
+        }
+
+        .star-group input:checked ~ label,
+        .star-group label:hover,
+        .star-group label:hover ~ label {
+            color: #f59e0b;
+        }
+
+        /* Submit */
+        .fb-submit {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+        }
+
+        .fb-btn {
+            padding: .65rem 1.75rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: .9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity .2s, transform .2s;
+        }
+
+        .fb-btn:hover { opacity: .88; transform: translateY(-1px); }
+        .fb-btn:active { transform: translateY(0); }
+
+        .fb-success {
+            display: none;
+            align-items: center;
+            gap: .5rem;
+            font-size: .875rem;
+            font-weight: 600;
+            color: #16a34a;
+        }
+
+        .fb-success.show { display: flex; }
+
+        @media (max-width: 520px) {
+            .fb-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="fb-header">
+        <h2>&#128172; Share Your Feedback</h2>
+        <p>Let us know how we're doing. Your feedback helps us improve.</p>
+    </div>
+
+    <form class="fb-form" id="fb-form" novalidate>
+
+        <div class="fb-row">
+            <div class="fb-field">
+                <label for="fb-name">Full name</label>
+                <input type="text" id="fb-name" placeholder="Jane Smith" autocomplete="name">
+            </div>
+            <div class="fb-field">
+                <label for="fb-email">Email address</label>
+                <input type="email" id="fb-email" placeholder="jane@example.com" autocomplete="email">
+            </div>
+        </div>
+
+        <div class="fb-row">
+            <div class="fb-field">
+                <label for="fb-category">Category</label>
+                <select id="fb-category">
+                    <option value="">Select a category…</option>
+                    <option value="design">Design</option>
+                    <option value="performance">Performance</option>
+                    <option value="content">Content</option>
+                    <option value="support">Support</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="fb-field">
+                <label>Overall rating</label>
+                <div class="star-group" role="radiogroup" aria-label="Rating">
+                    <input type="radio" id="s5" name="rating" value="5"><label for="s5" title="5 stars">&#9733;</label>
+                    <input type="radio" id="s4" name="rating" value="4"><label for="s4" title="4 stars">&#9733;</label>
+                    <input type="radio" id="s3" name="rating" value="3"><label for="s3" title="3 stars">&#9733;</label>
+                    <input type="radio" id="s2" name="rating" value="2"><label for="s2" title="2 stars">&#9733;</label>
+                    <input type="radio" id="s1" name="rating" value="1"><label for="s1" title="1 star">&#9733;</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="fb-field">
+            <label for="fb-message">Your message</label>
+            <textarea id="fb-message" placeholder="Tell us what you think…"></textarea>
+        </div>
+
+        <div class="fb-submit">
+            <button type="submit" class="fb-btn">Submit feedback</button>
+            <span class="fb-success" id="fb-success">&#10003; Thank you — feedback received!</span>
+        </div>
+
+    </form>
+
+    <script>
+        document.getElementById('fb-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var name     = document.getElementById('fb-name').value.trim();
+            var email    = document.getElementById('fb-email').value.trim();
+            var message  = document.getElementById('fb-message').value.trim();
+
+            if (!name || !email || !message) {
+                alert('Please fill in your name, email, and message.');
+                return;
+            }
+
+            // Simulate async submission
+            var btn = this.querySelector('.fb-btn');
+            btn.textContent = 'Sending…';
+            btn.disabled = true;
+
+            setTimeout(function () {
+                btn.textContent = 'Submit feedback';
+                btn.disabled = false;
+                document.getElementById('fb-success').classList.add('show');
+                document.getElementById('fb-form').reset();
+                setTimeout(function () {
+                    document.getElementById('fb-success').classList.remove('show');
+                }, 4000);
+            }, 1200);
+        });
+    </script>
+
+</body>
+</html>

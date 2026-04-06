@@ -215,11 +215,42 @@
             'transition:opacity .3s,transform .3s;pointer-events:none;z-index:200;}' +
             '#spa-toast.show{opacity:1;transform:translateY(0);}' +
 
+            /* Background image banner */
+            '.spa-bg-banner{position:relative;border-radius:20px;overflow:hidden;' +
+            'height:220px;margin-bottom:2.5rem;display:flex;align-items:flex-end;}' +
+            '.spa-bg-banner img.banner-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}' +
+            '.spa-bg-banner .banner-overlay{position:absolute;inset:0;' +
+            'background:linear-gradient(to top,rgba(15,23,42,.85) 0%,rgba(15,23,42,.2) 100%);z-index:1;}' +
+            '.spa-bg-banner .banner-text{position:relative;z-index:2;padding:1.5rem 2rem;color:#fff;}' +
+            '.spa-bg-banner .banner-text h2{font-size:1.4rem;font-weight:800;margin-bottom:.3rem;}' +
+            '.spa-bg-banner .banner-text p{font-size:.9rem;opacity:.8;}' +
+
+            /* Team images */
+            '.spa-team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));' +
+            'gap:1.25rem;margin-bottom:2.5rem;}' +
+            '.spa-team-card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;' +
+            'padding:1.25rem;text-align:center;transition:transform .22s,box-shadow .22s;}' +
+            '.spa-team-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(99,102,241,.13);}' +
+            '.spa-team-card img{width:72px;height:72px;border-radius:50%;object-fit:cover;' +
+            'border:3px solid #ede9fe;margin-bottom:.75rem;}' +
+            '.spa-team-card .team-name{font-size:.9rem;font-weight:700;color:#1e293b;margin-bottom:.2rem;}' +
+            '.spa-team-card .team-role{font-size:.75rem;color:#6b7280;}' +
+
+            /* Iframe section */
+            '.spa-iframe-wrap{background:#fff;border:1px solid #e5e7eb;border-radius:16px;' +
+            'overflow:hidden;margin-bottom:2.5rem;}' +
+            '.spa-iframe-wrap iframe{display:block;width:100%;height:420px;border:none;}' +
+
+            /* Shadow DOM host */
+            'spa-shadow-widget{display:block;margin-bottom:2.5rem;}' +
+
             /* Responsive */
             '@media(max-width:600px){' +
             '.spa-topbar{padding:0 1rem;}' +
             '.spa-main{padding:80px 1rem 2rem;}' +
             '.spa-welcome{padding:1.5rem;}' +
+            '.spa-bg-banner{height:180px;}' +
+            '.spa-bg-banner .banner-text{padding:1rem 1.25rem;}' +
             '}'
         );
 
@@ -336,6 +367,48 @@
                 '  <div class="spa-section-title">Recent Activity</div>' +
                 '  <div class="spa-activity">' + activityHTML + '</div>' +
 
+                // ── Background image banner ──
+                '  <div class="spa-section-title" style="margin-top:2.5rem;">Featured Banner <span>background-image</span></div>' +
+                '  <div class="spa-bg-banner">' +
+                '    <img class="banner-bg" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&auto=format&fit=crop" alt="Office team working" loading="lazy">' +
+                '    <div class="banner-overlay"></div>' +
+                '    <div class="banner-text">' +
+                '      <h2>Build something extraordinary</h2>' +
+                '      <p>Your team is ready &mdash; let&rsquo;s ship great products together.</p>' +
+                '    </div>' +
+                '  </div>' +
+
+                // ── Team images ──
+                '  <div class="spa-section-title">Our Team <span>images</span></div>' +
+                '  <div class="spa-team-grid">' +
+                    [
+                        { img: 1,  name: 'Alice Chen',    role: 'Lead Designer'     },
+                        { img: 3,  name: 'Marcus Webb',   role: 'Frontend Dev'      },
+                        { img: 5,  name: 'Priya Nair',    role: 'QA Engineer'       },
+                        { img: 7,  name: 'Tom Erikson',   role: 'Backend Dev'       },
+                        { img: 9,  name: 'Sara Lopez',    role: 'Product Manager'   },
+                        { img: 11, name: 'James Okafor',  role: 'DevOps Engineer'   },
+                    ].map(function (m) {
+                        return (
+                            '<div class="spa-team-card">' +
+                            '  <img src="https://i.pravatar.cc/144?img=' + m.img + '" alt="' + m.name + '" loading="lazy">' +
+                            '  <div class="team-name">' + m.name + '</div>' +
+                            '  <div class="team-role">' + m.role + '</div>' +
+                            '</div>'
+                        );
+                    }).join('') +
+                '  </div>' +
+
+                // ── Embedded iframe ──
+                '  <div class="spa-section-title">Feedback Form <span>iframe</span></div>' +
+                '  <div class="spa-iframe-wrap">' +
+                '    <iframe src="feedback.html" title="Feedback form" loading="lazy"></iframe>' +
+                '  </div>' +
+
+                // ── Open Shadow DOM widget (custom element, mounted by JS below) ──
+                '  <div class="spa-section-title">Metrics Widget <span>open shadow DOM</span></div>' +
+                '  <spa-shadow-widget id="shadow-widget"></spa-shadow-widget>' +
+
                 '</main>' +
 
                 // Toast container
@@ -359,6 +432,59 @@
                     showToast(name + ' added to cart');
                 });
             });
+
+            // ── Mount Open Shadow DOM widget ──
+            mountShadowWidget();
+        }
+
+        /* ═══════════════════════════════════════════
+           Open Shadow DOM — <spa-shadow-widget>
+           Defines and mounts a custom element whose
+           internals are encapsulated in an open shadow
+           root (mode: 'open' — inspectable in DevTools).
+        ═══════════════════════════════════════════ */
+        function mountShadowWidget() {
+            // Only define once (guard against hot-reload)
+            if (!customElements.get('spa-shadow-widget')) {
+                customElements.define('spa-shadow-widget', class extends HTMLElement {
+                    connectedCallback() {
+                        var shadow = this.attachShadow({ mode: 'open' });
+
+                        var metrics = [
+                            { label: 'Page Views',      value: '128,430', delta: '+12%',  up: true  },
+                            { label: 'Unique Visitors',  value: '47,920',  delta: '+8%',   up: true  },
+                            { label: 'Bounce Rate',      value: '34.2%',   delta: '-3%',   up: false },
+                            { label: 'Avg. Session',     value: '3m 47s',  delta: '+0.5m', up: true  },
+                        ];
+
+                        var cardsHTML = metrics.map(function (m) {
+                            return (
+                                '<div class="metric-card">' +
+                                '  <div class="metric-label">' + m.label + '</div>' +
+                                '  <div class="metric-value">' + m.value + '</div>' +
+                                '  <div class="metric-delta ' + (m.up ? 'up' : 'down') + '">' + m.delta + '</div>' +
+                                '</div>'
+                            );
+                        }).join('');
+
+                        shadow.innerHTML =
+                            '<style>' +
+                            ':host{display:block;background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:1.5rem;}' +
+                            '.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;}' +
+                            '.metric-card{background:#f8fafc;border-radius:12px;padding:1.1rem 1.25rem;}' +
+                            '.metric-label{font-size:.75rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem;}' +
+                            '.metric-value{font-size:1.5rem;font-weight:800;color:#1e293b;margin-bottom:.3rem;}' +
+                            '.metric-delta{font-size:.8rem;font-weight:700;padding:.15rem .5rem;border-radius:99px;display:inline-block;}' +
+                            '.metric-delta.up{background:#dcfce7;color:#16a34a;}' +
+                            '.metric-delta.down{background:#fee2e2;color:#dc2626;}' +
+                            '</style>' +
+                            '<div class="grid">' + cardsHTML + '</div>';
+                    }
+                });
+            }
+
+            // If the element is already in the DOM (set via innerHTML above), its
+            // connectedCallback fires automatically once defined. Nothing extra needed.
         }
 
         /* ═══════════════════════════════════════════
