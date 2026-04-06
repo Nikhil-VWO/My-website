@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!--
+        INTENTIONALLY NO <link>, NO <style>, NO visible content.
+        All styles and DOM are injected entirely by JavaScript.
+        If JS is disabled or blocked this page remains blank.
+    -->
+</head>
+<body>
+    <div id="root"></div>
+
+    <script>
+    (function () {
+        'use strict';
+
+        /* ─────────────────────────────────────────────
+           0. Dev hint (console only, not visible in UI)
+        ───────────────────────────────────────────── */
+        console.info(
+            '[dynamic-spa] To activate this page run in DevTools:\n' +
+            '  localStorage.setItem("sessionToken", "demo-token-123")\n' +
+            'then refresh.'
+        );
+
+        var root = document.getElementById('root');
+
+        /* ─────────────────────────────────────────────
+           HELPER: inject a <style> block via JS only
+        ───────────────────────────────────────────── */
+        function injectStyle(css) {
+            var el = document.createElement('style');
+            el.textContent = css;
+            document.head.appendChild(el);
+        }
+
+        /* ─────────────────────────────────────────────
+           HELPER: show an error screen and halt
+        ───────────────────────────────────────────── */
+        function showError(message, code) {
+            injectStyle(
+                'body{margin:0;font-family:system-ui,sans-serif;background:#0f172a;' +
+                'display:flex;align-items:center;justify-content:center;height:100vh;}' +
+                '#root{text-align:center;color:#f1f5f9;}' +
+                '#root .err-icon{font-size:3rem;margin-bottom:1rem;}' +
+                '#root .err-title{font-size:1.5rem;font-weight:700;margin:0 0 .5rem;}' +
+                '#root .err-msg{font-size:.95rem;color:#94a3b8;margin:0 0 .4rem;}' +
+                '#root .err-code{font-size:.75rem;color:#475569;font-family:monospace;}'
+            );
+            root.innerHTML =
+                '<div class="err-icon">&#x26D4;</div>' +
+                '<p class="err-title">' + message + '</p>' +
+                '<p class="err-msg">This page cannot be displayed in the current environment.</p>' +
+                '<p class="err-code">error_code: ' + code + '</p>';
+        }
+
+        /* ═══════════════════════════════════════════
+           GUARD 1 — iframe detection
+           Runs synchronously before anything else.
+        ═══════════════════════════════════════════ */
+        if (window.self !== window.top) {
+            showError('Editor environment not supported', 'IFRAME_BLOCKED');
+            throw new Error('IFRAME_BLOCKED: rendering halted');
+        }
+
+        /* ═══════════════════════════════════════════
+           GUARD 2 — authentication check
+        ═══════════════════════════════════════════ */
+        function getToken() {
+            // Check localStorage first
+            var lsToken = null;
+            try { lsToken = localStorage.getItem('sessionToken'); } catch (e) {}
+            if (lsToken) return lsToken;
+
+            // Fall back to cookies
+            var match = document.cookie.match(/(?:^|;\s*)sessionToken=([^;]+)/);
+            return match ? decodeURIComponent(match[1]) : null;
+        }
+
+        var token = getToken();
+
+        if (!token) {
+            injectStyle(
+                'body{margin:0;font-family:system-ui,sans-serif;background:#0f172a;' +
+                'display:flex;align-items:center;justify-content:height:100vh;}' +
+                '#root{margin:auto;text-align:center;color:#f1f5f9;padding:2rem;}' +
+                '#root .unauth-icon{font-size:3rem;margin-bottom:1rem;}' +
+                '#root .unauth-title{font-size:1.5rem;font-weight:700;margin:0 0 .5rem;}' +
+                '#root .unauth-msg{font-size:.9rem;color:#94a3b8;margin:0 0 1.25rem;line-height:1.6;}' +
+                '#root .unauth-hint{font-size:.8rem;color:#475569;font-family:monospace;' +
+                'background:#1e293b;padding:.6rem 1rem;border-radius:8px;display:inline-block;margin-bottom:1.5rem;}' +
+                '#root .unauth-steps{text-align:left;display:inline-block;margin:0 0 1.25rem;}' +
+                '#root .unauth-steps h3{font-size:.85rem;font-weight:700;color:#94a3b8;text-transform:uppercase;' +
+                'letter-spacing:.06em;margin:0 0 .6rem;}' +
+                '#root .unauth-steps ol{padding-left:1.2rem;margin:0 0 .75rem;color:#94a3b8;font-size:.875rem;line-height:1.9;}' +
+                '#root .unauth-steps ol li strong{color:#f1f5f9;}' +
+                '#root .unauth-steps code{font-family:monospace;background:#1e293b;color:#a5b4fc;' +
+                'padding:.15rem .45rem;border-radius:5px;font-size:.8rem;}' +
+                '#root .unauth-divider{border:none;border-top:1px solid #1e293b;margin:1rem 0;}'
+            );
+            root.innerHTML =
+                '<div class="unauth-icon">&#x1F512;</div>' +
+                '<p class="unauth-title">Unauthorized</p>' +
+                '<p class="unauth-msg">The page will show "Unauthorized" by default.<br>Follow the steps below to activate it.</p>' +
+
+                '<div class="unauth-steps">' +
+                '  <h3>To activate</h3>' +
+                '  <ol>' +
+                '    <li>Open the page in your browser</li>' +
+                '    <li>Open <strong>DevTools &rarr; Console</strong> <code>Cmd + Option + J</code> on Mac</li>' +
+                '    <li>Run this command:</li>' +
+                '  </ol>' +
+                '  <p class="unauth-hint">localStorage.setItem(\'sessionToken\',\'demo-token-123\')</p>' +
+                '  <ol start="4"><li>Refresh the page</li></ol>' +
+                '  <p style="font-size:.875rem;color:#94a3b8;margin:.5rem 0 0;">You\'ll see the spinner for 2.5 seconds, then the full dashboard loads with product cards, activity feed, and working <strong style="color:#f1f5f9;">"Add to cart"</strong> / logout buttons.</p>' +
+                '</div>' +
+
+                '<hr class="unauth-divider">' +
+
+                '<div class="unauth-steps">' +
+                '  <h3>To go back to unauthorized</h3>' +
+                '  <p style="font-size:.875rem;color:#94a3b8;margin:0 0 .6rem;">Click <strong style="color:#f1f5f9;">Log out</strong> on the page, or run:</p>' +
+                '  <p class="unauth-hint">localStorage.removeItem(\'sessionToken\')</p>' +
+                '  <p style="font-size:.875rem;color:#94a3b8;margin:.5rem 0 0;">and refresh.</p>' +
+                '</div>';
+            throw new Error('UNAUTHORIZED: no session token');
+        }
+
+        /* ═══════════════════════════════════════════
+           STEP 3 — inject base styles (all via JS)
+        ═══════════════════════════════════════════ */
+        injectStyle(
+            /* Reset & base */
+            '*{box-sizing:border-box;margin:0;padding:0;}' +
+            'body{font-family:system-ui,-apple-system,sans-serif;background:#f1f5f9;color:#1e293b;min-height:100vh;}' +
+
+            /* Topbar */
+            '.spa-topbar{position:fixed;top:0;left:0;width:100%;height:60px;' +
+            'background:rgba(255,255,255,.92);backdrop-filter:blur(12px);' +
+            'box-shadow:0 1px 3px rgba(0,0,0,.1);display:flex;align-items:center;' +
+            'justify-content:space-between;padding:0 2rem;z-index:100;}' +
+            '.spa-topbar .brand{font-size:1.1rem;font-weight:800;color:#6366f1;}' +
+            '.spa-topbar .user-info{display:flex;align-items:center;gap:.75rem;}' +
+            '.spa-topbar .user-avatar{width:34px;height:34px;border-radius:50%;' +
+            'background:linear-gradient(135deg,#6366f1,#8b5cf6);' +
+            'display:flex;align-items:center;justify-content:center;' +
+            'color:#fff;font-weight:700;font-size:.85rem;}' +
+            '.spa-topbar .user-name{font-size:.9rem;font-weight:600;color:#374151;}' +
+            '.spa-topbar .btn-logout{font-size:.8rem;padding:.4rem .85rem;border:1px solid #e2e8f0;' +
+            'border-radius:6px;background:#fff;color:#64748b;cursor:pointer;transition:all .2s;}' +
+            '.spa-topbar .btn-logout:hover{background:#f8fafc;border-color:#cbd5e1;color:#1e293b;}' +
+
+            /* Main wrapper */
+            '.spa-main{max-width:1100px;margin:0 auto;padding:90px 1.5rem 3rem;}' +
+
+            /* Welcome banner */
+            '.spa-welcome{background:linear-gradient(135deg,#6366f1,#8b5cf6);' +
+            'border-radius:20px;padding:2rem 2.5rem;margin-bottom:2.5rem;color:#fff;}' +
+            '.spa-welcome h1{font-size:1.6rem;font-weight:800;margin-bottom:.35rem;}' +
+            '.spa-welcome p{font-size:.95rem;opacity:.85;}' +
+
+            /* Section heading */
+            '.spa-section-title{font-size:1.1rem;font-weight:700;color:#1e293b;' +
+            'margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem;}' +
+            '.spa-section-title span{font-size:.75rem;font-weight:500;color:#6b7280;' +
+            'background:#e5e7eb;padding:.15rem .5rem;border-radius:99px;}' +
+
+            /* Product grid */
+            '.spa-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem;margin-bottom:2.5rem;}' +
+
+            /* Product card — NOTE: actual class names are random (see JS) */
+            /* We target the shared data-role attribute instead */
+            '[data-role="product-card"]{background:#fff;border:1px solid #e5e7eb;' +
+            'border-radius:16px;padding:1.5rem;transition:transform .22s,box-shadow .22s,border-color .22s;cursor:pointer;}' +
+            '[data-role="product-card"]:hover{transform:translateY(-4px);' +
+            'box-shadow:0 10px 28px rgba(99,102,241,.14);border-color:#a5b4fc;}' +
+            '[data-role="product-card"] .card-badge{display:inline-block;font-size:.7rem;font-weight:700;' +
+            'letter-spacing:.04em;text-transform:uppercase;padding:.25rem .6rem;border-radius:99px;' +
+            'background:#ede9fe;color:#6d28d9;margin-bottom:.75rem;}' +
+            '[data-role="product-card"] .card-name{font-size:1rem;font-weight:700;color:#1e293b;margin-bottom:.3rem;}' +
+            '[data-role="product-card"] .card-desc{font-size:.85rem;color:#6b7280;line-height:1.55;margin-bottom:1rem;}' +
+            '[data-role="product-card"] .card-price{font-size:1.1rem;font-weight:800;color:#6366f1;}' +
+            '[data-role="product-card"] .card-stock{font-size:.75rem;color:#10b981;font-weight:600;float:right;margin-top:.15rem;}' +
+            '[data-role="product-card"] .card-btn{display:block;width:100%;margin-top:1rem;padding:.55rem;' +
+            'border:none;border-radius:8px;background:linear-gradient(135deg,#6366f1,#8b5cf6);' +
+            'color:#fff;font-weight:700;font-size:.85rem;cursor:pointer;transition:opacity .2s;}' +
+            '[data-role="product-card"] .card-btn:hover{opacity:.88;}' +
+
+            /* Activity feed */
+            '.spa-activity{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:1.5rem;}' +
+            '.activity-item{display:flex;align-items:flex-start;gap:.85rem;padding:.65rem 0;' +
+            'border-bottom:1px solid #f1f5f9;}' +
+            '.activity-item:last-child{border-bottom:none;}' +
+            '.activity-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:.3rem;}' +
+            '.activity-dot.green{background:#10b981;}' +
+            '.activity-dot.blue{background:#3b82f6;}' +
+            '.activity-dot.amber{background:#f59e0b;}' +
+            '.activity-text{font-size:.875rem;color:#374151;line-height:1.5;}' +
+            '.activity-time{font-size:.75rem;color:#9ca3af;margin-top:.1rem;}' +
+
+            /* Loader */
+            '#spa-loader{display:flex;flex-direction:column;align-items:center;justify-content:center;' +
+            'height:100vh;gap:1rem;color:#6b7280;font-size:.9rem;}' +
+            '.spinner{width:44px;height:44px;border:4px solid #e2e8f0;' +
+            'border-top-color:#6366f1;border-radius:50%;animation:spin .8s linear infinite;}' +
+            '@keyframes spin{to{transform:rotate(360deg)}}' +
+
+            /* Toast */
+            '#spa-toast{position:fixed;bottom:1.5rem;right:1.5rem;background:#1e293b;color:#f1f5f9;' +
+            'padding:.75rem 1.25rem;border-radius:10px;font-size:.875rem;font-weight:600;' +
+            'box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:0;transform:translateY(8px);' +
+            'transition:opacity .3s,transform .3s;pointer-events:none;z-index:200;}' +
+            '#spa-toast.show{opacity:1;transform:translateY(0);}' +
+
+            /* Responsive */
+            '@media(max-width:600px){' +
+            '.spa-topbar{padding:0 1rem;}' +
+            '.spa-main{padding:80px 1rem 2rem;}' +
+            '.spa-welcome{padding:1.5rem;}' +
+            '}'
+        );
+
+        /* ═══════════════════════════════════════════
+           STEP 4 — show loader immediately
+        ═══════════════════════════════════════════ */
+        root.innerHTML =
+            '<div id="spa-loader">' +
+            '  <div class="spinner"></div>' +
+            '  <span>Loading your dashboard&hellip;</span>' +
+            '</div>';
+
+        /* ═══════════════════════════════════════════
+           STEP 5 — mock data (simulates API response)
+        ═══════════════════════════════════════════ */
+        var mockData = {
+            user: {
+                name: 'Nikhil',
+                email: 'nikhil@example.com',
+                role: 'Admin',
+                initials: 'NK'
+            },
+            products: [
+                { id: 1, name: 'Web Design Package', category: 'Design',
+                  desc: 'Custom responsive UI tailored to your brand.', price: '$1,200', stock: '8 slots left' },
+                { id: 2, name: 'Full-Stack Development', category: 'Dev',
+                  desc: 'End-to-end web app development with modern frameworks.', price: '$4,500', stock: '3 slots left' },
+                { id: 3, name: 'Performance Audit', category: 'Optimize',
+                  desc: 'Lighthouse & Core Web Vitals deep-dive with action plan.', price: '$650', stock: '10 slots left' },
+                { id: 4, name: 'Monthly Maintenance', category: 'Support',
+                  desc: 'Security patches, updates, and priority support.', price: '$299/mo', stock: 'Always open' },
+                { id: 5, name: 'Analytics Setup', category: 'Analytics',
+                  desc: 'GA4, VWO, heatmaps and conversion tracking configured.', price: '$800', stock: '5 slots left' },
+                { id: 6, name: 'A/B Testing Sprint', category: 'Testing',
+                  desc: 'Two-week experiment cycle with statistical analysis.', price: '$1,800', stock: '2 slots left' }
+            ],
+            activity: [
+                { color: 'green', text: 'Order #1042 — Web Design Package confirmed', time: '2 minutes ago' },
+                { color: 'blue',  text: 'User <strong>Sarah K.</strong> signed up via referral link', time: '18 minutes ago' },
+                { color: 'amber', text: 'A/B Testing Sprint inventory low — only 2 slots remaining', time: '1 hour ago' },
+                { color: 'green', text: 'Monthly Maintenance plan renewed for <strong>TechCorp Ltd.</strong>', time: '3 hours ago' },
+                { color: 'blue',  text: 'Performance Audit report delivered to client', time: 'Yesterday' }
+            ]
+        };
+
+        /* ═══════════════════════════════════════════
+           STEP 6 — toast helper
+        ═══════════════════════════════════════════ */
+        function showToast(msg) {
+            var toast = document.getElementById('spa-toast');
+            if (!toast) return;
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(function () { toast.classList.remove('show'); }, 2800);
+        }
+
+        /* ═══════════════════════════════════════════
+           STEP 7 — renderApp (called after delay)
+        ═══════════════════════════════════════════ */
+        function renderApp(data) {
+            var u = data.user;
+
+            // Build product cards with RANDOM class names (unstable DOM simulation)
+            var productCardsHTML = data.products.map(function (p) {
+                var randomClass = 'product-' + Math.random().toString(36).slice(2);
+                return (
+                    '<div class="' + randomClass + '" data-role="product-card" data-id="' + p.id + '">' +
+                    '  <span class="card-badge">' + p.category + '</span>' +
+                    '  <p class="card-name">' + p.name + '</p>' +
+                    '  <p class="card-desc">' + p.desc + '</p>' +
+                    '  <span class="card-price">' + p.price + '</span>' +
+                    '  <span class="card-stock">' + p.stock + '</span>' +
+                    '  <button class="card-btn" type="button">Add to cart</button>' +
+                    '</div>'
+                );
+            }).join('');
+
+            // Build activity feed
+            var activityHTML = data.activity.map(function (a) {
+                return (
+                    '<div class="activity-item">' +
+                    '  <div class="activity-dot ' + a.color + '"></div>' +
+                    '  <div>' +
+                    '    <div class="activity-text">' + a.text + '</div>' +
+                    '    <div class="activity-time">' + a.time + '</div>' +
+                    '  </div>' +
+                    '</div>'
+                );
+            }).join('');
+
+            // Render full app shell
+            root.innerHTML =
+                // Topbar
+                '<nav class="spa-topbar">' +
+                '  <span class="brand">&#9670; Dashboard</span>' +
+                '  <div class="user-info">' +
+                '    <div class="user-avatar">' + u.initials + '</div>' +
+                '    <span class="user-name">' + u.name + '</span>' +
+                '    <button class="btn-logout" id="btn-logout" type="button">Log out</button>' +
+                '  </div>' +
+                '</nav>' +
+
+                // Main content
+                '<main class="spa-main">' +
+
+                '  <div class="spa-welcome">' +
+                '    <h1>Welcome back, ' + u.name + ' &#128075;</h1>' +
+                '    <p>Logged in as <strong>' + u.email + '</strong> &middot; Role: ' + u.role + '</p>' +
+                '  </div>' +
+
+                '  <div class="spa-section-title">Products <span>' + data.products.length + ' items</span></div>' +
+                '  <div class="spa-grid">' + productCardsHTML + '</div>' +
+
+                '  <div class="spa-section-title">Recent Activity</div>' +
+                '  <div class="spa-activity">' + activityHTML + '</div>' +
+
+                '</main>' +
+
+                // Toast container
+                '<div id="spa-toast"></div>';
+
+            // ── Event listeners (attached after DOM exists) ──
+
+            // Logout button
+            document.getElementById('btn-logout').addEventListener('click', function () {
+                try { localStorage.removeItem('sessionToken'); } catch (e) {}
+                // Also clear cookie
+                document.cookie = 'sessionToken=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+                window.location.reload();
+            });
+
+            // Add-to-cart buttons
+            document.querySelectorAll('[data-role="product-card"] .card-btn').forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    var card = e.target.closest('[data-role="product-card"]');
+                    var name = card ? card.querySelector('.card-name').textContent : 'Item';
+                    showToast(name + ' added to cart');
+                });
+            });
+        }
+
+        /* ═══════════════════════════════════════════
+           STEP 8 — delayed render (2.5 s mock API)
+        ═══════════════════════════════════════════ */
+        setTimeout(function () {
+            renderApp(mockData);
+        }, 2500);
+
+    })();
+    </script>
+</body>
+</html>

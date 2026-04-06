@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — MyWebsite</title>
+
+    <!-- Shared site styles -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Services page layout/component styles (external) -->
+    <link rel="stylesheet" href="services.css">
+
+    <!-- Start VWO Async SmartCode -->
+    <script referrerpolicy="no-referrer-when-downgrade" src="https://dev.visualwebsiteoptimizer.com/tag/1209900.js" id="vwoCode"></script>
+    <!-- End VWO Async SmartCode -->
+
+    <!-- Inline styles: new section styles only (FAQ, stats banner, testimonial) -->
+    <style>
+        /* FAQ accordion */
+        .services-faq {
+            margin-bottom: 5rem;
+        }
+
+        .services-faq h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .faq-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.1rem 1.25rem;
+            background: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            text-align: left;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: #f9fafb;
+        }
+
+        .faq-chevron {
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+            color: #6366f1;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-chevron {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 0 1.25rem 1.1rem;
+            color: #6b7280;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            background: #fff;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        /* Stats banner */
+        .services-stats-banner {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .stats-banner-item .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .stats-banner-item .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-top: 0.25rem;
+        }
+
+        /* Testimonial */
+        .services-testimonial {
+            background: #f9fafb;
+            border-left: 4px solid #6366f1;
+            border-radius: 0 16px 16px 0;
+            padding: 2rem 2.5rem;
+            margin-bottom: 5rem;
+        }
+
+        .services-testimonial blockquote {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #1f2937;
+            line-height: 1.7;
+            margin: 0 0 1rem;
+        }
+
+        .services-testimonial cite {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #6366f1;
+            font-style: normal;
+        }
+
+        @media (max-width: 600px) {
+            .services-stats-banner {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav-bar></nav-bar>
+
+    <header class="services-page-hero">
+        <h1>Our Services</h1>
+        <p>Everything you need to build, launch, and grow a high-performance web presence.</p>
+    </header>
+
+    <main class="services-page-body">
+        <div class="container">
+
+            <!-- ── Service cards ── -->
+            <div class="services-main-grid" id="services-grid">
+                <article class="service-detail-card" data-index="0">
+                    <div class="service-detail-icon">🎨</div>
+                    <h3>Web Design</h3>
+                    <p>Beautiful, responsive designs tailored to your brand and built for every device.</p>
+                    <ul class="service-feature-list">
+                        <li>Custom UI/UX design</li>
+                        <li>Mobile-first layouts</li>
+                        <li>Brand-aligned visuals</li>
+                        <li>Figma / prototype delivery</li>
+                    </ul>
+                </article>
+                <article class="service-detail-card" data-index="1">
+                    <div class="service-detail-icon">💻</div>
+                    <h3>Development</h3>
+                    <p>Clean, efficient code that powers your website and scales with your business.</p>
+                    <ul class="service-feature-list">
+                        <li>Semantic HTML &amp; CSS</li>
+                        <li>JavaScript &amp; frameworks</li>
+                        <li>CMS integration</li>
+                        <li>API &amp; third-party integrations</li>
+                    </ul>
+                </article>
+                <article class="service-detail-card" data-index="2">
+                    <div class="service-detail-icon">🚀</div>
+                    <h3>Optimization</h3>
+                    <p>Fast load times, high Lighthouse scores, and excellent Core Web Vitals.</p>
+                    <ul class="service-feature-list">
+                        <li>Performance audits</li>
+                        <li>Image &amp; asset optimization</li>
+                        <li>Caching &amp; CDN setup</li>
+                        <li>SEO fundamentals</li>
+                    </ul>
+                </article>
+                <article class="service-detail-card" data-index="3">
+                    <div class="service-detail-icon">🔒</div>
+                    <h3>Maintenance</h3>
+                    <p>Ongoing support and updates so your site stays secure, fast, and up to date.</p>
+                    <ul class="service-feature-list">
+                        <li>Monthly updates</li>
+                        <li>Security monitoring</li>
+                        <li>Uptime monitoring</li>
+                        <li>Content updates</li>
+                    </ul>
+                </article>
+                <article class="service-detail-card" data-index="4">
+                    <div class="service-detail-icon">📊</div>
+                    <h3>Analytics</h3>
+                    <p>Track what matters. We set up and configure analytics tools tailored to your goals.</p>
+                    <ul class="service-feature-list">
+                        <li>GA4 / VWO setup</li>
+                        <li>Conversion tracking</li>
+                        <li>Heatmaps &amp; session replay</li>
+                        <li>Monthly reporting</li>
+                    </ul>
+                </article>
+                <article class="service-detail-card" data-index="5">
+                    <div class="service-detail-icon">🧪</div>
+                    <h3>A/B Testing</h3>
+                    <p>Data-driven experiments to improve conversion rates and user experience.</p>
+                    <ul class="service-feature-list">
+                        <li>Hypothesis &amp; test planning</li>
+                        <li>VWO / Optimizely setup</li>
+                        <li>Statistical analysis</li>
+                        <li>Winning variant deployment</li>
+                    </ul>
+                </article>
+            </div>
+
+            <!-- ── Stats banner (new) ── -->
+            <div class="services-stats-banner">
+                <div class="stats-banner-item">
+                    <div class="stat-value">500+</div>
+                    <div class="stat-label">Projects completed</div>
+                </div>
+                <div class="stats-banner-item">
+                    <div class="stat-value">98%</div>
+                    <div class="stat-label">Client satisfaction</div>
+                </div>
+                <div class="stats-banner-item">
+                    <div class="stat-value">24h</div>
+                    <div class="stat-label">Average response time</div>
+                </div>
+            </div>
+
+            <!-- ── How We Work ── -->
+            <div class="services-process">
+                <h2>How We Work</h2>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="process-step-number">1</div>
+                        <h3>Discovery</h3>
+                        <p>We learn about your goals, audience, and requirements.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-step-number">2</div>
+                        <h3>Design</h3>
+                        <p>We create wireframes and visual designs for your approval.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-step-number">3</div>
+                        <h3>Build</h3>
+                        <p>We develop and test your project to the highest standards.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-step-number">4</div>
+                        <h3>Launch</h3>
+                        <p>We deploy, monitor, and support you through go-live.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── CTA ── -->
+            <div class="services-cta">
+                <h2>Ready to get started?</h2>
+                <p>Let's talk about your project and how we can help.</p>
+                <a href="contact.html">Get in touch</a>
+            </div>
+
+            <!-- ── FAQ accordion (new) ── -->
+            <div class="services-faq">
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="faq-item" id="faq-1">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-1-answer">
+                        How long does a typical project take?
+                        <span class="faq-chevron">&#9660;</span>
+                    </button>
+                    <div class="faq-answer" id="faq-1-answer">
+                        Most projects take between 4 and 12 weeks depending on scope. A simple landing page can be ready in 2 weeks, while a full web app with integrations may take 3 months or more. We'll give you a clear timeline during discovery.
+                    </div>
+                </div>
+
+                <div class="faq-item" id="faq-2">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-2-answer">
+                        Do you offer ongoing maintenance after launch?
+                        <span class="faq-chevron">&#9660;</span>
+                    </button>
+                    <div class="faq-answer" id="faq-2-answer">
+                        Yes. We offer monthly maintenance plans that cover security patches, content updates, performance monitoring, and priority support. Ask us about our retainer packages.
+                    </div>
+                </div>
+
+                <div class="faq-item" id="faq-3">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-3-answer">
+                        Can you work with our existing design or CMS?
+                        <span class="faq-chevron">&#9660;</span>
+                    </button>
+                    <div class="faq-answer" id="faq-3-answer">
+                        Absolutely. We're comfortable working within existing brand guidelines, Figma files, or any major CMS including WordPress, Webflow, Contentful, and Shopify.
+                    </div>
+                </div>
+
+                <div class="faq-item" id="faq-4">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-4-answer">
+                        How does pricing work?
+                        <span class="faq-chevron">&#9660;</span>
+                    </button>
+                    <div class="faq-answer" id="faq-4-answer">
+                        We offer both fixed-price project quotes and hourly retainers. After a discovery call we'll send a detailed proposal with a breakdown of costs and deliverables — no surprises.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Testimonial (new) ── -->
+            <div class="services-testimonial">
+                <blockquote>
+                    "From day one they understood exactly what we needed. The design was stunning, the code was clean, and the site launched two weeks ahead of schedule. Best agency we've ever worked with."
+                </blockquote>
+                <cite>— Alex Morgan, CTO at Streamline Inc.</cite>
+            </div>
+
+            <a href="index.html" class="back-link">&#8592; Back to main site</a>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 MyWebsite. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Shared navbar / form logic -->
+    <script src="script.js"></script>
+    <!-- Services page: FAQ accordion + card hover (external) -->
+    <script src="services.js"></script>
+    <!-- Inline page-init: highlight card on load / via ?highlight= param -->
+    <script>
+        (function () {
+            var cards = document.querySelectorAll('.service-detail-card');
+            if (!cards.length) return;
+
+            // Read optional ?highlight=N query param
+            var params = new URLSearchParams(window.location.search);
+            var idx = parseInt(params.get('highlight'), 10);
+
+            // Fall back to 0 if param is absent or out of range
+            if (isNaN(idx) || idx < 0 || idx >= cards.length) {
+                idx = 0;
+            }
+
+            cards[idx].classList.add('featured');
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — MyWebsite</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Start VWO Async SmartCode -->
+    <script referrerpolicy="no-referrer-when-downgrade" src="https://dev.visualwebsiteoptimizer.com/tag/1209900.js" id="vwoCode"></script>
+    <!-- End VWO Async SmartCode -->
+    <style>
+        .about-page-hero {
+            padding: 160px 20px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+        }
+
+        .about-page-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+        }
+
+        .about-page-hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .about-page-body {
+            padding: 80px 20px;
+            background: #f9fafb;
+        }
+
+        .about-page-body .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Mission */
+        .about-mission {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 5rem;
+        }
+
+        .about-mission-text h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .about-mission-text p {
+            color: #6b7280;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .about-mission-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .about-mission-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Stats */
+        .about-stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 5rem;
+        }
+
+        .about-stat-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07);
+            border: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .about-stat-card:hover {
+            border-color: #6366f1;
+        }
+
+        .about-stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-stat-label {
+            font-size: 0.95rem;
+            color: #6b7280;
+            margin-top: 0.5rem;
+        }
+
+        /* Team */
+        .about-team h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .about-team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .about-team-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07);
+        }
+
+        .about-team-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin: 0 auto 1rem;
+        }
+
+        .about-team-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .about-team-role {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 3rem;
+            color: #6366f1;
+            font-weight: 600;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover { opacity: 0.75; }
+
+        @media (max-width: 768px) {
+            .about-mission { grid-template-columns: 1fr; }
+            .about-stats-row { grid-template-columns: repeat(2, 1fr); }
+            .about-page-hero h1 { font-size: 1.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav-bar></nav-bar>
+
+    <header class="about-page-hero">
+        <h1>About Us</h1>
+        <p>We're a passionate team building modern, beautiful web experiences for clients around the world.</p>
+    </header>
+
+    <main class="about-page-body">
+        <div class="container">
+
+            <!-- Mission -->
+            <div class="about-mission">
+                <div class="about-mission-text">
+                    <h2>Our Mission</h2>
+                    <p>We create beautiful, modern websites that are both functional and visually appealing. Our focus is always on user experience and clean design.</p>
+                    <p>With attention to detail and a passion for web development, we bring your ideas to life — on time, on budget, and beyond expectations.</p>
+                </div>
+                <div class="about-mission-image">
+                    <img src="https://picsum.photos/600/400?grayscale" alt="Our team at work" width="600" height="400" loading="lazy">
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="about-stats-row">
+                <div class="about-stat-card">
+                    <div class="about-stat-number">100+</div>
+                    <div class="about-stat-label">Projects Delivered</div>
+                </div>
+                <div class="about-stat-card">
+                    <div class="about-stat-number">50+</div>
+                    <div class="about-stat-label">Happy Clients</div>
+                </div>
+                <div class="about-stat-card">
+                    <div class="about-stat-number">5+</div>
+                    <div class="about-stat-label">Years Experience</div>
+                </div>
+                <div class="about-stat-card">
+                    <div class="about-stat-number">99%</div>
+                    <div class="about-stat-label">Client Satisfaction</div>
+                </div>
+            </div>
+
+            <!-- Team -->
+            <div class="about-team">
+                <h2>Meet the Team</h2>
+                <div class="about-team-grid">
+                    <div class="about-team-card">
+                        <div class="about-team-avatar">👩‍💻</div>
+                        <div class="about-team-name">Sarah Kim</div>
+                        <div class="about-team-role">Lead Designer</div>
+                    </div>
+                    <div class="about-team-card">
+                        <div class="about-team-avatar">👨‍💻</div>
+                        <div class="about-team-name">James Park</div>
+                        <div class="about-team-role">Frontend Engineer</div>
+                    </div>
+                    <div class="about-team-card">
+                        <div class="about-team-avatar">👩‍🔬</div>
+                        <div class="about-team-name">Priya Nair</div>
+                        <div class="about-team-role">Performance Lead</div>
+                    </div>
+                    <div class="about-team-card">
+                        <div class="about-team-avatar">👨‍🎨</div>
+                        <div class="about-team-name">Tom Reyes</div>
+                        <div class="about-team-role">Brand Strategist</div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="index.html" class="back-link">&#8592; Back to main site</a>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 MyWebsite. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

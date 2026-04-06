@@ -75,24 +75,14 @@ class NavBar extends HTMLElement {
                 <div class="logo">MyWebsite</div>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#feature">Featured</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <!-- SPA-style anchor: scrolls to the #reviews section on the same page -->
                     <li><a href="#reviews">Reviews</a></li>
                     <li><a href="#carousel">Carousel</a></li>
-                    <li><a href="#pseudo">::before/::after</a></li>
-                    <li><a href="#parent-child">Parent-Child</a></li>
-                    <li><a href="#rapid-mutation">Rapid DOM</a></li>
-                    <li><a href="#modal">Modal</a></li>
-                    <li><a href="#accordion">Accordion</a></li>
                     <li><a href="#form-elements">Form Elements</a></li>
-                    <li><a href="#display-none">Hidden</a></li>
-                    <li><a href="#shadow-open">Open Shadow</a></li>
-                    <li><a href="#iframe">Embed</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="about.html" target="_blank" rel="noopener noreferrer">About Us ↗</a></li>
+                    <li><a href="services.html" target="_blank" rel="noopener noreferrer">Services ↗</a></li>
                     <!-- Opens contact.html in a new tab (same domain) -->
                     <li><a href="contact.html" target="_blank" rel="noopener noreferrer">Contact Us ↗</a></li>
+                    <li><a href="dynamic-spa.html" target="_blank" rel="noopener noreferrer">Dashboard ↗</a></li>
                 </ul>
             </div>
         `;
