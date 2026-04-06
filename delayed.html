@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Start VWO Async SmartCode -->
+<link rel="preconnect" href="https://dev.visualwebsiteoptimizer.com" />
+<script type='text/javascript' id='vwoCode'>
+window._vwo_code ||
+(function () {
+var w=window,
+d=document;
+var account_id=22000468,
+version=2.2,
+settings_tolerance=2000,
+hide_element='body',
+hide_element_style = 'opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important';
+/* DO NOT EDIT BELOW THIS LINE */
+var f=0, v;
+if(f=!1,v=d.querySelector('#vwoCode'),cc={},-1<d.URL.indexOf('__vwo_disable__')||w._vwo_code)return;try{var e=JSON.parse(localStorage.getItem('_vwo_'+account_id+'_config'));cc=e&&'object'==typeof e?e:{}}catch(e){}function r(t){try{return decodeURIComponent(t)}catch(e){return t}}var s=function(){var e={combination:[],combinationChoose:[],split:[],exclude:[],uuid:null,consent:null,optOut:null},t=d.cookie||'';if(!t)return e;for(var n,i,o=/(?:^|;\s*)(?:(_vis_opt_exp_(\d+)_combi=([^;]*))|(_vis_opt_exp_(\d+)_combi_choose=([^;]*))|(_vis_opt_exp_(\d+)_split=([^:;]*))|(_vis_opt_exp_(\d+)_exclude=[^;]*)|(_vis_opt_out=([^;]*))|(_vwo_global_opt_out=[^;]*)|(_vwo_uuid=([^;]*))|(_vwo_consent=([^;]*)))/g;null!==(n=o.exec(t));)try{n[1]?e.combination.push({id:n[2],value:r(n[3])}):n[4]?e.combinationChoose.push({id:n[5],value:r(n[6])}):n[7]?e.split.push({id:n[8],value:r(n[9])}):n[10]?e.exclude.push({id:n[11]}):n[12]?e.optOut=r(n[13]):n[14]?e.optOut=!0:n[15]?e.uuid=r(n[16]):n[17]&&(i=r(n[18]),e.consent=i&&3<=i.length?i.substring(0,3):null)}catch(e){}return e}();function i(){var e=function(){if(w.VWO&&Array.isArray(w.VWO))for(var e=0;e<w.VWO.length;e++){var t=w.VWO[e];if(Array.isArray(t)&&('setVisitorId'===t[0]||'setSessionId'===t[0]))return!0}return!1}(),t='a='+account_id+'&u='+encodeURIComponent(w._vis_opt_url||d.URL)+'&vn='+version+'&ph=1'+('undefined'!=typeof platform?'&p='+platform:'')+'&st='+w.performance.now();e||((n=function(){var e,t=[],n={},i=w.VWO&&w.VWO.appliedCampaigns||{};for(e in i){var o=i[e]&&i[e].v;o&&(t.push(e+'-'+o+'-1'),n[e]=!0)}if(s&&s.combination)for(var r=0;r<s.combination.length;r++){var a=s.combination[r];n[a.id]||t.push(a.id+'-'+a.value)}return t.join('|')}())&&(t+='&c='+n),(n=function(){var e=[],t={};if(s&&s.combinationChoose)for(var n=0;n<s.combinationChoose.length;n++){var i=s.combinationChoose[n];e.push(i.id+'-'+i.value),t[i.id]=!0}if(s&&s.split)for(var o=0;o<s.split.length;o++)t[(i=s.split[o]).id]||e.push(i.id+'-'+i.value);return e.join('|')}())&&(t+='&cc='+n),(n=function(){var e={},t=[];if(w.VWO&&Array.isArray(w.VWO))for(var n=0;n<w.VWO.length;n++){var i=w.VWO[n];if(Array.isArray(i)&&'setVariation'===i[0]&&i[1]&&Array.isArray(i[1]))for(var o=0;o<i[1].length;o++){var r,a=i[1][o];a&&'object'==typeof a&&(r=a.e,a=a.v,r&&a&&(e[r]=a))}}for(r in e)t.push(r+'-'+e[r]);return t.join('|')}())&&(t+='&sv='+n)),s&&s.optOut&&(t+='&o='+s.optOut);var n=function(){var e=[],t={};if(s&&s.exclude)for(var n=0;n<s.exclude.length;n++){var i=s.exclude[n];t[i.id]||(e.push(i.id),t[i.id]=!0)}return e.join('|')}();return n&&(t+='&e='+n),s&&s.uuid&&(t+='&id='+s.uuid),s&&s.consent&&(t+='&consent='+s.consent),w.name&&-1<w.name.indexOf('_vis_preview')&&(t+='&pM=true'),w.VWO&&w.VWO.ed&&(t+='&ed='+w.VWO.ed),t}code={nonce:v&&v.nonce,library_tolerance:function(){return'undefined'!=typeof library_tolerance?library_tolerance:void 0},settings_tolerance:function(){return cc.sT||settings_tolerance},hide_element_style:function(){return'{'+(cc.hES||hide_element_style)+'}'},hide_element:function(){return performance.getEntriesByName('first-contentful-paint')[0]?'':'string'==typeof cc.hE?cc.hE:hide_element},getVersion:function(){return version},finish:function(e){var t;f||(f=!0,(t=d.getElementById('_vis_opt_path_hides'))&&t.parentNode.removeChild(t),e&&((new Image).src='https://dev.visualwebsiteoptimizer.com/ee.gif?a='+account_id+e))},finished:function(){return f},addScript:function(e){var t=d.createElement('script');t.type='text/javascript',e.src?t.src=e.src:t.text=e.text,v&&t.setAttribute('nonce',v.nonce),d.getElementsByTagName('head')[0].appendChild(t)},load:function(e,t){t=t||{};var n=new XMLHttpRequest;n.open('GET',e,!0),n.withCredentials=!t.dSC,n.responseType=t.responseType||'text',n.onload=function(){if(t.onloadCb)return t.onloadCb(n,e);200===n.status?_vwo_code.addScript({text:n.responseText}):_vwo_code.finish('&e=loading_failure:'+e)},n.onerror=function(){if(t.onerrorCb)return t.onerrorCb(e);_vwo_code.finish('&e=loading_failure:'+e)},n.send()},init:function(){var e,t=this.settings_tolerance();w._vwo_settings_timer=setTimeout(function(){_vwo_code.finish()},t),'body'!==this.hide_element()?(n=d.createElement('style'),e=(t=this.hide_element())?t+this.hide_element_style():'',t=d.getElementsByTagName('head')[0],n.setAttribute('id','_vis_opt_path_hides'),v&&n.setAttribute('nonce',v.nonce),n.setAttribute('type','text/css'),n.styleSheet?n.styleSheet.cssText=e:n.appendChild(d.createTextNode(e)),t.appendChild(n)):(n=d.getElementsByTagName('head')[0],(e=d.createElement('div')).style.cssText='z-index: 2147483647 !important;position: fixed !important;left: 0 !important;top: 0 !important;width: 100% !important;height: 100% !important;background: white !important;',e.setAttribute('id','_vis_opt_path_hides'),e.classList.add('_vis_hide_layer'),n.parentNode.insertBefore(e,n.nextSibling));var n='https://dev.visualwebsiteoptimizer.com/j.php?'+i();-1!==w.location.search.indexOf('_vwo_xhr')?this.addScript({src:n}):this.load(n+'&x=true',{l:1})}};w._vwo_code=code;code.init();})();
+</script>
+<!-- End VWO Async SmartCode -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delayed Render Demo</title>
+    <!-- No static styles or content. All injected by JavaScript after a delay. -->
+</head>
+<body>
+    <!-- Static shell: only this empty div exists in the HTML source. -->
+    <!-- Editor OuterHTML capture at t=0 sees only the loader spinner.  -->
+    <!-- Real content never appears in static source.                   -->
+    <div id="root"></div>
+
+    <script>
+    (function () {
+        'use strict';
+
+        var DELAY_MS = 4000; // 4-second mock API delay
+
+        console.log('[delayed] Page loaded at t=0. Starting', DELAY_MS / 1000 + 's mock API fetch...');
+
+        var root = document.getElementById('root');
+
+        /* ─────────────────────────────────────────────
+           INJECT STYLES (all via JS — no static CSS)
+        ───────────────────────────────────────────── */
+        function injectStyles() {
+            var s = document.createElement('style');
+            s.textContent =
+                '*{box-sizing:border-box;margin:0;padding:0;}' +
+                'body{font-family:system-ui,-apple-system,sans-serif;background:#f1f5f9;color:#1e293b;min-height:100vh;}' +
+
+                /* ── Loader ── */
+                '#loader{display:flex;flex-direction:column;align-items:center;' +
+                'justify-content:center;height:100vh;gap:1.5rem;}' +
+                '.loader-spinner{width:52px;height:52px;border:4px solid #e2e8f0;' +
+                'border-top-color:#6366f1;border-radius:50%;animation:spin .9s linear infinite;}' +
+                '@keyframes spin{to{transform:rotate(360deg)}}' +
+                '.loader-text{font-size:.9rem;color:#64748b;font-weight:500;}' +
+                '.loader-progress-track{width:260px;height:5px;background:#e2e8f0;border-radius:99px;overflow:hidden;}' +
+                '.loader-progress-bar{height:100%;background:linear-gradient(90deg,#6366f1,#8b5cf6);' +
+                'border-radius:99px;width:0%;transition:width ' + (DELAY_MS / 1000) + 's linear;}' +
+                '.loader-countdown{font-size:.75rem;color:#94a3b8;font-family:monospace;}' +
+
+                /* ── Page chrome ── */
+                '.delayed-topbar{background:#fff;border-bottom:1px solid #e2e8f0;' +
+                'padding:.875rem 2rem;display:flex;align-items:center;justify-content:space-between;}' +
+                '.delayed-topbar-brand{font-size:1rem;font-weight:800;color:#6366f1;}' +
+                '.delayed-back{font-size:.8rem;color:#6366f1;text-decoration:none;font-weight:600;}' +
+                '.delayed-back:hover{text-decoration:underline;}' +
+
+                /* ── Hero ── */
+                '.delayed-hero{position:relative;overflow:hidden;border-radius:0;' +
+                'background:#1e293b;padding:4rem 2rem 3.5rem;text-align:center;color:#fff;}' +
+                '.delayed-hero-bg{position:absolute;inset:0;' +
+                'background:linear-gradient(135deg,rgba(99,102,241,.6),rgba(139,92,246,.5));z-index:0;}' +
+                '.delayed-hero-img{position:absolute;inset:0;width:100%;height:100%;' +
+                'object-fit:cover;opacity:.18;z-index:0;}' +
+                '.delayed-hero-content{position:relative;z-index:1;max-width:640px;margin:0 auto;}' +
+                '.delayed-hero h1{font-size:2.25rem;font-weight:900;margin-bottom:.75rem;line-height:1.2;}' +
+                '.delayed-hero p{font-size:1rem;opacity:.8;line-height:1.6;margin-bottom:2rem;}' +
+                '.delayed-hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}' +
+                '.delayed-hero-btn-primary{padding:.8rem 2rem;background:#fff;color:#6366f1;' +
+                'font-weight:700;border:none;border-radius:50px;font-size:.9rem;cursor:pointer;' +
+                'transition:opacity .2s,transform .2s;}' +
+                '.delayed-hero-btn-primary:hover{opacity:.9;transform:translateY(-1px);}' +
+                '.delayed-hero-btn-secondary{padding:.8rem 2rem;background:transparent;color:#fff;' +
+                'font-weight:700;border:2px solid rgba(255,255,255,.5);border-radius:50px;' +
+                'font-size:.9rem;cursor:pointer;transition:border-color .2s;}' +
+                '.delayed-hero-btn-secondary:hover{border-color:#fff;}' +
+
+                /* ── Features ── */
+                '.delayed-main{max-width:1100px;margin:0 auto;padding:3rem 1.5rem;}' +
+                '.delayed-section-label{font-size:.75rem;font-weight:700;text-transform:uppercase;' +
+                'letter-spacing:.08em;color:#6366f1;margin-bottom:.5rem;}' +
+                '.delayed-section-title{font-size:1.5rem;font-weight:800;color:#1e293b;' +
+                'margin-bottom:.5rem;}' +
+                '.delayed-section-sub{font-size:.9rem;color:#6b7280;margin-bottom:2rem;line-height:1.6;}' +
+                '.delayed-features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));' +
+                'gap:1.25rem;margin-bottom:3rem;}' +
+                '.delayed-feature-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;' +
+                'padding:1.5rem;transition:transform .22s,box-shadow .22s;}' +
+                '.delayed-feature-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(99,102,241,.12);}' +
+                '.delayed-feature-icon{font-size:1.75rem;margin-bottom:.875rem;}' +
+                '.delayed-feature-title{font-size:.975rem;font-weight:700;color:#1e293b;margin-bottom:.35rem;}' +
+                '.delayed-feature-desc{font-size:.825rem;color:#6b7280;line-height:1.55;}' +
+
+                /* ── CTA banner ── */
+                '.delayed-cta{background:linear-gradient(135deg,#6366f1,#8b5cf6);' +
+                'border-radius:20px;padding:2.5rem 2rem;text-align:center;color:#fff;margin-bottom:2rem;}' +
+                '.delayed-cta h2{font-size:1.5rem;font-weight:800;margin-bottom:.5rem;}' +
+                '.delayed-cta p{opacity:.8;font-size:.9rem;margin-bottom:1.5rem;}' +
+                '.delayed-cta-btn{display:inline-block;padding:.8rem 2.25rem;' +
+                'background:#fff;color:#6366f1;font-weight:700;border:none;' +
+                'border-radius:50px;font-size:.9rem;cursor:pointer;transition:opacity .2s;}' +
+                '.delayed-cta-btn:hover{opacity:.88;}' +
+
+                /* ── Render timestamp ── */
+                '.delayed-meta{font-size:.75rem;color:#94a3b8;text-align:center;padding-bottom:2rem;' +
+                'font-family:monospace;}' +
+
+                /* ── Responsive ── */
+                '@media(max-width:600px){' +
+                '.delayed-hero{padding:3rem 1.25rem 2.5rem;}' +
+                '.delayed-hero h1{font-size:1.6rem;}' +
+                '.delayed-main{padding:2rem 1rem;}' +
+                '.delayed-topbar{padding:.875rem 1rem;}' +
+                '}';
+            document.head.appendChild(s);
+            console.log('[delayed] Styles injected');
+        }
+
+        /* ─────────────────────────────────────────────
+           SHOW LOADER + ANIMATED PROGRESS BAR
+        ───────────────────────────────────────────── */
+        function showLoader() {
+            console.log('[delayed] Showing loader. Content will appear in', DELAY_MS / 1000, 'seconds.');
+            root.innerHTML =
+                '<div id="loader">' +
+                '  <div class="loader-spinner"></div>' +
+                '  <div class="loader-text">Fetching content from API&hellip;</div>' +
+                '  <div class="loader-progress-track">' +
+                '    <div class="loader-progress-bar" id="progress-bar"></div>' +
+                '  </div>' +
+                '  <div class="loader-countdown" id="countdown">' + (DELAY_MS / 1000).toFixed(1) + 's remaining</div>' +
+                '</div>';
+
+            // Trigger progress bar animation on next frame
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                    var bar = document.getElementById('progress-bar');
+                    if (bar) bar.style.width = '100%';
+                });
+            });
+
+            // Countdown timer
+            var remaining = DELAY_MS / 1000;
+            var countdownEl = document.getElementById('countdown');
+            var tick = setInterval(function () {
+                remaining = Math.max(0, remaining - 0.1);
+                if (countdownEl) countdownEl.textContent = remaining.toFixed(1) + 's remaining';
+                if (remaining <= 0) clearInterval(tick);
+            }, 100);
+        }
+
+        /* ─────────────────────────────────────────────
+           MOCK API DATA
+        ───────────────────────────────────────────── */
+        var mockData = {
+            hero: {
+                title: 'Summer Sale — Up to 60% Off',
+                subtitle: 'Our biggest sale of the year is here. Shop thousands of products at record-low prices for a limited time only.',
+                img: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1200&auto=format&fit=crop',
+                ctaPrimary: 'Shop Now',
+                ctaSecondary: 'View Lookbook',
+            },
+            sectionLabel: 'Why shop with us',
+            sectionTitle: 'Everything you need, all in one place',
+            sectionSub: 'From electronics to fashion, we have it all — delivered fast and backed by our 30-day return guarantee.',
+            features: [
+                { icon: '🚀', title: 'Fast Delivery',       desc: 'Same-day or next-day delivery available in most cities.' },
+                { icon: '🔒', title: 'Secure Payments',     desc: '256-bit SSL encryption and fraud protection on every order.' },
+                { icon: '↩️',  title: '30-Day Returns',      desc: 'Changed your mind? Return any item hassle-free within 30 days.' },
+                { icon: '💬', title: '24/7 Support',         desc: 'Real humans available around the clock via chat, email, or phone.' },
+                { icon: '🏷️', title: 'Price Match',          desc: 'Found it cheaper elsewhere? We\'ll match the price, guaranteed.' },
+                { icon: '🎁', title: 'Loyalty Rewards',      desc: 'Earn points on every purchase and redeem them for discounts.' },
+            ],
+            cta: {
+                title: 'Ready to start saving?',
+                subtitle: 'Join over 2 million customers who trust us for their everyday shopping.',
+                btnLabel: 'Create Free Account',
+            },
+        };
+
+        /* ─────────────────────────────────────────────
+           RENDER PAGE (called after delay)
+        ───────────────────────────────────────────── */
+        function renderPage(data) {
+            console.log('[delayed] Mock API response received. Rendering page content...');
+            var renderTime = new Date().toISOString();
+
+            var featuresHTML = data.features.map(function (f) {
+                return (
+                    '<div class="delayed-feature-card">' +
+                    '  <div class="delayed-feature-icon">' + f.icon + '</div>' +
+                    '  <div class="delayed-feature-title">' + f.title + '</div>' +
+                    '  <div class="delayed-feature-desc">' + f.desc + '</div>' +
+                    '</div>'
+                );
+            }).join('');
+
+            root.innerHTML =
+                /* Topbar */
+                '<nav class="delayed-topbar">' +
+                '  <span class="delayed-topbar-brand">&#9670; Delayed Render Demo</span>' +
+                '  <a href="index.html" class="delayed-back">← Back to site</a>' +
+                '</nav>' +
+
+                /* Hero with background image */
+                '<section class="delayed-hero">' +
+                '  <img class="delayed-hero-img" src="' + data.hero.img + '" alt="Sale banner" loading="eager">' +
+                '  <div class="delayed-hero-bg"></div>' +
+                '  <div class="delayed-hero-content">' +
+                '    <h1>' + data.hero.title + '</h1>' +
+                '    <p>' + data.hero.subtitle + '</p>' +
+                '    <div class="delayed-hero-actions">' +
+                '      <button class="delayed-hero-btn-primary" id="btn-shop">' + data.hero.ctaPrimary + '</button>' +
+                '      <button class="delayed-hero-btn-secondary" id="btn-lookbook">' + data.hero.ctaSecondary + '</button>' +
+                '    </div>' +
+                '  </div>' +
+                '</section>' +
+
+                /* Features */
+                '<div class="delayed-main">' +
+                '  <div class="delayed-section-label">' + data.sectionLabel + '</div>' +
+                '  <div class="delayed-section-title">' + data.sectionTitle + '</div>' +
+                '  <div class="delayed-section-sub">' + data.sectionSub + '</div>' +
+                '  <div class="delayed-features-grid">' + featuresHTML + '</div>' +
+
+                /* CTA banner */
+                '  <div class="delayed-cta">' +
+                '    <h2>' + data.cta.title + '</h2>' +
+                '    <p>' + data.cta.subtitle + '</p>' +
+                '    <button class="delayed-cta-btn" id="btn-signup">' + data.cta.btnLabel + '</button>' +
+                '  </div>' +
+
+                '  <div class="delayed-meta">Rendered at: ' + renderTime + ' &nbsp;|&nbsp; Delay: ' + DELAY_MS + 'ms</div>' +
+                '</div>';
+
+            /* Attach event listeners after DOM exists */
+            document.getElementById('btn-shop').addEventListener('click', function () {
+                alert('Shop Now clicked!\n(This is a demo — no real store here.)');
+            });
+            document.getElementById('btn-lookbook').addEventListener('click', function () {
+                alert('Lookbook clicked!\n(This is a demo.)');
+            });
+            document.getElementById('btn-signup').addEventListener('click', function () {
+                alert('Sign up clicked!\n(This is a demo.)');
+            });
+
+            console.log('[delayed] Page fully rendered at:', renderTime);
+        }
+
+        /* ─────────────────────────────────────────────
+           BOOT — show loader immediately, render after delay
+        ───────────────────────────────────────────── */
+        injectStyles();
+        showLoader();
+
+        // Simulate async API call
+        setTimeout(function () {
+            console.log('[delayed] setTimeout fired after', DELAY_MS + 'ms. Calling renderPage...');
+            renderPage(mockData);
+        }, DELAY_MS);
+
+    })();
+    </script>
+</body>
+</html>

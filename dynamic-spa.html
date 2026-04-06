@@ -468,10 +468,18 @@ if(f=!1,v=d.querySelector('#vwoCode'),cc={},-1<d.URL.indexOf('__vwo_disable__')|
                         var shadow = this.attachShadow({ mode: 'open' });
 
                         var metrics = [
-                            { label: 'Page Views',      value: '128,430', delta: '+12%',  up: true  },
+                            { label: 'Page Views',       value: '128,430', delta: '+12%',  up: true  },
                             { label: 'Unique Visitors',  value: '47,920',  delta: '+8%',   up: true  },
                             { label: 'Bounce Rate',      value: '34.2%',   delta: '-3%',   up: false },
                             { label: 'Avg. Session',     value: '3m 47s',  delta: '+0.5m', up: true  },
+                            { label: 'Conversions',      value: '3,810',   delta: '+21%',  up: true  },
+                            { label: 'Revenue',          value: '$94,200', delta: '+9%',   up: true  },
+                        ];
+
+                        var insights = [
+                            { icon: '📈', title: 'Traffic up 12% this week', body: 'Organic search is driving the most growth. Blog posts published on Tuesday consistently outperform other days by 2.4×.' },
+                            { icon: '🎯', title: 'Top converting page: /pricing', body: 'The pricing page has a 6.8% conversion rate this month — up from 4.1% after the layout change deployed on Feb 10.' },
+                            { icon: '⚠️', title: 'Bounce rate spike on mobile', body: 'Mobile bounce rate increased to 51% between 9 PM–11 PM. Likely caused by a slow third-party script on the checkout page.' },
                         ];
 
                         var cardsHTML = metrics.map(function (m) {
@@ -484,18 +492,96 @@ if(f=!1,v=d.querySelector('#vwoCode'),cc={},-1<d.URL.indexOf('__vwo_disable__')|
                             );
                         }).join('');
 
+                        var insightsHTML = insights.map(function (ins) {
+                            return (
+                                '<div class="insight-item">' +
+                                '  <div class="insight-icon">' + ins.icon + '</div>' +
+                                '  <div class="insight-body">' +
+                                '    <div class="insight-title">' + ins.title + '</div>' +
+                                '    <div class="insight-text">' + ins.body + '</div>' +
+                                '  </div>' +
+                                '</div>'
+                            );
+                        }).join('');
+
                         shadow.innerHTML =
                             '<style>' +
-                            ':host{display:block;background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:1.5rem;}' +
-                            '.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;}' +
-                            '.metric-card{background:#f8fafc;border-radius:12px;padding:1.1rem 1.25rem;}' +
-                            '.metric-label{font-size:.75rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem;}' +
-                            '.metric-value{font-size:1.5rem;font-weight:800;color:#1e293b;margin-bottom:.3rem;}' +
-                            '.metric-delta{font-size:.8rem;font-weight:700;padding:.15rem .5rem;border-radius:99px;display:inline-block;}' +
+                            /* Host / wrapper */
+                            ':host{display:block;background:#fff;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;font-family:system-ui,-apple-system,sans-serif;}' +
+
+                            /* Widget header */
+                            '.widget-header{padding:1.25rem 1.5rem;border-bottom:1px solid #f1f5f9;}' +
+                            '.widget-header-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:.35rem;}' +
+                            '.widget-title{font-size:1rem;font-weight:800;color:#1e293b;}' +
+                            '.widget-badge{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;' +
+                            'padding:.2rem .55rem;background:#ede9fe;color:#6d28d9;border-radius:99px;}' +
+                            '.widget-desc{font-size:.825rem;color:#6b7280;line-height:1.55;}' +
+
+                            /* Metrics grid */
+                            '.section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;' +
+                            'color:#94a3b8;padding:1rem 1.5rem .6rem;}' +
+                            '.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.875rem;padding:0 1.5rem 1.25rem;}' +
+                            '.metric-card{background:#f8fafc;border-radius:12px;padding:1rem 1.1rem;transition:transform .18s;}' +
+                            '.metric-card:hover{transform:translateY(-2px);}' +
+                            '.metric-label{font-size:.72rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem;}' +
+                            '.metric-value{font-size:1.4rem;font-weight:800;color:#1e293b;margin-bottom:.3rem;}' +
+                            '.metric-delta{font-size:.78rem;font-weight:700;padding:.15rem .5rem;border-radius:99px;display:inline-block;}' +
                             '.metric-delta.up{background:#dcfce7;color:#16a34a;}' +
                             '.metric-delta.down{background:#fee2e2;color:#dc2626;}' +
+
+                            /* Summary paragraph */
+                            '.summary{margin:0 1.5rem 1.25rem;padding:1rem 1.25rem;background:#f0f9ff;' +
+                            'border-left:3px solid #38bdf8;border-radius:0 10px 10px 0;}' +
+                            '.summary-title{font-size:.78rem;font-weight:700;color:#0284c7;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.05em;}' +
+                            '.summary-text{font-size:.85rem;color:#0369a1;line-height:1.65;}' +
+
+                            /* Insights list */
+                            '.insights{padding:0 1.5rem 1.25rem;display:flex;flex-direction:column;gap:.75rem;}' +
+                            '.insight-item{display:flex;gap:.875rem;padding:.875rem 1rem;' +
+                            'background:#fafafa;border:1px solid #f1f5f9;border-radius:12px;}' +
+                            '.insight-icon{font-size:1.25rem;flex-shrink:0;margin-top:.05rem;}' +
+                            '.insight-title{font-size:.85rem;font-weight:700;color:#1e293b;margin-bottom:.3rem;}' +
+                            '.insight-text{font-size:.8rem;color:#6b7280;line-height:1.6;}' +
+
+                            /* Footer note */
+                            '.widget-footer{padding:.875rem 1.5rem;background:#f8fafc;' +
+                            'border-top:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;}' +
+                            '.footer-note{font-size:.75rem;color:#94a3b8;}' +
+                            '.footer-note strong{color:#6b7280;}' +
+                            '.footer-link{font-size:.75rem;font-weight:700;color:#6366f1;cursor:pointer;}' +
+                            '.footer-link:hover{text-decoration:underline;}' +
                             '</style>' +
-                            '<div class="grid">' + cardsHTML + '</div>';
+
+                            /* Widget header */
+                            '<div class="widget-header">' +
+                            '  <div class="widget-header-row">' +
+                            '    <span class="widget-title">Analytics Overview</span>' +
+                            '    <span class="widget-badge">Open Shadow DOM</span>' +
+                            '  </div>' +
+                            '  <p class="widget-desc">Live metrics and insights for the past 7 days. This entire widget — including its styles and text — lives inside an <strong>open shadow root</strong>. Outer page CSS cannot reach it.</p>' +
+                            '</div>' +
+
+                            /* Metrics */
+                            '<div class="section-label">Key Metrics — Last 7 Days</div>' +
+                            '<div class="grid">' + cardsHTML + '</div>' +
+
+                            /* Summary */
+                            '<div class="summary">' +
+                            '  <div class="summary-title">Weekly Summary</div>' +
+                            '  <p class="summary-text">Overall performance is trending positively. Revenue grew by 9% compared to last week, driven primarily by the new pricing page layout and an increase in organic search traffic. Conversion rate reached a monthly high of 6.8% on the /pricing route. Monitor the mobile bounce rate spike before the next deploy.</p>' +
+                            '</div>' +
+
+                            /* Insights */
+                            '<div class="section-label">Automated Insights</div>' +
+                            '<div class="insights">' + insightsHTML + '</div>' +
+
+                            /* Footer */
+                            '<div class="widget-footer">' +
+                            '  <span class="footer-note">Last updated: <strong>Today, 10:42 AM</strong> &nbsp;·&nbsp; Data source: Analytics API v3</span>' +
+                            '  <span class="footer-link">View full report →</span>' +
+                            '</div>';
+
+                        console.log('[dynamic-spa] Open shadow DOM widget mounted — shadow root mode:', shadow.mode);
                     }
                 });
             }
