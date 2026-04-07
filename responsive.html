@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Start VWO Async SmartCode -->
+<link rel="preconnect" href="https://dev.visualwebsiteoptimizer.com" />
+<script type='text/javascript' id='vwoCode'>
+window._vwo_code ||
+(function () {
+var w=window,
+d=document;
+var account_id=1111850,
+version=2.2,
+settings_tolerance=2000,
+hide_element='body',
+hide_element_style = 'opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important';
+/* DO NOT EDIT BELOW THIS LINE */
+var f=0, v;
+if(f=!1,v=d.querySelector('#vwoCode'),cc={},-1<d.URL.indexOf('__vwo_disable__')||w._vwo_code)return;try{var e=JSON.parse(localStorage.getItem('_vwo_'+account_id+'_config'));cc=e&&'object'==typeof e?e:{}}catch(e){}function r(t){try{return decodeURIComponent(t)}catch(e){return t}}var s=function(){var e={combination:[],combinationChoose:[],split:[],exclude:[],uuid:null,consent:null,optOut:null},t=d.cookie||'';if(!t)return e;for(var n,i,o=/(?:^|;\s*)(?:(_vis_opt_exp_(\d+)_combi=([^;]*))|(_vis_opt_exp_(\d+)_combi_choose=([^;]*))|(_vis_opt_exp_(\d+)_split=([^:;]*))|(_vis_opt_exp_(\d+)_exclude=[^;]*)|(_vis_opt_out=([^;]*))|(_vwo_global_opt_out=[^;]*)|(_vwo_uuid=([^;]*))|(_vwo_consent=([^;]*)))/g;null!==(n=o.exec(t));)try{n[1]?e.combination.push({id:n[2],value:r(n[3])}):n[4]?e.combinationChoose.push({id:n[5],value:r(n[6])}):n[7]?e.split.push({id:n[8],value:r(n[9])}):n[10]?e.exclude.push({id:n[11]}):n[12]?e.optOut=r(n[13]):n[14]?e.optOut=!0:n[15]?e.uuid=r(n[16]):n[17]&&(i=r(n[18]),e.consent=i&&3<=i.length?i.substring(0,3):null)}catch(e){}return e}();function i(){var e=function(){if(w.VWO&&Array.isArray(w.VWO))for(var e=0;e<w.VWO.length;e++){var t=w.VWO[e];if(Array.isArray(t)&&('setVisitorId'===t[0]||'setSessionId'===t[0]))return!0}return!1}(),t='a='+account_id+'&u='+encodeURIComponent(w._vis_opt_url||d.URL)+'&vn='+version+'&ph=1'+('undefined'!=typeof platform?'&p='+platform:'')+'&st='+w.performance.now();e||((n=function(){var e,t=[],n={},i=w.VWO&&w.VWO.appliedCampaigns||{};for(e in i){var o=i[e]&&i[e].v;o&&(t.push(e+'-'+o+'-1'),n[e]=!0)}if(s&&s.combination)for(var r=0;r<s.combination.length;r++){var a=s.combination[r];n[a.id]||t.push(a.id+'-'+a.value)}return t.join('|')}())&&(t+='&c='+n),(n=function(){var e=[],t={};if(s&&s.combinationChoose)for(var n=0;n<s.combinationChoose.length;n++){var i=s.combinationChoose[n];e.push(i.id+'-'+i.value),t[i.id]=!0}if(s&&s.split)for(var o=0;o<s.split.length;o++)t[(i=s.split[o]).id]||e.push(i.id+'-'+i.value);return e.join('|')}())&&(t+='&cc='+n),(n=function(){var e={},t=[];if(w.VWO&&Array.isArray(w.VWO))for(var n=0;n<w.VWO.length;n++){var i=w.VWO[n];if(Array.isArray(i)&&'setVariation'===i[0]&&i[1]&&Array.isArray(i[1]))for(var o=0;o<i[1].length;o++){var r,a=i[1][o];a&&'object'==typeof a&&(r=a.e,a=a.v,r&&a&&(e[r]=a))}}for(r in e)t.push(r+'-'+e[r]);return t.join('|')}())&&(t+='&sv='+n)),s&&s.optOut&&(t+='&o='+s.optOut);var n=function(){var e=[],t={};if(s&&s.exclude)for(var n=0;n<s.exclude.length;n++){var i=s.exclude[n];t[i.id]||(e.push(i.id),t[i.id]=!0)}return e.join('|')}();return n&&(t+='&e='+n),s&&s.uuid&&(t+='&id='+s.uuid),s&&s.consent&&(t+='&consent='+s.consent),w.name&&-1<w.name.indexOf('_vis_preview')&&(t+='&pM=true'),w.VWO&&w.VWO.ed&&(t+='&ed='+w.VWO.ed),t}code={nonce:v&&v.nonce,library_tolerance:function(){return'undefined'!=typeof library_tolerance?library_tolerance:void 0},settings_tolerance:function(){return cc.sT||settings_tolerance},hide_element_style:function(){return'{'+(cc.hES||hide_element_style)+'}'},hide_element:function(){return performance.getEntriesByName('first-contentful-paint')[0]?'':'string'==typeof cc.hE?cc.hE:hide_element},getVersion:function(){return version},finish:function(e){var t;f||(f=!0,(t=d.getElementById('_vis_opt_path_hides'))&&t.parentNode.removeChild(t),e&&((new Image).src='https://dev.visualwebsiteoptimizer.com/ee.gif?a='+account_id+e))},finished:function(){return f},addScript:function(e){var t=d.createElement('script');t.type='text/javascript',e.src?t.src=e.src:t.text=e.text,v&&t.setAttribute('nonce',v.nonce),d.getElementsByTagName('head')[0].appendChild(t)},load:function(e,t){t=t||{};var n=new XMLHttpRequest;n.open('GET',e,!0),n.withCredentials=!t.dSC,n.responseType=t.responseType||'text',n.onload=function(){if(t.onloadCb)return t.onloadCb(n,e);200===n.status?_vwo_code.addScript({text:n.responseText}):_vwo_code.finish('&e=loading_failure:'+e)},n.onerror=function(){if(t.onerrorCb)return t.onerrorCb(e);_vwo_code.finish('&e=loading_failure:'+e)},n.send()},init:function(){var e,t=this.settings_tolerance();w._vwo_settings_timer=setTimeout(function(){_vwo_code.finish()},t),'body'!==this.hide_element()?(n=d.createElement('style'),e=(t=this.hide_element())?t+this.hide_element_style():'',t=d.getElementsByTagName('head')[0],n.setAttribute('id','_vis_opt_path_hides'),v&&n.setAttribute('nonce',v.nonce),n.setAttribute('type','text/css'),n.styleSheet?n.styleSheet.cssText=e:n.appendChild(d.createTextNode(e)),t.appendChild(n)):(n=d.getElementsByTagName('head')[0],(e=d.createElement('div')).style.cssText='z-index: 2147483647 !important;position: fixed !important;left: 0 !important;top: 0 !important;width: 100% !important;height: 100% !important;background: white !important;',e.setAttribute('id','_vis_opt_path_hides'),e.classList.add('_vis_hide_layer'),n.parentNode.insertBefore(e,n.nextSibling));var n='https://dev.visualwebsiteoptimizer.com/j.php?'+i();-1!==w.location.search.indexOf('_vwo_xhr')?this.addScript({src:n}):this.load(n+'&x=true',{l:1})}};w._vwo_code=code;code.init();})();
+</script>
+<!-- End VWO Async SmartCode -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout Demo</title>
+
+    <style>
+        /* ── Reset & base ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            min-height: 100vh;
+            padding-top: 80px; /* clear fixed nav-bar */
+        }
+
+        /* ── Page wrapper ── */
+        .page-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.25rem 4rem;
+        }
+
+        /* ── Page heading ── */
+        .page-heading {
+            margin-bottom: 1.75rem;
+        }
+        .page-heading h1 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #1e293b;
+            margin-bottom: .5rem;
+        }
+        .page-heading-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: .6rem;
+        }
+
+        /* Viewport label badge — set by JS on load */
+        #viewport-label {
+            display: inline-block;
+            font-size: .75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            padding: .25rem .7rem;
+            border-radius: 99px;
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+        #viewport-label.mobile {
+            background: #fce7f3;
+            color: #9d174d;
+        }
+
+        /* Load timestamp */
+        #load-time {
+            font-size: .8rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* ── Three-column grid ── */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 220px 1fr 200px;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        /* ── Shared column card ── */
+        .col-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 1.25rem;
+        }
+        .col-card h2 {
+            font-size: .9rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: #6366f1;
+            margin-bottom: 1rem;
+            padding-bottom: .5rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        /* ── Sidebar ── */
+        .sidebar {
+            order: 2; /* mobile: shows after main */
+        }
+        .sidebar-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .25rem;
+        }
+        .sidebar-nav li a {
+            display: block;
+            padding: .5rem .75rem;
+            border-radius: 8px;
+            font-size: .875rem;
+            font-weight: 600;
+            color: #374151;
+            text-decoration: none;
+            transition: background .15s, color .15s;
+        }
+        .sidebar-nav li a:hover,
+        .sidebar-nav li a.active {
+            background: #ede9fe;
+            color: #6d28d9;
+        }
+        .sidebar-tag {
+            display: inline-block;
+            font-size: .68rem;
+            font-weight: 700;
+            padding: .15rem .45rem;
+            border-radius: 5px;
+            margin-left: .35rem;
+            background: #f0fdf4;
+            color: #16a34a;
+        }
+
+        /* ── Main content ── */
+        .main-content {
+            order: 1; /* mobile: shows first */
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        /* Article card */
+        .article-card p {
+            font-size: .9rem;
+            line-height: 1.7;
+            color: #374151;
+            margin-bottom: .75rem;
+        }
+        .article-card p:last-child { margin-bottom: 0; }
+
+        /* Responsive image */
+        .img-card { overflow: hidden; }
+        .img-card .img-label {
+            font-size: .7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: #9ca3af;
+            margin-bottom: .5rem;
+        }
+        #responsive-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            background: #f1f5f9;
+        }
+        #img-source-note {
+            font-size: .72rem;
+            color: #9ca3af;
+            margin-top: .5rem;
+        }
+
+        /* Dynamic section (SPA-like swap) */
+        .dynamic-card .intro-text {
+            font-size: .875rem;
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        #dynamic-section {
+            background: #f8fafc;
+            border: 1.5px dashed #e2e8f0;
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            font-size: .875rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+            min-height: 60px;
+            transition: border-color .2s;
+        }
+        #dynamic-section.swapped {
+            border-style: solid;
+            border-color: #a5b4fc;
+            background: #eef2ff;
+        }
+        #dynamic-section .swapped-title {
+            font-size: .9rem;
+            font-weight: 700;
+            color: #4f46e5;
+            margin-bottom: .5rem;
+        }
+        #dynamic-section .swapped-body {
+            color: #374151;
+            line-height: 1.65;
+        }
+        #btn-load-section {
+            padding: .55rem 1.25rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: .875rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity .2s;
+        }
+        #btn-load-section:hover { opacity: .85; }
+        #btn-load-section:disabled {
+            background: #e2e8f0;
+            color: #9ca3af;
+            cursor: default;
+            opacity: 1;
+        }
+
+        /* Async delayed section */
+        .async-card .async-desc {
+            font-size: .875rem;
+            color: #6b7280;
+            margin-bottom: .875rem;
+            line-height: 1.6;
+        }
+        #async-section {
+            min-height: 80px;
+        }
+        /* Spinner placeholder */
+        .async-placeholder {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            color: #94a3b8;
+            font-size: .85rem;
+        }
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #e2e8f0;
+            border-top-color: #6366f1;
+            border-radius: 50%;
+            animation: spin .75s linear infinite;
+            flex-shrink: 0;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Async content once loaded */
+        .async-loaded-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: .75rem;
+        }
+        .async-stat {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: .875rem 1rem;
+            text-align: center;
+        }
+        .async-stat-value {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #6366f1;
+        }
+        .async-stat-label {
+            font-size: .72rem;
+            color: #6b7280;
+            margin-top: .2rem;
+        }
+        .async-note {
+            font-size: .75rem;
+            color: #10b981;
+            font-weight: 600;
+            margin-top: .75rem;
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+        }
+
+        /* ── Ads column ── */
+        .ads-col {
+            order: 3;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .ad-block {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .ad-block .ad-label {
+            font-size: .65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: #9ca3af;
+            margin-bottom: .5rem;
+        }
+        .ad-block .ad-img {
+            width: 100%;
+            height: 120px;
+            border-radius: 8px;
+            object-fit: cover;
+            display: block;
+            margin-bottom: .6rem;
+            background: #f1f5f9;
+        }
+        .ad-block .ad-title {
+            font-size: .82rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: .3rem;
+        }
+        .ad-block .ad-cta {
+            display: inline-block;
+            font-size: .75rem;
+            font-weight: 700;
+            color: #6366f1;
+            text-decoration: none;
+            padding: .3rem .75rem;
+            border: 1.5px solid #a5b4fc;
+            border-radius: 6px;
+            transition: background .15s;
+        }
+        .ad-block .ad-cta:hover {
+            background: #eef2ff;
+        }
+
+        /* ── Media queries ── */
+        @media (max-width: 1024px) {
+            .layout-grid {
+                grid-template-columns: 180px 1fr 160px;
+                gap: 1.25rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body { padding-top: 72px; }
+
+            .page-heading h1 { font-size: 1.3rem; }
+
+            /* Stack to single column, reorder: main → sidebar → ads */
+            .layout-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .main-content { order: 1; }
+            .sidebar      { order: 2; }
+            .ads-col      { order: 3; flex-direction: row; flex-wrap: wrap; }
+            .ad-block     { flex: 1 1 calc(50% - .5rem); }
+
+            /* Sidebar nav goes horizontal on mobile */
+            .sidebar-nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: .35rem;
+            }
+
+            /* Async grid single column */
+            .async-loaded-grid { grid-template-columns: repeat(2, 1fr); }
+
+            /* Responsive image shorter on mobile */
+            #responsive-img { height: 160px; }
+
+            .col-card h2 { font-size: .8rem; }
+        }
+
+        @media (max-width: 480px) {
+            .page-wrapper { padding: 1.5rem .875rem 3rem; }
+            .ads-col { flex-direction: column; }
+            .ad-block { flex: unset; }
+            .async-loaded-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav-bar></nav-bar>
+
+    <div class="page-wrapper">
+
+        <!-- Page heading: viewport label + timestamp — both set by JS on load -->
+        <div class="page-heading">
+            <h1>Responsive Layout Demo</h1>
+            <div class="page-heading-meta">
+                <span id="viewport-label">Detecting…</span>
+                <span id="load-time">Page loaded at: —</span>
+            </div>
+        </div>
+
+        <!-- Three-column grid (desktop) / stacked (mobile) -->
+        <div class="layout-grid">
+
+            <!-- ── SIDEBAR ── -->
+            <aside class="sidebar col-card">
+                <h2>Navigation</h2>
+                <ul class="sidebar-nav">
+                    <li><a href="#overview" class="active">Overview</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#async-section">Async Section <span class="sidebar-tag">2.5s</span></a></li>
+                    <li><a href="#dynamic-section">Dynamic Swap</a></li>
+                    <li><a href="#image-section">Responsive Image</a></li>
+                    <li><a href="index.html">← Home</a></li>
+                </ul>
+
+                <h2 style="margin-top:1.25rem;">Layout Info</h2>
+                <p style="font-size:.8rem;color:#6b7280;line-height:1.6;">
+                    On desktop, this sidebar is the <strong>left column</strong> (220 px).
+                    On mobile it collapses to a horizontal nav strip below the main content.
+                </p>
+                <p style="font-size:.8rem;color:#6b7280;line-height:1.6;margin-top:.6rem;">
+                    Resize the window past 768 px and reload to see the layout switch.
+                </p>
+            </aside>
+
+            <!-- ── MAIN CONTENT ── -->
+            <main class="main-content" id="overview">
+
+                <!-- Static article -->
+                <section class="col-card article-card" id="features">
+                    <h2>About This Page</h2>
+                    <p>
+                        This page demonstrates several real-world responsive and dynamic behaviors that
+                        visual editors and A/B testing tools must handle correctly.
+                        The three-column desktop grid collapses to a single stacked column on mobile,
+                        with column order intentionally changed via CSS <code>order</code>.
+                    </p>
+                    <p>
+                        The <strong>viewport label</strong> and <strong>load timestamp</strong> above
+                        are written once by JavaScript at page load and never update on resize —
+                        so refreshing the page at a different viewport width is the only way to
+                        change them.
+                    </p>
+                    <p>
+                        The async section below simulates a delayed API response using
+                        <code>setTimeout</code>. The SPA swap section demonstrates DOM mutation
+                        without a page reload. The image section swaps the photo source based on
+                        screen width at load time.
+                    </p>
+                </section>
+
+                <!-- SPA-like dynamic swap -->
+                <section class="col-card dynamic-card">
+                    <h2>SPA-Like Content Swap</h2>
+                    <p class="intro-text">
+                        Click the button below to replace the placeholder content with new HTML
+                        injected by JavaScript — no page reload, no navigation. This simulates
+                        how single-page applications mutate the DOM in response to user actions.
+                    </p>
+                    <div id="dynamic-section">
+                        Placeholder content — click the button to replace this with dynamically
+                        injected HTML.
+                    </div>
+                    <button id="btn-load-section" type="button">Load New Section</button>
+                </section>
+
+                <!-- Async delayed section -->
+                <section class="col-card async-card" id="async-section">
+                    <h2>Async Delayed Section</h2>
+                    <p class="async-desc">
+                        This section renders its content <strong>2.5 seconds after page load</strong>
+                        via <code>setTimeout</code>. A spinner is shown while waiting. Refreshing the
+                        page resets the timer and runs the delay again from scratch.
+                    </p>
+                    <div id="async-content">
+                        <div class="async-placeholder">
+                            <div class="spinner"></div>
+                            <span>Loading stats… (renders in ~2.5 s)</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Responsive image -->
+                <section class="col-card img-card" id="image-section">
+                    <h2>Responsive Image</h2>
+                    <p class="img-label" id="img-source-label">Source: detecting…</p>
+                    <img id="responsive-img" alt="Responsive demo image" loading="lazy">
+                    <p id="img-source-note"></p>
+                </section>
+
+            </main>
+
+            <!-- ── ADS COLUMN ── -->
+            <aside class="ads-col">
+                <div class="ad-block">
+                    <div class="ad-label">Sponsored</div>
+                    <img
+                        class="ad-img"
+                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=200&h=120&fit=crop"
+                        alt="Ad: code on screen"
+                        loading="lazy"
+                    >
+                    <div class="ad-title">Web Dev Bootcamp</div>
+                    <a href="#" class="ad-cta">Learn more</a>
+                </div>
+
+                <div class="ad-block">
+                    <div class="ad-label">Promoted</div>
+                    <img
+                        class="ad-img"
+                        src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=200&h=120&fit=crop"
+                        alt="Ad: team working"
+                        loading="lazy"
+                    >
+                    <div class="ad-title">Design Tools Pro</div>
+                    <a href="#" class="ad-cta">Try free</a>
+                </div>
+
+                <div class="ad-block">
+                    <div class="ad-label">Ad</div>
+                    <img
+                        class="ad-img"
+                        src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=200&h=120&fit=crop"
+                        alt="Ad: analytics dashboard"
+                        loading="lazy"
+                    >
+                    <div class="ad-title">Analytics Suite</div>
+                    <a href="#" class="ad-cta">See plans</a>
+                </div>
+            </aside>
+
+        </div><!-- /.layout-grid -->
+    </div><!-- /.page-wrapper -->
+
+    <script>
+    (function () {
+        'use strict';
+
+        /* ── 1. Viewport label — set ONCE on load, never on resize ── */
+        var isDesktop = window.innerWidth > 768;
+        var labelEl = document.getElementById('viewport-label');
+        if (isDesktop) {
+            labelEl.textContent = 'Desktop View Loaded';
+            labelEl.classList.remove('mobile');
+        } else {
+            labelEl.textContent = 'Mobile View Loaded';
+            labelEl.classList.add('mobile');
+        }
+        console.log('[responsive] Viewport at load:', isDesktop ? 'desktop' : 'mobile', '(' + window.innerWidth + 'px)');
+
+        /* ── 2. Load timestamp — captured at script execution time ── */
+        document.getElementById('load-time').textContent =
+            'Page loaded at: ' + new Date().toLocaleTimeString();
+
+        /* ── 3. Responsive image — src chosen at load time, not on resize ── */
+        var img = document.getElementById('responsive-img');
+        var imgLabelEl  = document.getElementById('img-source-label');
+        var imgNoteEl   = document.getElementById('img-source-note');
+
+        if (isDesktop) {
+            img.src = 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=900&h=200&fit=crop';
+            imgLabelEl.textContent = 'Source: desktop (900 × 200)';
+            imgNoteEl.textContent  = 'Loaded the wide 900 px image because window.innerWidth > 768 at load time.';
+        } else {
+            img.src = 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&h=160&fit=crop';
+            imgLabelEl.textContent = 'Source: mobile (400 × 160)';
+            imgNoteEl.textContent  = 'Loaded the compact 400 px image because window.innerWidth ≤ 768 at load time.';
+        }
+        console.log('[responsive] Image src set to', img.src);
+
+        /* ── 4. Delayed async section — renders after 2.5 s ── */
+        var asyncStats = [
+            { value: '128K',  label: 'Page Views'      },
+            { value: '47.9K', label: 'Visitors'        },
+            { value: '3.8K',  label: 'Conversions'     },
+            { value: '4m 12s', label: 'Avg. Session'   },
+        ];
+
+        console.log('[responsive] Async section will render in 2500 ms…');
+
+        setTimeout(function () {
+            var statsHTML = asyncStats.map(function (s) {
+                return (
+                    '<div class="async-stat">' +
+                    '  <div class="async-stat-value">' + s.value + '</div>' +
+                    '  <div class="async-stat-label">' + s.label + '</div>' +
+                    '</div>'
+                );
+            }).join('');
+
+            document.getElementById('async-content').innerHTML =
+                '<div class="async-loaded-grid">' + statsHTML + '</div>' +
+                '<p class="async-note">&#10003; Content rendered by setTimeout after 2.5 s — not present in initial HTML.</p>';
+
+            console.log('[responsive] Async section rendered at', new Date().toLocaleTimeString());
+        }, 2500);
+
+        /* ── 5. SPA-like DOM swap on button click ── */
+        var btnLoad   = document.getElementById('btn-load-section');
+        var dynamicEl = document.getElementById('dynamic-section');
+
+        btnLoad.addEventListener('click', function () {
+            dynamicEl.innerHTML =
+                '<div class="swapped-title">&#9670; New Section Injected</div>' +
+                '<p class="swapped-body">' +
+                'This content was injected by JavaScript in response to a button click. ' +
+                'No navigation occurred — the URL did not change and the page was not reloaded. ' +
+                'This is the same mechanism used by React, Vue, and other SPA frameworks to update the UI.' +
+                '</p>' +
+                '<p class="swapped-body" style="margin-top:.6rem;font-size:.8rem;color:#6366f1;font-weight:600;">' +
+                'Injected at: ' + new Date().toLocaleTimeString() +
+                '</p>';
+            dynamicEl.classList.add('swapped');
+            btnLoad.textContent = '&#10003; Section Loaded';
+            btnLoad.disabled = true;
+            console.log('[responsive] Dynamic section swapped via DOM manipulation');
+        });
+
+    })();
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

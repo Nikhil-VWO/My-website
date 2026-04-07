@@ -86,6 +86,7 @@ class NavBar extends HTMLElement {
                     <li><a href="cart.html" target="_blank" rel="noopener noreferrer">Cart ↗</a></li>
                     <li><a href="spa.html" target="_blank" rel="noopener noreferrer">SPA ↗</a></li>
                     <li><a href="delayed.html" target="_blank" rel="noopener noreferrer">Delayed ↗</a></li>
+                    <li><a href="responsive.html" target="_blank" rel="noopener noreferrer">Responsive ↗</a></li>
                 </ul>
             </div>
         `;
