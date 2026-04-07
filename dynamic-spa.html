@@ -5,7 +5,7 @@
 <link rel="preconnect" href="https://dev.visualwebsiteoptimizer.com" />
 <script type="text/javascript" id="vwoCode">
 window._vwo_code || (function() {        
-    var account_id = 22000469,
+    var account_id = (function(){var m=window.location.search.match(/[?&]account_id=(\d+)/);return m?parseInt(m[1],10):22000469;}()),
         version = 3.0,
         settings_tolerance = 2000,
         hide_element = 'body',
