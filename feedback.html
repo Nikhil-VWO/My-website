@@ -56,9 +56,7 @@
             color: #374151;
         }
 
-        .fb-field input,
-        .fb-field select,
-        .fb-field textarea {
+        .fb-input {
             padding: .6rem .85rem;
             border: 1px solid #e2e8f0;
             border-radius: 8px;
@@ -68,16 +66,15 @@
             transition: border-color .2s, box-shadow .2s;
             outline: none;
             font-family: inherit;
+            width: 100%;
         }
 
-        .fb-field input:focus,
-        .fb-field select:focus,
-        .fb-field textarea:focus {
+        .fb-input:focus {
             border-color: #6366f1;
             box-shadow: 0 0 0 3px rgba(99, 102, 241, .15);
         }
 
-        .fb-field textarea {
+        textarea.fb-input {
             resize: vertical;
             min-height: 90px;
         }
@@ -154,18 +151,18 @@
         <div class="fb-row">
             <div class="fb-field">
                 <label for="fb-name">Full name</label>
-                <input type="text" id="fb-name" placeholder="Jane Smith" autocomplete="name">
+                <input type="text" id="fb-name" class="fb-input" placeholder="Jane Smith" autocomplete="name">
             </div>
             <div class="fb-field">
                 <label for="fb-email">Email address</label>
-                <input type="email" id="fb-email" placeholder="jane@example.com" autocomplete="email">
+                <input type="email" id="fb-email" class="fb-input" placeholder="jane@example.com" autocomplete="email">
             </div>
         </div>
 
         <div class="fb-row">
             <div class="fb-field">
                 <label for="fb-category">Category</label>
-                <select id="fb-category">
+                <select id="fb-category" class="fb-input">
                     <option value="">Select a category…</option>
                     <option value="design">Design</option>
                     <option value="performance">Performance</option>
@@ -188,7 +185,7 @@
 
         <div class="fb-field">
             <label for="fb-message">Your message</label>
-            <textarea id="fb-message" placeholder="Tell us what you think…"></textarea>
+            <textarea id="fb-message" class="fb-input" placeholder="Tell us what you think…"></textarea>
         </div>
 
         <div class="fb-submit">
