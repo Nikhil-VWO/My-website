@@ -191,75 +191,350 @@ class OpenShadowSection extends HTMLElement {
         const root = this.attachShadow({ mode: 'open' });
         root.innerHTML = `
             <style>
-                :host {
-                    display: block;
-                }
+                :host { display: block; }
+
+                /* ── Layout ── */
                 .container {
                     max-width: 1200px;
                     margin: 0 auto;
                     padding: 0 1.5rem;
                 }
+
+                /* ── Section heading & desc (same as light DOM) ── */
                 .section-title {
                     font-size: 2rem;
                     font-weight: 700;
                     margin-bottom: 1rem;
                     color: #1f2937;
                 }
-                .shadow-section-desc {
+                .section-desc {
                     font-size: 1rem;
                     color: #6b7280;
                     line-height: 1.6;
                     margin-bottom: 1.5rem;
                 }
-                .shadow-section-desc code {
+                .section-desc code {
                     background: #f3f4f6;
                     padding: 0.2em 0.4em;
                     border-radius: 4px;
                     font-size: 0.9em;
                 }
-                .shadow-demo-box {
-                    display: block;
-                    padding: 2rem;
-                    background: linear-gradient(145deg, #064e3b 0%, #047857 100%);
-                    border-radius: 16px;
-                    color: #d1fae5;
-                    font-family: inherit;
-                    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
-                }
-                .shadow-title {
-                    font-size: 1.5rem;
+
+                /* ── Sub-heading ── */
+                .sub-title {
+                    font-size: 1.25rem;
                     font-weight: 700;
+                    color: #1f2937;
+                    margin: 2.5rem 0 1rem;
+                }
+
+                /* ── Services grid & cards (same as light DOM) ── */
+                .services-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                    gap: 1.5rem;
+                }
+                .service-card {
+                    background: #fff;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 16px;
+                    padding: 1.75rem 1.5rem;
+                    text-align: center;
+                    transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+                }
+                .service-card:hover {
+                    transform: translateY(-4px);
+                    box-shadow: 0 10px 28px rgba(99, 102, 241, 0.13);
+                    border-color: #a5b4fc;
+                }
+                .service-icon {
+                    font-size: 2rem;
                     margin-bottom: 0.75rem;
-                    color: #a7f3d0;
                 }
-                .shadow-text {
+                .service-card h3 {
+                    font-size: 1.05rem;
+                    font-weight: 700;
+                    color: #1e293b;
+                    margin-bottom: 0.4rem;
+                }
+                .service-card p {
+                    font-size: 0.875rem;
+                    color: #6b7280;
+                    line-height: 1.55;
+                    margin: 0;
+                }
+
+                /* ── Stats (same as light DOM) ── */
+                .about-stats {
+                    display: flex;
+                    gap: 2rem;
+                    flex-wrap: wrap;
+                }
+                .stat {
+                    text-align: center;
+                    flex: 1 1 80px;
+                }
+                .stat-number {
+                    font-size: 2rem;
+                    font-weight: 800;
+                    color: #6366f1;
+                }
+                .stat-label {
+                    font-size: 0.875rem;
+                    color: #6b7280;
+                    margin-top: 0.25rem;
+                }
+
+                /* ── Reviews grid & items (same as light DOM) ── */
+                .reviews-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                    gap: 1.5rem;
+                }
+                .review-item {
+                    background: #fff;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 16px;
+                    padding: 1.5rem;
+                    font-style: normal;
+                    margin: 0;
+                }
+                .review-item p {
+                    font-size: 0.95rem;
+                    color: #374151;
+                    line-height: 1.65;
+                    margin: 0 0 0.75rem;
+                }
+                .review-item footer {
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                    color: #6366f1;
+                }
+
+                /* ── Review cards (same as light DOM carousel) ── */
+                .review-cards-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                    gap: 1.25rem;
+                }
+                .review-card {
+                    background: #fff;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 16px;
+                    padding: 1.5rem;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+                }
+                .review-stars {
+                    color: #f59e0b;
                     font-size: 1rem;
-                    line-height: 1.6;
-                    opacity: 0.95;
+                    letter-spacing: 0.05em;
                 }
-                .shadow-text code {
-                    background: rgba(0, 0, 0, 0.2);
+                .review-title {
+                    font-size: 0.95rem;
+                    font-weight: 700;
+                    color: #1e293b;
+                    margin: 0;
+                }
+                .review-text {
+                    font-size: 0.875rem;
+                    color: #6b7280;
+                    line-height: 1.6;
+                    margin: 0;
+                    flex: 1;
+                }
+                .review-verified {
+                    font-size: 0.78rem;
+                    font-weight: 600;
+                    color: #16a34a;
+                }
+
+                /* ── Iframe (same as light DOM) ── */
+                .iframe-section-desc {
+                    font-size: 1rem;
+                    color: #6b7280;
+                    line-height: 1.6;
+                    margin-bottom: 1.25rem;
+                }
+                .iframe-section-desc code {
+                    background: #f3f4f6;
                     padding: 0.2em 0.4em;
                     border-radius: 4px;
+                    font-size: 0.9em;
                 }
-                .shadow-badge {
+                .iframe-wrapper {
+                    border-radius: 16px;
+                    overflow: hidden;
+                    border: 1px solid #e5e7eb;
+                }
+                .embed-iframe {
+                    display: block;
+                    width: 100%;
+                    height: 300px;
+                    border: none;
+                }
+
+                /* ── Badge ── */
+                .section-badge {
                     display: inline-block;
-                    margin-top: 1rem;
-                    padding: 0.35rem 0.75rem;
-                    background: rgba(16, 185, 129, 0.4);
+                    margin-top: 2rem;
+                    padding: 0.35rem 0.85rem;
+                    background: #ede9fe;
+                    color: #6d28d9;
                     border-radius: 9999px;
-                    font-size: 0.875rem;
-                    font-weight: 600;
+                    font-size: 0.8rem;
+                    font-weight: 700;
+                    letter-spacing: 0.04em;
                 }
             </style>
+
             <div class="container">
+
+                <!-- Heading -->
                 <h2 class="section-title">Open Shadow Root</h2>
-                <p class="shadow-section-desc">This entire section is inside a custom element with an <strong>open</strong> shadow root. The shadow DOM is still encapsulated, but <code>element.shadowRoot</code> returns the root—so external scripts can inspect or modify the content inside.</p>
-                <div class="shadow-demo-box">
-                    <div class="shadow-title">Encapsulated content (open)</div>
-                    <p class="shadow-text">This paragraph lives in the same open shadow root as the section title above. You can access this root via <code>document.querySelector('open-shadow-section').shadowRoot</code> in the console.</p>
-                    <span class="shadow-badge">mode: open</span>
+                <p class="section-desc">This entire section lives inside a custom element with an <strong>open</strong> shadow root. Outer page CSS cannot reach these elements, but the class names mirror the rest of the page. Access via <code>document.querySelector('open-shadow-section').shadowRoot</code>.</p>
+
+                <!-- Services grid -->
+                <h3 class="sub-title">Capabilities</h3>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🔓</div>
+                        <h3>Open Shadow DOM</h3>
+                        <p>Shadow root with <code>mode: 'open'</code> — inspectable via <code>element.shadowRoot</code> in DevTools and external scripts.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🎨</div>
+                        <h3>Style Encapsulation</h3>
+                        <p>Styles defined here are scoped to this shadow root. Outer page rules cannot bleed in, and inner rules cannot leak out.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🧩</div>
+                        <h3>Same Class Names</h3>
+                        <p>Elements inside use the same CSS class names as the light DOM — <code>section-title</code>, <code>service-card</code>, <code>section-desc</code> — without conflict.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">⚡</div>
+                        <h3>DOM Isolation</h3>
+                        <p>Queries like <code>document.querySelector('.section-title')</code> won't reach inside — you must go through <code>shadowRoot</code> first.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🔍</div>
+                        <h3>DevTools Visible</h3>
+                        <p>Unlike a closed shadow root, open mode lets browser DevTools and automation frameworks inspect and interact with the internals.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📦</div>
+                        <h3>Reusable Components</h3>
+                        <p>Shadow DOM enables truly portable web components — drop the custom element anywhere and the styles travel with it.</p>
+                    </div>
                 </div>
+
+                <!-- Stats -->
+                <h3 class="sub-title">By the Numbers</h3>
+                <div class="about-stats">
+                    <div class="stat">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Shadow Root</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Service Cards</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Client Reviews</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Review Cards</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">CSS Leaks</div>
+                    </div>
+                </div>
+
+                <!-- Client reviews (blockquote style) -->
+                <h3 class="sub-title">Client Reviews</h3>
+                <div class="reviews-grid">
+                    <blockquote class="review-item">
+                        <p>"Shadow DOM made our component library truly portable. No more style conflicts across teams."</p>
+                        <footer>— Alex P., Frontend Lead at Stackify</footer>
+                    </blockquote>
+                    <blockquote class="review-item">
+                        <p>"Open mode was the right call — our QA automation could still inspect and assert on the internals."</p>
+                        <footer>— Maya R., QA Engineer at Testlab</footer>
+                    </blockquote>
+                    <blockquote class="review-item">
+                        <p>"Same class names inside and outside the shadow root made our test selectors consistent across the whole app."</p>
+                        <footer>— Sam K., Engineer at DevForge</footer>
+                    </blockquote>
+                </div>
+
+                <!-- Review cards (carousel style) -->
+                <h3 class="sub-title">Verified Feedback</h3>
+                <div class="review-cards-grid">
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-title">Encapsulation done right</p>
+                        <p class="review-text">Shadow DOM scoping solved our global CSS bleed issues overnight. Every component now owns its styles completely.</p>
+                        <span class="review-verified">✓ Verified Client</span>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-title">Automation-friendly</p>
+                        <p class="review-text">Open shadow roots gave our Playwright tests full access to internals without any extra configuration or workarounds.</p>
+                        <span class="review-verified">✓ Verified Client</span>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-title">Consistent class naming</p>
+                        <p class="review-text">Using the same class names inside and outside the shadow root kept our design system coherent and our selectors predictable.</p>
+                        <span class="review-verified">✓ Verified Client</span>
+                    </div>
+                </div>
+
+                <!-- Embedded iframe -->
+                <h3 class="sub-title">Embedded Content</h3>
+                <p class="iframe-section-desc">This <code>&lt;iframe&gt;</code> is a separate document nested inside the open shadow root. Its content uses the same CSS class names — <code>section-title</code>, <code>section-desc</code>, <code>service-card</code>, <code>service-icon</code> — with its own matching styles defined inside the iframe.</p>
+                <div class="iframe-wrapper">
+                    <iframe
+                        class="embed-iframe"
+                        title="Embedded demo inside shadow DOM"
+                        srcdoc="<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1.0'>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; color: #1e293b; padding: 1.5rem; }
+  .section-title { font-size: 1.25rem; font-weight: 800; color: #1f2937; margin-bottom: 0.5rem; }
+  .section-desc { font-size: 0.875rem; color: #6b7280; line-height: 1.6; margin-bottom: 1.25rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .service-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1rem; text-align: center; }
+  .service-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .service-card h3 { font-size: 0.875rem; font-weight: 700; color: #1e293b; margin-bottom: 0.3rem; }
+  .service-card p { font-size: 0.78rem; color: #6b7280; line-height: 1.5; margin: 0; }
+</style>
+</head>
+<body>
+  <h2 class='section-title'>Inside the iframe</h2>
+  <p class='section-desc'>Separate document — same CSS class names, own styles.</p>
+  <div class='services-grid'>
+    <div class='service-card'><div class='service-icon'>📄</div><h3>Separate Doc</h3><p>Own browsing context, isolated from shadow DOM.</p></div>
+    <div class='service-card'><div class='service-icon'>🎨</div><h3>Same Classes</h3><p>section-title, service-card, service-icon used here too.</p></div>
+    <div class='service-card'><div class='service-icon'>🔒</div><h3>Own Styles</h3><p>CSS is redefined inside this iframe independently.</p></div>
+  </div>
+</body>
+</html>"
+                        loading="lazy"
+                    ></iframe>
+                </div>
+
+                <span class="section-badge">mode: open</span>
+
             </div>
         `;
     }
