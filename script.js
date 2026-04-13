@@ -228,13 +228,13 @@ class OpenShadowSection extends HTMLElement {
                     margin: 2.5rem 0 1rem;
                 }
 
-                /* ── Services grid & cards (same as light DOM) ── */
+                /* ── Services grid & boxes ── */
                 .services-grid {
                     display: grid;
                     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
                     gap: 1.5rem;
                 }
-                .service-card {
+                .service-box {
                     background: #fff;
                     border: 1px solid #e5e7eb;
                     border-radius: 16px;
@@ -242,7 +242,7 @@ class OpenShadowSection extends HTMLElement {
                     text-align: center;
                     transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
                 }
-                .service-card:hover {
+                .service-box:hover {
                     transform: translateY(-4px);
                     box-shadow: 0 10px 28px rgba(99, 102, 241, 0.13);
                     border-color: #a5b4fc;
@@ -251,13 +251,13 @@ class OpenShadowSection extends HTMLElement {
                     font-size: 2rem;
                     margin-bottom: 0.75rem;
                 }
-                .service-card h3 {
+                .service-box h3 {
                     font-size: 1.05rem;
                     font-weight: 700;
                     color: #1e293b;
                     margin-bottom: 0.4rem;
                 }
-                .service-card p {
+                .service-box p {
                     font-size: 0.875rem;
                     color: #6b7280;
                     line-height: 1.55;
@@ -311,13 +311,13 @@ class OpenShadowSection extends HTMLElement {
                     color: #6366f1;
                 }
 
-                /* ── Review cards (same as light DOM carousel) ── */
-                .review-cards-grid {
+                /* ── Review boxes ── */
+                .review-boxes-grid {
                     display: grid;
                     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
                     gap: 1.25rem;
                 }
-                .review-card {
+                .review-box {
                     background: #fff;
                     border: 1px solid #e5e7eb;
                     border-radius: 16px;
@@ -398,32 +398,32 @@ class OpenShadowSection extends HTMLElement {
                 <!-- Services grid -->
                 <h3 class="sub-title">Capabilities</h3>
                 <div class="services-grid">
-                    <div class="service-card">
+                    <div class="service-box">
                         <div class="service-icon">🔓</div>
                         <h3>Open Shadow DOM</h3>
                         <p>Shadow root with <code>mode: 'open'</code> — inspectable via <code>element.shadowRoot</code> in DevTools and external scripts.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-box">
                         <div class="service-icon">🎨</div>
                         <h3>Style Encapsulation</h3>
                         <p>Styles defined here are scoped to this shadow root. Outer page rules cannot bleed in, and inner rules cannot leak out.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-box">
                         <div class="service-icon">🧩</div>
                         <h3>Same Class Names</h3>
-                        <p>Elements inside use the same CSS class names as the light DOM — <code>section-title</code>, <code>service-card</code>, <code>section-desc</code> — without conflict.</p>
+                        <p>Elements inside use the same CSS class names as the light DOM — <code>section-title</code>, <code>service-box</code>, <code>section-desc</code> — without conflict.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-box">
                         <div class="service-icon">⚡</div>
                         <h3>DOM Isolation</h3>
                         <p>Queries like <code>document.querySelector('.section-title')</code> won't reach inside — you must go through <code>shadowRoot</code> first.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-box">
                         <div class="service-icon">🔍</div>
                         <h3>DevTools Visible</h3>
                         <p>Unlike a closed shadow root, open mode lets browser DevTools and automation frameworks inspect and interact with the internals.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-box">
                         <div class="service-icon">📦</div>
                         <h3>Reusable Components</h3>
                         <p>Shadow DOM enables truly portable web components — drop the custom element anywhere and the styles travel with it.</p>
@@ -474,20 +474,20 @@ class OpenShadowSection extends HTMLElement {
 
                 <!-- Review cards (carousel style) -->
                 <h3 class="sub-title">Verified Feedback</h3>
-                <div class="review-cards-grid">
-                    <div class="review-card">
+                <div class="review-boxes-grid">
+                    <div class="review-box">
                         <div class="review-stars">★★★★★</div>
                         <p class="review-title">Encapsulation done right</p>
                         <p class="review-text">Shadow DOM scoping solved our global CSS bleed issues overnight. Every component now owns its styles completely.</p>
                         <span class="review-verified">✓ Verified Client</span>
                     </div>
-                    <div class="review-card">
+                    <div class="review-box">
                         <div class="review-stars">★★★★★</div>
                         <p class="review-title">Automation-friendly</p>
                         <p class="review-text">Open shadow roots gave our Playwright tests full access to internals without any extra configuration or workarounds.</p>
                         <span class="review-verified">✓ Verified Client</span>
                     </div>
-                    <div class="review-card">
+                    <div class="review-box">
                         <div class="review-stars">★★★★★</div>
                         <p class="review-title">Consistent class naming</p>
                         <p class="review-text">Using the same class names inside and outside the shadow root kept our design system coherent and our selectors predictable.</p>
@@ -497,7 +497,7 @@ class OpenShadowSection extends HTMLElement {
 
                 <!-- Embedded iframe -->
                 <h3 class="sub-title">Embedded Content</h3>
-                <p class="iframe-section-desc">This <code>&lt;iframe&gt;</code> is a separate document nested inside the open shadow root. Its content uses the same CSS class names — <code>section-title</code>, <code>section-desc</code>, <code>service-card</code>, <code>service-icon</code> — with its own matching styles defined inside the iframe.</p>
+                <p class="iframe-section-desc">This <code>&lt;iframe&gt;</code> is a separate document nested inside the open shadow root. Its content uses its own CSS class names — <code>section-title</code>, <code>section-desc</code>, <code>service-iframe</code>, <code>service-icon</code> — defined independently inside the iframe.</p>
                 <div class="iframe-wrapper">
                     <iframe
                         class="embed-iframe"
@@ -513,19 +513,19 @@ class OpenShadowSection extends HTMLElement {
   .section-title { font-size: 1.25rem; font-weight: 800; color: #1f2937; margin-bottom: 0.5rem; }
   .section-desc { font-size: 0.875rem; color: #6b7280; line-height: 1.6; margin-bottom: 1.25rem; }
   .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-  .service-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1rem; text-align: center; }
+  .service-iframe { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1rem; text-align: center; }
   .service-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
-  .service-card h3 { font-size: 0.875rem; font-weight: 700; color: #1e293b; margin-bottom: 0.3rem; }
-  .service-card p { font-size: 0.78rem; color: #6b7280; line-height: 1.5; margin: 0; }
+  .service-iframe h3 { font-size: 0.875rem; font-weight: 700; color: #1e293b; margin-bottom: 0.3rem; }
+  .service-iframe p { font-size: 0.78rem; color: #6b7280; line-height: 1.5; margin: 0; }
 </style>
 </head>
 <body>
   <h2 class='section-title'>Inside the iframe</h2>
   <p class='section-desc'>Separate document — same CSS class names, own styles.</p>
   <div class='services-grid'>
-    <div class='service-card'><div class='service-icon'>📄</div><h3>Separate Doc</h3><p>Own browsing context, isolated from shadow DOM.</p></div>
-    <div class='service-card'><div class='service-icon'>🎨</div><h3>Same Classes</h3><p>section-title, service-card, service-icon used here too.</p></div>
-    <div class='service-card'><div class='service-icon'>🔒</div><h3>Own Styles</h3><p>CSS is redefined inside this iframe independently.</p></div>
+    <div class='service-iframe'><div class='service-icon'>📄</div><h3>Separate Doc</h3><p>Own browsing context, isolated from shadow DOM.</p></div>
+    <div class='service-iframe'><div class='service-icon'>🎨</div><h3>Same Classes</h3><p>section-title, service-iframe, service-icon used here too.</p></div>
+    <div class='service-iframe'><div class='service-icon'>🔒</div><h3>Own Styles</h3><p>CSS is redefined inside this iframe independently.</p></div>
   </div>
 </body>
 </html>"
