@@ -83,6 +83,7 @@ class NavBar extends HTMLElement {
                     <!-- Opens contact.html in a new tab (same domain) -->
                     <li><a href="contact.html" target="_blank" rel="noopener noreferrer">Contact Us ↗</a></li>
                     <li><a href="dashboard.html" target="_blank" rel="noopener noreferrer">Dashboard ↗</a></li>
+                    <li><a href="dynamic-spa.html" target="_blank" rel="noopener noreferrer">Embedded ↗</a></li>
                     <li><a href="cart.html" target="_blank" rel="noopener noreferrer">Cart ↗</a></li>
                     <li><a href="spa.html" target="_blank" rel="noopener noreferrer">SPA ↗</a></li>
                     <li><a href="delayed.html" target="_blank" rel="noopener noreferrer">Delayed ↗</a></li>
