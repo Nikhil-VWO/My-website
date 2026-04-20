@@ -1085,6 +1085,110 @@ body {
     border: none;
 }
 
+/* ── Video: Background / Hero ── */
+.video-bg-section {
+    position: relative;
+    height: 480px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-bg-el {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.video-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(15,23,42,0.65) 0%, rgba(15,23,42,0.8) 100%);
+    z-index: 1;
+}
+
+.video-bg-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    padding: 0 1.5rem;
+    max-width: 640px;
+}
+
+.video-bg-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin: 0.75rem 0 0.5rem;
+    line-height: 1.2;
+}
+
+.video-bg-desc {
+    font-size: 1rem;
+    opacity: 0.85;
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* ── Video: type badge ── */
+.video-type-badge {
+    display: inline-block;
+    padding: 0.3rem 0.85rem;
+    border-radius: 99px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.35);
+    margin-bottom: 0.75rem;
+}
+
+.video-type-badge--dark {
+    background: #ede9fe;
+    color: #6d28d9;
+    border-color: #c4b5fd;
+    margin-bottom: 1.25rem;
+}
+
+/* ── Video: Self-hosted & embed sections ── */
+.video-section {
+    padding: 80px 20px;
+    background: #fff;
+}
+
+.video-section--alt {
+    background: var(--bg-light);
+}
+
+.video-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid #e5e7eb;
+    background: #000;
+}
+
+.site-video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: none;
+}
+
+@media (max-width: 600px) {
+    .video-bg-section { height: 360px; }
+    .video-bg-title { font-size: 1.6rem; }
+}
+
 /* Contact Section */
 .contact {
     padding: 80px 20px;
