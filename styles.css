@@ -1028,23 +1028,18 @@ body {
 /* Closed Shadow Root Section */
 .shadow-section {
     padding: 80px 20px;
-    background: var(--white);
+    background: #f8fafc;
 }
 
-.shadow-section-desc {
-    max-width: 640px;
-    margin: 0 auto 2rem;
-    text-align: center;
-    color: var(--text-light);
-    line-height: 1.7;
+.feature-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
 }
 
-.shadow-section-desc code {
-    padding: 0.2em 0.4em;
-    background: #ede9fe;
-    border-radius: 4px;
-    font-size: 0.9em;
-    color: var(--primary-color);
+@media (max-width: 600px) {
+    .feature-card-grid { grid-template-columns: 1fr; }
 }
 
 /* Iframe Section */
