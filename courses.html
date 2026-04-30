@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Start VWO Async V3.0 SmartCode -->
+<link rel="preconnect" href="https://dev.visualwebsiteoptimizer.com" />
+<script type="text/javascript" id="vwoCode">
+window._vwo_code || (function() {        
+    var account_id = 1209855,
+        version = 3.0,
+        settings_tolerance = 2000,
+        hide_element = 'body',
+        hide_element_style =
+        'opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;transition:none !important';
+    /* DO NOT EDIT BELOW THIS LINE */
+    var t=window,n=document;if(-1<n.URL.indexOf('__vwo_disable__')||t._vwo_code)return;var i=!1,o=n.currentScript,e={sT:settings_tolerance,hES:hide_element_style,hE:hide_element};try{e=Object.assign(JSON.parse(localStorage.getItem('_vwo_'+account_id+'_config')),e)}catch(e){}var code={nonce:o.nonce,settings_tolerance:function(){return e.sT},hide_element:function(){return performance.getEntriesByName('first-contentful-paint')[0]?'':e.hE},hide_element_style:function(){return'{'+e.hES+'}'},getVersion:function(){return version},finish:function(){var e;!i&&(i=!0,e=n.getElementById('_vis_opt_path_hides'))&&e.parentNode.removeChild(e)},finished:function(){return i},addScript:function(e){var t=n.createElement('script');t.src=e,o.nonce&&t.setAttribute('nonce',o.nonce),t.fetchPriority='high',n.head.appendChild(t)},init:function(){t._vwo_settings_timer=setTimeout(function(){code.finish()},this.settings_tolerance());var e=n.createElement('style');e.id='_vis_opt_path_hides',o.nonce&&e.setAttribute('nonce',o.nonce),e.textContent=this.hide_element()+this.hide_element_style(),n.head.appendChild(e),this.addScript('https://dev.visualwebsiteoptimizer.com/tag/'+account_id+'.js')}};t._vwo_code=code;code.init();})();
+</script> 
+<!--End VWO Async SmartCode -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse our full course catalog — fitness, cooking, languages, digital skills and more. Register online today.">
+    <meta property="og:title" content="Course Catalog">
+    <meta property="og:type" content="website">
+    <title>Course Catalog — My Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ─── Page-level light-DOM styles ─── */
+        body { padding-top: 70px; background: #f5f7fa; }
+
+        .page-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.25rem 4rem;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.82rem;
+            color: #6b7280;
+            padding: 1.25rem 0 0.25rem;
+        }
+        .breadcrumb a { color: #6366f1; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb-sep { color: #d1d5db; }
+
+        /* Page header */
+        .catalog-header {
+            padding: 1.75rem 0 0.5rem;
+        }
+        .catalog-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #111827;
+            margin: 0 0 0.5rem;
+        }
+        .catalog-header p {
+            font-size: 1rem;
+            color: #6b7280;
+            margin: 0 0 1.5rem;
+            max-width: 600px;
+        }
+
+        /* Result count */
+        .result-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        .result-meta strong { color: #111827; }
+
+        .sort-select {
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 0.4rem 0.75rem;
+            font-size: 0.875rem;
+            color: #374151;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        /* Course grid */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        @media (max-width: 640px) { .course-grid { grid-template-columns: 1fr; } }
+
+        /* Load more */
+        .load-more-wrap {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        .load-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #fff;
+            border: 2px solid #6366f1;
+            color: #6366f1;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.75rem 2rem;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .load-more-btn:hover { background: #6366f1; color: #fff; }
+
+        /* No-results */
+        .no-results {
+            text-align: center;
+            padding: 4rem 1rem;
+            color: #9ca3af;
+            display: none;
+        }
+        .no-results svg { width: 64px; height: 64px; margin-bottom: 1rem; opacity: 0.35; }
+        .no-results p { font-size: 1.1rem; font-weight: 600; color: #6b7280; margin-bottom: 0.5rem; }
+        .no-results span { font-size: 0.875rem; }
+    </style>
+</head>
+<body>
+    <nav-bar></nav-bar>
+
+    <div class="page-wrap">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="breadcrumb-sep">›</span>
+            <span>Courses</span>
+        </nav>
+
+        <!-- Page header -->
+        <header class="catalog-header">
+            <h1>Course Catalog</h1>
+            <p>Browse our full program — fitness, cooking, languages, photography, digital skills and more. Register online today.</p>
+        </header>
+
+        <!-- Filter web component — entire UI lives in its open shadow root -->
+        <course-filter id="main-filter"></course-filter>
+
+        <!-- Result meta -->
+        <div class="result-meta">
+            <span>Showing <strong id="result-count">9</strong> courses</span>
+            <select class="sort-select" aria-label="Sort courses" id="sort-select">
+                <option value="popular">Most Popular</option>
+                <option value="date">Start Date</option>
+                <option value="price-asc">Price: Low → High</option>
+                <option value="price-desc">Price: High → Low</option>
+            </select>
+        </div>
+
+        <!-- No-results fallback -->
+        <div class="no-results" id="no-results" aria-live="polite">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
+            </svg>
+            <p>No courses found</p>
+            <span>Try adjusting your search or changing the active filters.</span>
+        </div>
+
+        <!-- Course card grid — each card is a <course-card> open shadow root component -->
+        <div class="course-grid" id="course-grid" role="list">
+
+            <course-card
+                data-category="fitness"
+                data-img="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80"
+                data-badge="Fitness"
+                data-badge-color="#10b981"
+                data-title="Yoga for Beginners"
+                data-date="Mon &amp; Wed, 09:00–10:30"
+                data-location="Studio A, City Centre"
+                data-duration="8 weeks"
+                data-price="CHF 180"
+                data-spots="4 spots left">
+            </course-card>
+
+            <course-card
+                data-category="cooking"
+                data-img="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80"
+                data-badge="Cooking"
+                data-badge-color="#f59e0b"
+                data-title="Italian Cuisine Masterclass"
+                data-date="Sat, 10:00–13:00"
+                data-location="Culinary Lab, West Wing"
+                data-duration="6 sessions"
+                data-price="CHF 240"
+                data-spots="12 spots left">
+            </course-card>
+
+            <course-card
+                data-category="languages"
+                data-img="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&q=80"
+                data-badge="Languages"
+                data-badge-color="#6366f1"
+                data-title="Spanish — Intermediate Level"
+                data-date="Tue &amp; Thu, 18:30–20:00"
+                data-location="Room 204, Language Centre"
+                data-duration="12 weeks"
+                data-price="CHF 320"
+                data-spots="8 spots left">
+            </course-card>
+
+            <course-card
+                data-category="digital"
+                data-img="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80"
+                data-badge="Digital"
+                data-badge-color="#3b82f6"
+                data-title="Introduction to Web Design"
+                data-date="Fri, 14:00–17:00"
+                data-location="Tech Hub, Room 12"
+                data-duration="5 weeks"
+                data-price="CHF 195"
+                data-spots="6 spots left">
+            </course-card>
+
+            <course-card
+                data-category="fitness"
+                data-img="https://images.unsplash.com/photo-1434682881908-b43d0467b798?w=600&q=80"
+                data-badge="Fitness"
+                data-badge-color="#10b981"
+                data-title="Pilates — Core Strength"
+                data-date="Mon, Wed &amp; Fri, 07:00–08:00"
+                data-location="Studio B, City Centre"
+                data-duration="10 weeks"
+                data-price="CHF 265"
+                data-spots="2 spots left"
+                data-urgent="true">
+            </course-card>
+
+            <course-card
+                data-category="photography"
+                data-img="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600&q=80"
+                data-badge="Photography"
+                data-badge-color="#ec4899"
+                data-title="Portrait Photography Workshop"
+                data-date="Sun, 10:00–16:00"
+                data-location="Creative Studio, East Side"
+                data-duration="3 sessions"
+                data-price="CHF 150"
+                data-spots="10 spots left">
+            </course-card>
+
+            <course-card
+                data-category="cooking"
+                data-img="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=600&q=80"
+                data-badge="Cooking"
+                data-badge-color="#f59e0b"
+                data-title="Bread Baking — Sourdough &amp; More"
+                data-date="Thu, 09:00–12:00"
+                data-location="Culinary Lab, West Wing"
+                data-duration="4 sessions"
+                data-price="CHF 120"
+                data-spots="5 spots left">
+            </course-card>
+
+            <course-card
+                data-category="digital"
+                data-img="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80"
+                data-badge="Digital"
+                data-badge-color="#3b82f6"
+                data-title="Data Analysis with Excel"
+                data-date="Sat, 09:00–12:30"
+                data-location="Tech Hub, Room 5"
+                data-duration="3 weeks"
+                data-price="CHF 145"
+                data-spots="14 spots left">
+            </course-card>
+
+            <course-card
+                data-category="languages"
+                data-img="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80"
+                data-badge="Languages"
+                data-badge-color="#6366f1"
+                data-title="French Conversation &amp; Culture"
+                data-date="Wed, 19:00–20:30"
+                data-location="Room 110, Language Centre"
+                data-duration="8 weeks"
+                data-price="CHF 210"
+                data-spots="9 spots left">
+            </course-card>
+
+        </div><!-- /.course-grid -->
+
+        <!-- Load more -->
+        <div class="load-more-wrap">
+            <button class="load-more-btn" id="load-more-btn" type="button">
+                Load more courses
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+        </div>
+
+        <!--
+            Nested open shadow DOM demo
+            ─────────────────────────────────────────────────────────────────
+            <instructor-section>  ← outer open shadow root
+                renders section heading + a grid of <instructor-card> elements
+
+                <instructor-card> ← inner open shadow root (nested inside outer)
+                    each card has its OWN shadow root for full style isolation
+
+            DevTools: Elements panel → reveal the two #shadow-root (open) layers
+        -->
+        <instructor-section></instructor-section>
+
+    </div><!-- /.page-wrap -->
+
+    <script src="script.js"></script>
+
+    <!-- ─────────────────────────────────────────────
+         Web components specific to courses.html
+         All use open shadow roots (mode: 'open')
+    ───────────────────────────────────────────── -->
+    <script>
+    // ─── <course-filter> ─────────────────────────────────────────────────────
+    // Renders a search input + category chip bar inside an open shadow root.
+    // Dispatches 'filter-change' custom events on the host element that the
+    // page listens to for updating the visible cards.
+    class CourseFilter extends HTMLElement {
+        connectedCallback() {
+            const shadow = this.attachShadow({ mode: 'open' });
+
+            shadow.innerHTML = `
+                <style>
+                    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+                    :host { display: block; margin-bottom: 1.5rem; }
+
+                    .filter-bar {
+                        background: #ffffff;
+                        border: 1px solid #e5e7eb;
+                        border-radius: 16px;
+                        padding: 1.25rem 1.5rem;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1rem;
+                        box-shadow: 0 1px 4px rgba(0,0,0,.06);
+                    }
+
+                    /* Search row */
+                    .search-row {
+                        display: flex;
+                        gap: 0.75rem;
+                        align-items: center;
+                        flex-wrap: wrap;
+                    }
+                    .search-wrap {
+                        position: relative;
+                        flex: 1 1 220px;
+                    }
+                    .search-wrap svg {
+                        position: absolute;
+                        left: 0.9rem;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 17px;
+                        height: 17px;
+                        color: #9ca3af;
+                        pointer-events: none;
+                    }
+                    .search-input {
+                        width: 100%;
+                        padding: 0.6rem 0.9rem 0.6rem 2.4rem;
+                        border: 1px solid #d1d5db;
+                        border-radius: 999px;
+                        font-size: 0.9rem;
+                        color: #111827;
+                        background: #f9fafb;
+                        outline: none;
+                        transition: border-color .2s, box-shadow .2s;
+                    }
+                    .search-input:focus {
+                        border-color: #6366f1;
+                        box-shadow: 0 0 0 3px rgba(99,102,241,.15);
+                        background: #fff;
+                    }
+                    .clear-btn {
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+                        color: #9ca3af;
+                        font-size: 0.8rem;
+                        padding: 0.4rem 0.75rem;
+                        border-radius: 999px;
+                        transition: color .2s, background .2s;
+                        white-space: nowrap;
+                    }
+                    .clear-btn:hover { color: #ef4444; background: #fef2f2; }
+
+                    /* Category chips */
+                    .chips {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 0.5rem;
+                        align-items: center;
+                    }
+                    .chip-label {
+                        font-size: 0.8rem;
+                        color: #6b7280;
+                        font-weight: 500;
+                        margin-right: 0.25rem;
+                        white-space: nowrap;
+                    }
+                    .chip {
+                        border: 1.5px solid #e5e7eb;
+                        background: #fff;
+                        color: #374151;
+                        font-size: 0.82rem;
+                        font-weight: 500;
+                        padding: 0.35rem 0.9rem;
+                        border-radius: 999px;
+                        cursor: pointer;
+                        transition: all .2s;
+                        white-space: nowrap;
+                    }
+                    .chip:hover { border-color: #6366f1; color: #6366f1; background: #eef2ff; }
+                    .chip.active {
+                        border-color: #6366f1;
+                        background: #6366f1;
+                        color: #fff;
+                    }
+                </style>
+
+                <div class="filter-bar" role="search">
+                    <div class="search-row">
+                        <div class="search-wrap">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
+                            </svg>
+                            <input
+                                class="search-input"
+                                id="search-input"
+                                type="search"
+                                placeholder="Search courses…"
+                                aria-label="Search courses"
+                                autocomplete="off"
+                            >
+                        </div>
+                        <button class="clear-btn" id="clear-btn" type="button" aria-label="Reset filters">Reset filters</button>
+                    </div>
+
+                    <div class="chips" role="group" aria-label="Filter by category">
+                        <span class="chip-label">Category:</span>
+                        <button class="chip active" data-cat="all"   type="button">All</button>
+                        <button class="chip"        data-cat="fitness"      type="button">Fitness</button>
+                        <button class="chip"        data-cat="cooking"      type="button">Cooking</button>
+                        <button class="chip"        data-cat="languages"    type="button">Languages</button>
+                        <button class="chip"        data-cat="digital"      type="button">Digital</button>
+                        <button class="chip"        data-cat="photography"  type="button">Photography</button>
+                    </div>
+                </div>
+            `;
+
+            this._search   = shadow.getElementById('search-input');
+            this._clearBtn = shadow.getElementById('clear-btn');
+            this._chips    = shadow.querySelectorAll('.chip');
+            this._activeCategory = 'all';
+
+            this._search.addEventListener('input', () => this._emit());
+
+            this._clearBtn.addEventListener('click', () => {
+                this._search.value = '';
+                this._setCategory('all');
+                this._emit();
+            });
+
+            this._chips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    this._setCategory(chip.dataset.cat);
+                    this._emit();
+                });
+            });
+        }
+
+        _setCategory(cat) {
+            this._activeCategory = cat;
+            this._chips.forEach(c => c.classList.toggle('active', c.dataset.cat === cat));
+        }
+
+        _emit() {
+            this.dispatchEvent(new CustomEvent('filter-change', {
+                bubbles: true,
+                composed: true,
+                detail: {
+                    query:    this._search.value.trim().toLowerCase(),
+                    category: this._activeCategory
+                }
+            }));
+        }
+    }
+    customElements.define('course-filter', CourseFilter);
+
+
+    // ─── <course-card> ──────────────────────────────────────────────────────
+    // Renders one course card inside an open shadow root.
+    // All data comes from data-* attributes set in HTML — nothing is hardcoded.
+    class CourseCard extends HTMLElement {
+        connectedCallback() {
+            const d = this.dataset;
+            const urgent = d.urgent === 'true';
+
+            const shadow = this.attachShadow({ mode: 'open' });
+            shadow.innerHTML = `
+                <style>
+                    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+                    :host {
+                        display: block;
+                        --cc-accent: ${d.badgeColor || '#6366f1'};
+                    }
+
+                    .card {
+                        background: #fff;
+                        border: 1px solid #e5e7eb;
+                        border-radius: 16px;
+                        overflow: hidden;
+                        display: flex;
+                        flex-direction: column;
+                        height: 100%;
+                        transition: box-shadow .25s, transform .25s;
+                        cursor: pointer;
+                    }
+                    .card:hover {
+                        box-shadow: 0 12px 32px rgba(0,0,0,.1);
+                        transform: translateY(-3px);
+                    }
+
+                    /* Image */
+                    .img-wrap {
+                        position: relative;
+                        height: 190px;
+                        overflow: hidden;
+                        background: #e5e7eb;
+                    }
+                    .img-wrap img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                        transition: transform .4s ease;
+                    }
+                    .card:hover .img-wrap img { transform: scale(1.05); }
+
+                    .badge {
+                        position: absolute;
+                        top: 0.75rem;
+                        left: 0.75rem;
+                        background: var(--cc-accent);
+                        color: #fff;
+                        font-size: 0.72rem;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                        letter-spacing: .06em;
+                        padding: 0.25rem 0.6rem;
+                        border-radius: 999px;
+                    }
+                    .urgent-chip {
+                        position: absolute;
+                        top: 0.75rem;
+                        right: 0.75rem;
+                        background: #ef4444;
+                        color: #fff;
+                        font-size: 0.7rem;
+                        font-weight: 700;
+                        padding: 0.2rem 0.55rem;
+                        border-radius: 999px;
+                        animation: pulse 1.4s ease-in-out infinite;
+                    }
+                    @keyframes pulse {
+                        0%, 100% { opacity: 1; }
+                        50%       { opacity: 0.65; }
+                    }
+
+                    /* Body */
+                    .body {
+                        padding: 1.1rem 1.25rem;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.6rem;
+                        flex: 1;
+                    }
+                    .title {
+                        font-size: 1rem;
+                        font-weight: 700;
+                        color: #111827;
+                        line-height: 1.4;
+                    }
+                    .meta {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.35rem;
+                    }
+                    .meta-row {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 0.45rem;
+                        font-size: 0.82rem;
+                        color: #6b7280;
+                        line-height: 1.4;
+                    }
+                    .meta-row svg {
+                        width: 14px;
+                        height: 14px;
+                        flex-shrink: 0;
+                        margin-top: 2px;
+                        color: var(--cc-accent);
+                    }
+
+                    /* Spacer pushes footer to bottom */
+                    .spacer { flex: 1; }
+
+                    /* Footer */
+                    .footer {
+                        padding: 0 1.25rem 1.1rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 0.5rem;
+                        flex-wrap: wrap;
+                        border-top: 1px solid #f3f4f6;
+                        padding-top: 0.85rem;
+                    }
+                    .price {
+                        font-size: 1.05rem;
+                        font-weight: 700;
+                        color: #111827;
+                    }
+                    .spots {
+                        font-size: 0.75rem;
+                        color: #9ca3af;
+                    }
+                    .spots.low { color: #ef4444; font-weight: 600; }
+
+                    .register-btn {
+                        background: var(--cc-accent);
+                        color: #fff;
+                        border: none;
+                        border-radius: 999px;
+                        font-size: 0.82rem;
+                        font-weight: 600;
+                        padding: 0.5rem 1.1rem;
+                        cursor: pointer;
+                        white-space: nowrap;
+                        transition: opacity .2s, box-shadow .2s;
+                    }
+                    .register-btn:hover {
+                        opacity: 0.88;
+                        box-shadow: 0 4px 12px rgba(0,0,0,.18);
+                    }
+                </style>
+
+                <article class="card" role="listitem" aria-label="${d.title}">
+                    <div class="img-wrap">
+                        <img src="${d.img}" alt="${d.title}" loading="lazy">
+                        <span class="badge">${d.badge}</span>
+                        ${urgent ? `<span class="urgent-chip">Only ${d.spots}</span>` : ''}
+                    </div>
+
+                    <div class="body">
+                        <h2 class="title">${d.title}</h2>
+                        <div class="meta">
+                            <div class="meta-row">
+                                <!-- calendar icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                <span>${d.date}</span>
+                            </div>
+                            <div class="meta-row">
+                                <!-- clock icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span>${d.duration}</span>
+                            </div>
+                            <div class="meta-row">
+                                <!-- location icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                <span>${d.location}</span>
+                            </div>
+                        </div>
+                        <div class="spacer"></div>
+                    </div>
+
+                    <div class="footer">
+                        <div>
+                            <div class="price">${d.price}</div>
+                            <div class="spots ${urgent ? 'low' : ''}">${urgent ? '⚠ ' : ''}${d.spots}</div>
+                        </div>
+                        <button class="register-btn" type="button">Register now</button>
+                    </div>
+                </article>
+            `;
+
+            shadow.querySelector('.register-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.dispatchEvent(new CustomEvent('course-register', {
+                    bubbles: true,
+                    composed: true,
+                    detail: { title: d.title, price: d.price }
+                }));
+            });
+        }
+    }
+    customElements.define('course-card', CourseCard);
+
+
+    // ─── Filter logic ────────────────────────────────────────────────────────
+    // Listens to 'filter-change' from <course-filter> and shows/hides cards.
+    document.getElementById('main-filter').addEventListener('filter-change', (e) => {
+        const { query, category } = e.detail;
+        const cards = document.querySelectorAll('course-card');
+        let visible = 0;
+
+        cards.forEach(card => {
+            const d = card.dataset;
+            const matchCat  = category === 'all' || d.category === category;
+            const matchText = !query || d.title.toLowerCase().includes(query);
+            const show = matchCat && matchText;
+            card.style.display = show ? '' : 'none';
+            if (show) visible++;
+        });
+
+        document.getElementById('result-count').textContent = visible;
+        document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+        document.getElementById('load-more-btn').parentElement.style.display = visible === 0 ? 'none' : '';
+    });
+
+    // ─── Register toast ──────────────────────────────────────────────────────
+    document.addEventListener('course-register', (e) => {
+        const { title, price } = e.detail;
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position:fixed;bottom:2rem;right:2rem;z-index:9999;
+            background:#111827;color:#fff;
+            padding:.85rem 1.4rem;border-radius:12px;
+            font-size:.9rem;font-family:system-ui,sans-serif;
+            box-shadow:0 8px 24px rgba(0,0,0,.25);
+            display:flex;align-items:center;gap:.6rem;
+            animation:slideIn .3s ease;
+        `;
+        toast.innerHTML = `
+            <style>@keyframes slideIn{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}</style>
+            <span style="font-size:1.2rem">✅</span>
+            <div>
+                <strong>${title}</strong><br>
+                <span style="color:#d1fae5;font-size:.8rem">Added to your list — ${price}</span>
+            </div>
+        `;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3500);
+    });
+
+    // ─── Load more (simulated) ───────────────────────────────────────────────
+    document.getElementById('load-more-btn').addEventListener('click', function () {
+        this.textContent = 'No more courses to load';
+        this.disabled = true;
+        this.style.opacity = '0.5';
+        this.style.cursor = 'default';
+    });
+
+
+    // ═══════════════════════════════════════════════════════════════════════
+    //  NESTED OPEN SHADOW ROOT DEMO
+    //
+    //  Layer 1 — <instructor-section>  attachShadow({ mode: 'open' })
+    //    └─ shadow root owns section heading, grid wrapper, and the
+    //       <instructor-card> elements it creates programmatically.
+    //
+    //  Layer 2 — <instructor-card>  attachShadow({ mode: 'open' })
+    //    └─ each card element gets its OWN shadow root, nested inside
+    //       the outer shadow root. Style isolation is total at both layers.
+    //
+    //  Both shadow roots are 'open', so external JS (e.g. VWO) can still
+    //  reach inside via  element.shadowRoot.querySelector(...)
+    // ═══════════════════════════════════════════════════════════════════════
+
+    // ─── Inner component: <instructor-card> ─────────────────────────────────
+    // Receives all data via JS properties set by InstructorSection.
+    // Attaches its own open shadow root — this is the INNER (level-2) shadow root.
+    class InstructorCard extends HTMLElement {
+        // Called by InstructorSection after creating and configuring the element
+        init({ name, role, bio, avatar, courses, rating, accent }) {
+            // Attach the inner shadow root
+            const shadow = this.attachShadow({ mode: 'open' });
+
+            const stars = '★'.repeat(Math.round(rating)) + '☆'.repeat(5 - Math.round(rating));
+
+            shadow.innerHTML = `
+                <style>
+                    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+                    :host {
+                        display: block;
+                        --ic-accent: ${accent};
+                        font-family: system-ui, -apple-system, sans-serif;
+                    }
+
+                    .card {
+                        background: #fff;
+                        border: 1px solid #e5e7eb;
+                        border-radius: 16px;
+                        padding: 1.5rem 1.25rem 1.25rem;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        text-align: center;
+                        gap: 0.75rem;
+                        transition: box-shadow .25s, transform .25s;
+                        height: 100%;
+                    }
+                    .card:hover {
+                        box-shadow: 0 10px 28px rgba(0,0,0,.1);
+                        transform: translateY(-4px);
+                    }
+
+                    .avatar-wrap {
+                        position: relative;
+                        width: 80px;
+                        height: 80px;
+                    }
+                    .avatar {
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        border: 3px solid var(--ic-accent);
+                    }
+                    .avatar-ring {
+                        position: absolute;
+                        inset: -4px;
+                        border-radius: 50%;
+                        border: 2px dashed var(--ic-accent);
+                        opacity: 0.4;
+                        animation: spin 12s linear infinite;
+                    }
+                    @keyframes spin { to { transform: rotate(360deg); } }
+
+                    .name {
+                        font-size: 1rem;
+                        font-weight: 700;
+                        color: #111827;
+                    }
+                    .role {
+                        font-size: 0.78rem;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        letter-spacing: .06em;
+                        color: var(--ic-accent);
+                    }
+                    .bio {
+                        font-size: 0.82rem;
+                        color: #6b7280;
+                        line-height: 1.55;
+                    }
+
+                    .divider {
+                        width: 40px;
+                        height: 2px;
+                        background: var(--ic-accent);
+                        border-radius: 1px;
+                        opacity: 0.4;
+                    }
+
+                    .stats {
+                        display: flex;
+                        gap: 1.25rem;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .stat-item {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 0.15rem;
+                    }
+                    .stat-value {
+                        font-size: 1rem;
+                        font-weight: 700;
+                        color: #111827;
+                    }
+                    .stat-label {
+                        font-size: 0.7rem;
+                        color: #9ca3af;
+                        text-transform: uppercase;
+                        letter-spacing: .05em;
+                    }
+                    .stars {
+                        font-size: 0.85rem;
+                        color: #f59e0b;
+                        letter-spacing: 1px;
+                    }
+                    .view-btn {
+                        margin-top: auto;
+                        background: var(--ic-accent);
+                        color: #fff;
+                        border: none;
+                        border-radius: 999px;
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                        padding: 0.5rem 1.25rem;
+                        cursor: pointer;
+                        transition: opacity .2s;
+                    }
+                    .view-btn:hover { opacity: 0.85; }
+                </style>
+
+                <div class="card">
+                    <div class="avatar-wrap">
+                        <div class="avatar-ring"></div>
+                        <img class="avatar" src="${avatar}" alt="Photo of ${name}" loading="lazy">
+                    </div>
+                    <div class="role">${role}</div>
+                    <div class="name">${name}</div>
+                    <p class="bio">${bio}</p>
+                    <div class="divider"></div>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-value">${courses}</span>
+                            <span class="stat-label">Courses</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stars">${stars}</span>
+                            <span class="stat-label">Rating</span>
+                        </div>
+                    </div>
+                    <button class="view-btn" type="button">View courses</button>
+                </div>
+            `;
+        }
+    }
+    customElements.define('instructor-card', InstructorCard);
+
+
+    // ─── Outer component: <instructor-section> ───────────────────────────────
+    // Attaches the OUTER (level-1) open shadow root.
+    // Creates <instructor-card> elements programmatically inside that shadow root —
+    // each card then attaches its OWN shadow root (level-2, nested).
+    class InstructorSection extends HTMLElement {
+        connectedCallback() {
+            // ── Level-1 shadow root ──────────────────────────────────────────
+            const outerShadow = this.attachShadow({ mode: 'open' });
+
+            const instructors = [
+                {
+                    name:    'Dr. Sarah Chen',
+                    role:    'Fitness & Wellness',
+                    bio:     'Certified personal trainer and kinesiologist with 12 years helping students build sustainable, enjoyable fitness habits.',
+                    avatar:  'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=200&q=80',
+                    courses: 14,
+                    rating:  5,
+                    accent:  '#10b981'
+                },
+                {
+                    name:    'Marco Rossi',
+                    role:    'Culinary Arts',
+                    bio:     'Head chef turned educator. Trained in Milan and Lyon, Marco brings authentic Italian and French technique to every class.',
+                    avatar:  'https://images.unsplash.com/photo-1607631568010-a87245c0daf9?w=200&q=80',
+                    courses: 9,
+                    rating:  5,
+                    accent:  '#f59e0b'
+                },
+                {
+                    name:    'Amara Diallo',
+                    role:    'Languages',
+                    bio:     'Polyglot linguist fluent in 6 languages. Her immersive teaching method gets students speaking confidently within weeks.',
+                    avatar:  'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&q=80',
+                    courses: 22,
+                    rating:  5,
+                    accent:  '#6366f1'
+                },
+                {
+                    name:    'Lena Müller',
+                    role:    'Digital & Design',
+                    bio:     'UX lead at a Berlin studio by day, passionate educator by weekend. Brings real industry projects into every lesson.',
+                    avatar:  'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80',
+                    courses: 7,
+                    rating:  4,
+                    accent:  '#3b82f6'
+                }
+            ];
+
+            // Inject the section scaffold (heading + grid slot) into the outer shadow
+            outerShadow.innerHTML = `
+                <style>
+                    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+                    :host {
+                        display: block;
+                        font-family: system-ui, -apple-system, sans-serif;
+                        margin-top: 4rem;
+                        padding: 4rem 0 3rem;
+                        background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+                        border-radius: 20px;
+                    }
+
+                    .container {
+                        max-width: 1100px;
+                        margin: 0 auto;
+                        padding: 0 1.5rem;
+                    }
+
+                    /* Shadow-DOM badge — purely decorative, explains the nesting */
+                    .shadow-badge {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.4rem;
+                        background: #eef2ff;
+                        border: 1px solid #c7d2fe;
+                        color: #4f46e5;
+                        font-size: 0.72rem;
+                        font-weight: 700;
+                        letter-spacing: .05em;
+                        text-transform: uppercase;
+                        padding: 0.3rem 0.75rem;
+                        border-radius: 999px;
+                        margin-bottom: 0.85rem;
+                    }
+                    .shadow-badge::before {
+                        content: '';
+                        display: inline-block;
+                        width: 7px;
+                        height: 7px;
+                        border-radius: 50%;
+                        background: #6366f1;
+                        box-shadow: 0 0 0 2px #c7d2fe;
+                    }
+
+                    .section-heading {
+                        font-size: 1.85rem;
+                        font-weight: 700;
+                        color: #111827;
+                        margin-bottom: 0.5rem;
+                    }
+                    .section-desc {
+                        font-size: 0.95rem;
+                        color: #6b7280;
+                        max-width: 520px;
+                        line-height: 1.6;
+                        margin-bottom: 2.5rem;
+                    }
+                    .section-desc code {
+                        background: #ede9fe;
+                        color: #6d28d9;
+                        padding: 0.1em 0.4em;
+                        border-radius: 4px;
+                        font-size: 0.88em;
+                    }
+
+                    /* Grid that holds the <instructor-card> elements */
+                    .instructor-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+                        gap: 1.5rem;
+                    }
+                    @media (max-width: 520px) {
+                        .instructor-grid { grid-template-columns: 1fr 1fr; }
+                    }
+                    @media (max-width: 360px) {
+                        .instructor-grid { grid-template-columns: 1fr; }
+                    }
+                </style>
+
+                <div class="container">
+                    <span class="shadow-badge">Outer shadow root — level 1</span>
+                    <h2 class="section-heading">Meet Your Instructors</h2>
+                    <p class="section-desc">
+                        This entire section lives inside <code>&lt;instructor-section&gt;</code>'s open shadow root.
+                        Each <code>&lt;instructor-card&gt;</code> below then attaches its <em>own</em> open shadow root —
+                        a nested shadow root at level 2.
+                    </p>
+                    <div class="instructor-grid" id="grid"></div>
+                </div>
+            `;
+
+            const grid = outerShadow.getElementById('grid');
+
+            // Create each <instructor-card> inside the outer shadow root,
+            // then call .init() which triggers the card's own attachShadow() — level 2.
+            instructors.forEach(data => {
+                const card = document.createElement('instructor-card');
+                grid.appendChild(card);
+                // .init() attaches the INNER (nested) shadow root on each card
+                card.init(data);
+            });
+        }
+    }
+    customElements.define('instructor-section', InstructorSection);
+
+    </script>
+</body>
+</html>

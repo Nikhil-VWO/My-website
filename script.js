@@ -76,7 +76,6 @@ class NavBar extends HTMLElement {
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#reviews">Reviews</a></li>
-                    <li><a href="#carousel">Carousel</a></li>
                     <li><a href="#form-elements">Form Elements</a></li>
                     <li><a href="about.html" target="_blank" rel="noopener noreferrer">About Us ↗</a></li>
                     <li><a href="services.html" target="_blank" rel="noopener noreferrer">Services ↗</a></li>
@@ -86,6 +85,7 @@ class NavBar extends HTMLElement {
                     <li><a href="cart.html" target="_blank" rel="noopener noreferrer">Cart ↗</a></li>
                     <li><a href="spa.html" target="_blank" rel="noopener noreferrer">SPA ↗</a></li>
                     <li><a href="responsive.html" target="_blank" rel="noopener noreferrer">Responsive ↗</a></li>
+                    <li><a href="courses.html" target="_blank" rel="noopener noreferrer">Courses ↗</a></li>
                 </ul>
             </div>
         `;
