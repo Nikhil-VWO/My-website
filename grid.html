@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Start VWO Async V3.0 SmartCode -->
+<link rel="preconnect" href="https://dev.visualwebsiteoptimizer.com" />
+<script type="text/javascript" id="vwoCode">
+window._vwo_code || (function() {        
+    var account_id = 1209855,
+        version = 3.0,
+        settings_tolerance = 2000,
+        hide_element = 'body',
+        hide_element_style =
+        'opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;transition:none !important';
+    var t=window,n=document;if(-1<n.URL.indexOf('__vwo_disable__')||t._vwo_code)return;var i=!1,o=n.currentScript,e={sT:settings_tolerance,hES:hide_element_style,hE:hide_element};try{e=Object.assign(JSON.parse(localStorage.getItem('_vwo_'+account_id+'_config')),e)}catch(e){}var code={nonce:o.nonce,settings_tolerance:function(){return e.sT},hide_element:function(){return performance.getEntriesByName('first-contentful-paint')[0]?'':e.hE},hide_element_style:function(){return'{'+e.hES+'}'},getVersion:function(){return version},finish:function(){var e;!i&&(i=!0,e=n.getElementById('_vis_opt_path_hides'))&&e.parentNode.removeChild(e)},finished:function(){return i},addScript:function(e){var t=n.createElement('script');t.src=e,o.nonce&&t.setAttribute('nonce',o.nonce),t.fetchPriority='high',n.head.appendChild(t)},init:function(){t._vwo_settings_timer=setTimeout(function(){code.finish()},this.settings_tolerance());var e=n.createElement('style');e.id='_vis_opt_path_hides',o.nonce&&e.setAttribute('nonce',o.nonce),e.textContent=this.hide_element()+this.hide_element_style(),n.head.appendChild(e),this.addScript('https://dev.visualwebsiteoptimizer.com/tag/'+account_id+'.js')}};t._vwo_code=code;code.init();})();
+</script>
+<!--End VWO Async SmartCode -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Layout — My Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ─── Reset & base ─── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { padding-top: 70px; font-family: system-ui, -apple-system, sans-serif; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+        /* ─── color-mix() palette
+             Each section background is produced by color-mix().
+             Syntax: color-mix(in <colorspace>, <color1> <pct>, <color2>)
+             colorspaces used: srgb · oklch · hsl · display-p3
+        ─── */
+
+        /* 1 — Hero ─────────────────────────────────────────── */
+        .section-hero {
+            background: #4f72e8;
+            background: color-mix(in oklch, #6366f1 55%, #0ea5e9);
+            padding: 80px 1.5rem 60px;
+            text-align: center;
+            color: #fff;
+        }
+        .section-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -.02em;
+        }
+        .section-hero p {
+            font-size: 1.1rem;
+            opacity: .88;
+            max-width: 560px;
+            margin: 0 auto 2rem;
+            line-height: 1.65;
+        }
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: .5rem;
+            margin-bottom: 2.5rem;
+        }
+        .badge {
+            background: rgba(255,255,255,.18);
+            border: 1px solid rgba(255,255,255,.35);
+            color: #fff;
+            font-size: .75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .07em;
+            padding: .28rem .75rem;
+            border-radius: 999px;
+        }
+
+        /* 2 — Features 3-col ───────────────────────────────── */
+        .section-features {
+            background: #c7cbfc;
+            background: color-mix(in srgb, #6366f1 30%, #ffffff);
+            padding: 80px 1.5rem;
+        }
+        .section-label {
+            font-size: .72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: #6366f1;
+            margin-bottom: .6rem;
+        }
+        .section-title {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: .6rem;
+        }
+        .section-desc {
+            font-size: .95rem;
+            color: #6b7280;
+            max-width: 500px;
+            line-height: 1.65;
+            margin-bottom: 2.5rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            /* dark → light, left-to-right */
+            background: linear-gradient(to right, #4338ca, #c7cbfc);
+            background: linear-gradient(to right,
+                color-mix(in srgb, #6366f1 80%, #000),
+                color-mix(in srgb, #6366f1 15%, #fff));
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+        /* Each feature card steps from dark → light across the row */
+        .feature-card { border-radius: 16px; padding: 1.75rem 1.5rem; transition: box-shadow .25s, transform .25s; border: none; }
+        .feature-card:nth-child(1) { background: #5254d4; background: color-mix(in srgb, #6366f1 70%, #fff); color: #fff; }
+        .feature-card:nth-child(1) h3 { color: #fff; }
+        .feature-card:nth-child(1) p  { color: rgba(255,255,255,.82); }
+        .feature-card:nth-child(2) { background: #8183e8; background: color-mix(in srgb, #6366f1 50%, #fff); }
+        .feature-card:nth-child(3) { background: #afb1f2; background: color-mix(in srgb, #6366f1 32%, #fff); }
+        .feature-card:nth-child(4) { background: #c4c6f6; background: color-mix(in srgb, #6366f1 22%, #fff); }
+        .feature-card:nth-child(5) { background: #d8d9fa; background: color-mix(in srgb, #6366f1 14%, #fff); }
+        .feature-card:nth-child(6) { background: #efeffd; background: color-mix(in srgb, #6366f1 6%, #fff); }
+        .feature-card:hover {
+            box-shadow: 0 12px 30px rgba(99,102,241,.12);
+            transform: translateY(-4px);
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .feature-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: .4rem;
+        }
+        .feature-card p {
+            font-size: .85rem;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* 3 — Stats 4-col ──────────────────────────────────── */
+        .section-stats {
+            background: #6edcb4;
+            background: color-mix(in oklch, #10b981 45%, #ffffff);
+            padding: 64px 1.5rem;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            /* dark → light, left-to-right */
+            background: linear-gradient(to right, #065f46, #a7f3d0);
+            background: linear-gradient(to right,
+                color-mix(in oklch, #10b981 90%, #000),
+                color-mix(in oklch, #10b981 18%, #fff));
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+        /* Each stat card steps from dark → light */
+        .stat-card { border-radius: 16px; padding: 2rem 1.25rem; text-align: center; border: none; }
+        .stats-grid .stat-card:nth-child(1) { background: #047857; background: color-mix(in oklch, #10b981 80%, #000); }
+        .stats-grid .stat-card:nth-child(1) .stat-number,
+        .stats-grid .stat-card:nth-child(1) .stat-label { color: #fff; }
+        .stats-grid .stat-card:nth-child(2) { background: #34d399; background: color-mix(in oklch, #10b981 60%, #fff); }
+        .stats-grid .stat-card:nth-child(3) { background: #6ee7b7; background: color-mix(in oklch, #10b981 35%, #fff); }
+        .stats-grid .stat-card:nth-child(4) { background: #d1fae5; background: color-mix(in oklch, #10b981 15%, #fff); }
+        .stat-card .stat-number {
+            border: 1px solid #86d9bb;
+            border: 1px solid color-mix(in srgb, #10b981 30%, transparent);
+            border-radius: 16px;
+            padding: 2rem 1.25rem;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #059669;
+            line-height: 1;
+            margin-bottom: .35rem;
+        }
+        .stat-label {
+            font-size: .82rem;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        /* 4 — Bento / mixed-size grid ──────────────────────── */
+        .section-bento {
+            background: #fcd97a;
+            background: color-mix(in hsl, #f59e0b 40%, #ffffff);
+            padding: 80px 1.5rem;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto auto;
+            gap: 1.25rem;
+            /* dark → light, diagonal */
+            background: linear-gradient(135deg, #92400e, #fde68a);
+            background: linear-gradient(135deg,
+                color-mix(in hsl, #f59e0b 90%, #000),
+                color-mix(in hsl, #f59e0b 20%, #fff));
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+        /* Spans */
+        .bento-wide  { grid-column: span 2; }
+        .bento-tall  { grid-row:    span 2; }
+        .bento-hero  { grid-column: span 2; grid-row: span 2; }
+
+        .bento-card {
+            border-radius: 18px;
+            padding: 2rem 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 160px;
+            position: relative;
+            overflow: hidden;
+        }
+        .bento-card .bento-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .bento-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: .3rem;
+            position: relative;
+            z-index: 1;
+        }
+        .bento-card p {
+            font-size: .8rem;
+            color: rgba(255,255,255,.8);
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+        /* Individual bento card colours — all use color-mix() */
+        .bc-1 { background: #7b5cf6; background: color-mix(in oklch, #6366f1 80%, #a855f7); }
+        .bc-2 { background: #13a178; background: color-mix(in srgb,  #10b981 70%, #0ea5e9); }
+        .bc-3 { background: #e07b12; background: color-mix(in oklch, #f59e0b 75%, #ef4444); }
+        .bc-4 { background: #c44b9e; background: color-mix(in hsl,   #ec4899 65%, #6366f1); }
+        .bc-5 { background: #2856a8; background: color-mix(in srgb,  #3b82f6 70%, #1e293b); }
+        .bc-6 { background: #a044c8; background: color-mix(in oklch, #8b5cf6 60%, #ec4899); }
+
+        /* 5 — Image mosaic grid ────────────────────────────── */
+        .section-gallery {
+            background: #1a2235;
+            background: color-mix(in srgb, #1e293b 90%, #6366f1);
+            padding: 80px 1.5rem;
+        }
+        .section-gallery .section-title,
+        .section-gallery .section-desc { color: #e2e8f0; }
+        .section-gallery .section-label { color: #818cf8; }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 1rem;
+            /* dark → light, left-to-right */
+            background: linear-gradient(to right, #0f172a, #475569);
+            background: linear-gradient(to right,
+                color-mix(in srgb, #1e293b 100%, #000),
+                color-mix(in srgb, #1e293b 40%, #6366f1));
+            padding: 1rem;
+            border-radius: 16px;
+        }
+        .gallery-item {
+            border-radius: 14px;
+            overflow: hidden;
+            background: #3a435a;
+            background: color-mix(in srgb, #334155 80%, #6366f1);
+        }
+        .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .4s ease, filter .3s;
+            filter: brightness(.85) saturate(1.1);
+        }
+        .gallery-item:hover img { transform: scale(1.06); filter: brightness(1) saturate(1.2); }
+        .gallery-item.span-2 { grid-column: span 2; }
+        .gallery-item.span-row { grid-row: span 2; }
+
+        /* 6 — Testimonials 2-col ───────────────────────────── */
+        .section-testimonials {
+            background: #f49fd4;
+            background: color-mix(in oklch, #ec4899 40%, #ffffff);
+            padding: 80px 1.5rem;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            /* dark → light, top-to-bottom */
+            background: linear-gradient(to bottom, #9d174d, #fce7f3);
+            background: linear-gradient(to bottom,
+                color-mix(in oklch, #ec4899 85%, #000),
+                color-mix(in oklch, #ec4899 12%, #fff));
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+        /* Each testi card steps darker → lighter */
+        .testi-card { border-radius: 16px; padding: 2rem; border: none; }
+        .testimonials-grid .testi-card:nth-child(1) { background: #db2777; background: color-mix(in oklch, #ec4899 65%, #fff); }
+        .testimonials-grid .testi-card:nth-child(1) .testi-quote,
+        .testimonials-grid .testi-card:nth-child(1) .testi-name  { color: #fff; }
+        .testimonials-grid .testi-card:nth-child(1) .testi-role  { color: rgba(255,255,255,.7); }
+        .testimonials-grid .testi-card:nth-child(2) { background: #f472b6; background: color-mix(in oklch, #ec4899 48%, #fff); }
+        .testimonials-grid .testi-card:nth-child(3) { background: #f9a8d4; background: color-mix(in oklch, #ec4899 30%, #fff); }
+        .testimonials-grid .testi-card:nth-child(4) { background: #fce7f3; background: color-mix(in oklch, #ec4899 12%, #fff); }
+        /* (selector fragment from refactor — unused, cleared) */
+        .testi-stars { font-size: 1rem; color: #f59e0b; margin-bottom: 1rem; letter-spacing: 2px; }
+        .testi-quote { font-size: .95rem; color: #374151; line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+        .testi-author { display: flex; align-items: center; gap: .75rem; }
+        .testi-avatar {
+            width: 42px; height: 42px; border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid color-mix(in srgb, #ec4899 40%, #fff);
+        }
+        .testi-name { font-size: .88rem; font-weight: 700; color: #111827; }
+        .testi-role { font-size: .76rem; color: #9ca3af; }
+
+        /* 7 — Pricing 3-col ────────────────────────────────── */
+        .section-pricing {
+            background: #93bcf8;
+            background: color-mix(in srgb, #3b82f6 35%, #f8fafc);
+            padding: 80px 1.5rem;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            align-items: start;
+            /* dark → light, left-to-right */
+            background: linear-gradient(to right, #1e3a8a, #bfdbfe);
+            background: linear-gradient(to right,
+                color-mix(in srgb, #3b82f6 90%, #000),
+                color-mix(in srgb, #3b82f6 18%, #fff));
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+        /* Pricing cards: dark → featured (mid) → light */
+        .pricing-grid .pricing-card:nth-child(1) { background: #1d4ed8; background: color-mix(in srgb, #3b82f6 75%, #000); border-color: transparent; }
+        .pricing-grid .pricing-card:nth-child(1) .pricing-tier  { color: rgba(255,255,255,.7); }
+        .pricing-grid .pricing-card:nth-child(1) .pricing-price { color: #fff; }
+        .pricing-grid .pricing-card:nth-child(1) .pricing-period{ color: rgba(255,255,255,.6); }
+        .pricing-grid .pricing-card:nth-child(1) .pricing-features li { color: rgba(255,255,255,.88); }
+        .pricing-grid .pricing-card:nth-child(1) .pricing-btn { border-color: #fff; color: #fff; }
+        .pricing-grid .pricing-card:nth-child(1) .pricing-btn:hover { background: rgba(255,255,255,.15); }
+        .pricing-grid .pricing-card:nth-child(3) { background: #dbeafe; background: color-mix(in srgb, #3b82f6 15%, #fff); }
+        .pricing-card {
+            background: #fff;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 2rem 1.75rem;
+            transition: box-shadow .25s, transform .25s;
+        }
+        .pricing-card.featured {
+            background: #4f7de8;
+            background: color-mix(in oklch, #6366f1 85%, #0ea5e9);
+            border-color: transparent;
+            color: #fff;
+            transform: scale(1.04);
+        }
+        .pricing-card:hover:not(.featured) {
+            box-shadow: 0 10px 28px rgba(59,130,246,.12);
+            transform: translateY(-4px);
+        }
+        .pricing-tier { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .5rem; color: #6366f1; }
+        .pricing-card.featured .pricing-tier { color: rgba(255,255,255,.75); }
+        .pricing-price { font-size: 2.4rem; font-weight: 800; color: #111827; line-height: 1; margin-bottom: .15rem; }
+        .pricing-card.featured .pricing-price { color: #fff; }
+        .pricing-period { font-size: .8rem; color: #9ca3af; margin-bottom: 1.5rem; }
+        .pricing-card.featured .pricing-period { color: rgba(255,255,255,.65); }
+        .pricing-features { list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: .65rem; }
+        .pricing-features li { font-size: .86rem; color: #374151; display: flex; align-items: center; gap: .5rem; }
+        .pricing-card.featured .pricing-features li { color: rgba(255,255,255,.9); }
+        .pricing-features li::before { content: '✓'; font-weight: 700; color: #10b981; flex-shrink: 0; }
+        .pricing-card.featured .pricing-features li::before { color: #a7f3d0; }
+        .pricing-btn {
+            width: 100%; padding: .75rem; border-radius: 999px; font-size: .9rem;
+            font-weight: 600; border: 2px solid #6366f1; background: transparent;
+            color: #6366f1; cursor: pointer; transition: background .2s, color .2s;
+        }
+        .pricing-btn:hover { background: #6366f1; color: #fff; }
+        .pricing-card.featured .pricing-btn {
+            background: #fff; color: #6366f1; border-color: #fff;
+        }
+        .pricing-card.featured .pricing-btn:hover { background: rgba(255,255,255,.85); }
+
+        /* 8 — Team 4-col ───────────────────────────────────── */
+        .section-team {
+            background: #6edcb4;
+            background: color-mix(in hsl, #10b981 35%, #ffffff);
+            padding: 80px 1.5rem;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            /* dark → light, left-to-right */
+            background: linear-gradient(to right, #064e3b, #d1fae5);
+            background: linear-gradient(to right,
+                color-mix(in hsl, #10b981 90%, #000),
+                color-mix(in hsl, #10b981 12%, #fff));
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+        /* Team cards: dark → lighter */
+        .team-grid .team-card:nth-child(1) { background: #065f46; background: color-mix(in hsl, #10b981 78%, #000); }
+        .team-grid .team-card:nth-child(1) .team-name { color: #fff; }
+        .team-grid .team-card:nth-child(1) .team-role { color: rgba(255,255,255,.7); }
+        .team-grid .team-card:nth-child(2) { background: #34d399; background: color-mix(in hsl, #10b981 55%, #fff); }
+        .team-grid .team-card:nth-child(3) { background: #6ee7b7; background: color-mix(in hsl, #10b981 35%, #fff); }
+        .team-grid .team-card:nth-child(4) { background: #d1fae5; background: color-mix(in hsl, #10b981 15%, #fff); }
+        .team-card {
+            border-radius: 16px;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            text-align: center;
+            transition: box-shadow .25s, transform .25s;
+        }
+        .team-card:hover { box-shadow: 0 10px 28px rgba(16,185,129,.12); transform: translateY(-4px); }
+        .team-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .team-info { padding: 1.25rem 1rem; }
+        .team-name { font-size: .95rem; font-weight: 700; color: #111827; margin-bottom: .2rem; }
+        .team-role { font-size: .78rem; color: #6b7280; margin-bottom: .75rem; }
+        .team-socials { display: flex; justify-content: center; gap: .5rem; }
+        .team-social-btn {
+            width: 30px; height: 30px; border-radius: 50%; border: none; cursor: pointer;
+            font-size: .75rem; display: flex; align-items: center; justify-content: center;
+            transition: opacity .2s;
+        }
+        .team-social-btn:hover { opacity: .75; }
+
+        /* 9 — CTA full-width ───────────────────────────────── */
+        .section-cta {
+            background: #8b3fb5;
+            background: color-mix(in oklch, #6366f1 60%, #ec4899 40%);
+            padding: 80px 1.5rem;
+            text-align: center;
+            color: #fff;
+        }
+        .section-cta h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; margin-bottom: .75rem; }
+        .section-cta p { font-size: 1rem; opacity: .88; max-width: 480px; margin: 0 auto 2rem; line-height: 1.6; }
+        .cta-btn-group { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+        .cta-btn-primary {
+            background: #fff; color: #6366f1;
+            border: none; border-radius: 999px;
+            font-size: .95rem; font-weight: 700;
+            padding: .8rem 2rem; cursor: pointer;
+            transition: opacity .2s, box-shadow .2s;
+        }
+        .cta-btn-primary:hover { opacity: .9; box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+        .cta-btn-outline {
+            background: transparent; color: #fff;
+            border: 2px solid rgba(255,255,255,.6); border-radius: 999px;
+            font-size: .95rem; font-weight: 700;
+            padding: .8rem 2rem; cursor: pointer;
+            transition: background .2s, border-color .2s;
+        }
+        .cta-btn-outline:hover { background: rgba(255,255,255,.12); border-color: #fff; }
+
+        /* ─── Color-mix legend ──────────────────────────────── */
+        .section-legend {
+            background: #1c2133;
+            background: color-mix(in srgb, #1e293b 95%, #6366f1);
+            padding: 60px 1.5rem;
+        }
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .legend-card {
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .legend-swatch {
+            width: 44px; height: 44px;
+            border-radius: 10px;
+            flex-shrink: 0;
+            border: 2px solid rgba(255,255,255,.15);
+        }
+        .legend-info { min-width: 0; }
+        .legend-section { font-size: .78rem; font-weight: 700; color: #e2e8f0; margin-bottom: .2rem; }
+        .legend-code { font-size: .7rem; color: #94a3b8; font-family: monospace; word-break: break-all; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .features-grid  { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid     { grid-template-columns: repeat(2, 1fr); }
+            .pricing-grid   { grid-template-columns: 1fr; }
+            .pricing-card.featured { transform: none; }
+            .team-grid      { grid-template-columns: repeat(2, 1fr); }
+            .bento-grid     { grid-template-columns: repeat(2, 1fr); }
+            .bento-hero     { grid-column: span 2; grid-row: span 1; }
+            .bento-tall     { grid-row: span 1; }
+            .gallery-grid   { grid-template-columns: repeat(2, 1fr); }
+            .gallery-item.span-2 { grid-column: span 1; }
+        }
+        @media (max-width: 600px) {
+            .features-grid, .stats-grid, .testimonials-grid,
+            .team-grid, .bento-grid, .gallery-grid { grid-template-columns: 1fr; }
+            .bento-wide, .bento-hero { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+    <nav-bar></nav-bar>
+
+    <!-- ① HERO ─────────────────────────────────────────────────────────────
+         background: color-mix(in oklch, #6366f1 55%, #0ea5e9)
+         oklch mixes perceptually — hue shifts smoothly without muddying     -->
+    <section class="section-hero">
+        <div class="container">
+            <div class="badge-row">
+                <span class="badge">color-mix()</span>
+                <span class="badge">CSS Grid</span>
+                <span class="badge">Modern CSS</span>
+            </div>
+            <h1>Grid &amp; Color-Mix Showcase</h1>
+            <p>Every background on this page is generated with the native CSS <code style="background:rgba(255,255,255,.2);padding:.1em .4em;border-radius:4px">color-mix()</code> function — no preprocessors, no JS, no hex arithmetic.</p>
+        </div>
+    </section>
+
+    <!-- ② FEATURES 3-COL ───────────────────────────────────────────────────
+         background: color-mix(in srgb, #6366f1 8%, #ffffff)                -->
+    <section class="section-features">
+        <div class="container">
+            <p class="section-label">What we offer</p>
+            <h2 class="section-title">Core Features</h2>
+            <p class="section-desc">A three-column auto-fill grid. The section tint and card borders are mixed from the same base hue — guaranteeing visual harmony.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Optimised build pipeline delivers sub-second page loads even on constrained networks.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Design Tokens</h3>
+                    <p>Every colour, radius, and shadow exposed as a CSS custom property — swap themes in one file.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure by Default</h3>
+                    <p>CSP headers, HTTPS enforcement, and dependency audits baked into every deployment.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Fully Responsive</h3>
+                    <p>CSS Grid with <code>auto-fill</code> and <code>minmax()</code> collapses gracefully to any viewport.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">♿</div>
+                    <h3>Accessible</h3>
+                    <p>WCAG 2.1 AA compliant — every color-mix combination tested for sufficient contrast ratio.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Analytics Ready</h3>
+                    <p>VWO SmartCode, GTM, and custom event hooks pre-wired so experiments can ship on day one.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ③ STATS 4-COL ──────────────────────────────────────────────────────
+         background: color-mix(in oklch, #10b981 20%, #ffffff)
+         card fill:  color-mix(in srgb,  #10b981 12%, #ffffff)
+         border:     color-mix(in srgb,  #10b981 30%, transparent)           -->
+    <section class="section-stats">
+        <div class="container">
+            <p class="section-label">By the numbers</p>
+            <h2 class="section-title">At a Glance</h2>
+            <p class="section-desc" style="margin-bottom:2.5rem">Four-column grid. Both the section wash and the card fill are color-mixed from the same green — lighter percentage for the card, darker for the section.</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">2.4M</div>
+                    <div class="stat-label">Monthly Visitors</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Uptime SLA</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">340+</div>
+                    <div class="stat-label">Integrations</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4.9★</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ④ BENTO MIXED-SIZE GRID ────────────────────────────────────────────
+         Section: color-mix(in hsl, #f59e0b 12%, #ffffff)
+         Cards:   each a unique color-mix pair across oklch / srgb / hsl     -->
+    <section class="section-bento">
+        <div class="container">
+            <p class="section-label">Bento grid</p>
+            <h2 class="section-title">Mixed-Size Cells</h2>
+            <p class="section-desc">Named grid lines + <code>grid-column/row: span N</code> create asymmetric layouts. Every card background is a different <code>color-mix()</code> expression.</p>
+            <div class="bento-grid">
+                <div class="bento-card bento-hero bc-1">
+                    <div class="bento-emoji">🚀</div>
+                    <h3>oklch mix — indigo × violet</h3>
+                    <p><code style="opacity:.7;font-size:.7rem">color-mix(in oklch, #6366f1 80%, #a855f7)</code></p>
+                </div>
+                <div class="bento-card bc-2">
+                    <div class="bento-emoji">🌿</div>
+                    <h3>srgb — green × sky</h3>
+                    <p><code style="opacity:.7;font-size:.7rem">color-mix(in srgb, #10b981 70%, #0ea5e9)</code></p>
+                </div>
+                <div class="bento-card bc-3">
+                    <div class="bento-emoji">🔥</div>
+                    <h3>oklch — amber × red</h3>
+                    <p><code style="opacity:.7;font-size:.7rem">color-mix(in oklch, #f59e0b 75%, #ef4444)</code></p>
+                </div>
+                <div class="bento-card bento-wide bc-4">
+                    <div class="bento-emoji">💜</div>
+                    <h3>hsl — pink × indigo (wide cell)</h3>
+                    <p><code style="opacity:.7;font-size:.7rem">color-mix(in hsl, #ec4899 65%, #6366f1)</code></p>
+                </div>
+                <div class="bento-card bc-5">
+                    <div class="bento-emoji">🌊</div>
+                    <h3>srgb — blue × slate</h3>
+                    <p><code style="opacity:.7;font-size:.7rem">color-mix(in srgb, #3b82f6 70%, #1e293b)</code></p>
+                </div>
+                <div class="bento-card bento-wide bc-6">
+                    <div class="bento-emoji">✨</div>
+                    <h3>oklch — purple × pink (wide cell)</h3>
+                    <p><code style="opacity:.7;font-size:.7rem">color-mix(in oklch, #8b5cf6 60%, #ec4899)</code></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑤ IMAGE GALLERY ────────────────────────────────────────────────────
+         background: color-mix(in srgb, #1e293b 90%, #6366f1)
+         Cells span different column/row counts for visual rhythm              -->
+    <section class="section-gallery">
+        <div class="container">
+            <p class="section-label">Gallery</p>
+            <h2 class="section-title">Photo Grid</h2>
+            <p class="section-desc" style="margin-bottom:2rem">Dark section tint mixed from slate + indigo. Grid cells use <code>span 2</code> and <code>grid-row: span 2</code> for a masonry feel.</p>
+            <div class="gallery-grid">
+                <div class="gallery-item span-2">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Mountain landscape" loading="lazy">
+                </div>
+                <div class="gallery-item span-row">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&q=80" alt="Forest path" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Portrait" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80" alt="Modern sofa" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&q=80" alt="Laptop on desk" loading="lazy">
+                </div>
+                <div class="gallery-item span-2">
+                    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80" alt="City skyline" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑥ TESTIMONIALS 2-COL ───────────────────────────────────────────────
+         background: color-mix(in oklch, #ec4899 10%, #ffffff)
+         card border: color-mix(in srgb, #ec4899 20%, #e5e7eb)               -->
+    <section class="section-testimonials">
+        <div class="container">
+            <p class="section-label">What people say</p>
+            <h2 class="section-title">Testimonials</h2>
+            <p class="section-desc" style="margin-bottom:2rem">Two-column grid. Section and card borders share the same pink origin color at different mix percentages.</p>
+            <div class="testimonials-grid">
+                <div class="testi-card">
+                    <div class="testi-stars">★★★★★</div>
+                    <p class="testi-quote">"The color-mix() approach replaced our entire Sass variable system. One source of truth, no build step, fully live in the browser."</p>
+                    <div class="testi-author">
+                        <img class="testi-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Sara K.">
+                        <div>
+                            <div class="testi-name">Sara K.</div>
+                            <div class="testi-role">Lead Designer, Pixels Inc.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testi-card">
+                    <div class="testi-stars">★★★★★</div>
+                    <p class="testi-quote">"CSS Grid with named areas cut our layout code by 60%. Combined with color-mix the stylesheet is half the size it used to be."</p>
+                    <div class="testi-author">
+                        <img class="testi-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="James R.">
+                        <div>
+                            <div class="testi-name">James R.</div>
+                            <div class="testi-role">Frontend Engineer, DevCo</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testi-card">
+                    <div class="testi-stars">★★★★☆</div>
+                    <p class="testi-quote">"oklch gives you perceptually uniform lightness shifts — something that was impossible to achieve reliably with hsl or srgb before."</p>
+                    <div class="testi-author">
+                        <img class="testi-avatar" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&q=80" alt="Amara D.">
+                        <div>
+                            <div class="testi-name">Amara D.</div>
+                            <div class="testi-role">UI Architect, Studio Lab</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testi-card">
+                    <div class="testi-stars">★★★★★</div>
+                    <p class="testi-quote">"Being able to mix colors directly inside a CSS property — without custom properties or JS — is a genuine quality-of-life upgrade."</p>
+                    <div class="testi-author">
+                        <img class="testi-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80" alt="Lena M.">
+                        <div>
+                            <div class="testi-name">Lena M.</div>
+                            <div class="testi-role">Design Systems Lead, Craft</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑦ PRICING 3-COL ────────────────────────────────────────────────────
+         background: color-mix(in srgb, #3b82f6 10%, #f8fafc)
+         featured card: color-mix(in oklch, #6366f1 85%, #0ea5e9)            -->
+    <section class="section-pricing">
+        <div class="container">
+            <p class="section-label">Pricing</p>
+            <h2 class="section-title">Simple Plans</h2>
+            <p class="section-desc" style="margin-bottom:2rem">Three-column grid with the middle card scaled up. The featured card background is an oklch mix — note how the indigo-to-sky transition stays vivid.</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-tier">Starter</div>
+                    <div class="pricing-price">$0</div>
+                    <div class="pricing-period">/ month, forever free</div>
+                    <ul class="pricing-features">
+                        <li>Up to 3 projects</li>
+                        <li>1 GB storage</li>
+                        <li>Community support</li>
+                        <li>Basic analytics</li>
+                    </ul>
+                    <button class="pricing-btn">Get started</button>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-tier">Pro</div>
+                    <div class="pricing-price">$29</div>
+                    <div class="pricing-period">/ month, billed annually</div>
+                    <ul class="pricing-features">
+                        <li>Unlimited projects</li>
+                        <li>50 GB storage</li>
+                        <li>Priority email support</li>
+                        <li>Advanced analytics</li>
+                        <li>Custom domain</li>
+                    </ul>
+                    <button class="pricing-btn">Start free trial</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-tier">Enterprise</div>
+                    <div class="pricing-price">$99</div>
+                    <div class="pricing-period">/ month, billed annually</div>
+                    <ul class="pricing-features">
+                        <li>Everything in Pro</li>
+                        <li>500 GB storage</li>
+                        <li>Dedicated support</li>
+                        <li>SLA guarantee</li>
+                        <li>SSO &amp; SAML</li>
+                    </ul>
+                    <button class="pricing-btn">Contact sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑧ TEAM 4-COL ───────────────────────────────────────────────────────
+         background: color-mix(in hsl, #10b981 8%, #ffffff)                  -->
+    <section class="section-team">
+        <div class="container">
+            <p class="section-label">Our people</p>
+            <h2 class="section-title">Meet the Team</h2>
+            <p class="section-desc" style="margin-bottom:2rem">Four-column grid with a gentle hsl-mixed green wash on the section background.</p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&q=80" alt="Sarah Chen" loading="lazy">
+                    <div class="team-info">
+                        <div class="team-name">Sarah Chen</div>
+                        <div class="team-role">Head of Design</div>
+                        <div class="team-socials">
+                            <button class="team-social-btn" style="background:color-mix(in srgb,#1d9bf0 15%,#fff)">𝕏</button>
+                            <button class="team-social-btn" style="background:color-mix(in srgb,#0077b5 15%,#fff)">in</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1607631568010-a87245c0daf9?w=400&q=80" alt="Marco Rossi" loading="lazy">
+                    <div class="team-info">
+                        <div class="team-name">Marco Rossi</div>
+                        <div class="team-role">Lead Engineer</div>
+                        <div class="team-socials">
+                            <button class="team-social-btn" style="background:color-mix(in srgb,#1d9bf0 15%,#fff)">𝕏</button>
+                            <button class="team-social-btn" style="background:color-mix(in srgb,#0077b5 15%,#fff)">in</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&q=80" alt="Amara Diallo" loading="lazy">
+                    <div class="team-info">
+                        <div class="team-name">Amara Diallo</div>
+                        <div class="team-role">Product Manager</div>
+                        <div class="team-socials">
+                            <button class="team-social-btn" style="background:color-mix(in srgb,#1d9bf0 15%,#fff)">𝕏</button>
+                            <button class="team-social-btn" style="background:color-mix(in srgb,#0077b5 15%,#fff)">in</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Lena Müller" loading="lazy">
+                    <div class="team-info">
+                        <div class="team-name">Lena Müller</div>
+                        <div class="team-role">Data &amp; Analytics</div>
+                        <div class="team-socials">
+                            <button class="team-social-btn" style="background:color-mix(in srgb,#1d9bf0 15%,#fff)">𝕏</button>
+                            <button class="team-social-btn" style="background:color-mix(in srgb,#0077b5 15%,#fff)">in</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑨ CTA ──────────────────────────────────────────────────────────────
+         background: color-mix(in oklch, #6366f1 60%, #ec4899 40%)
+         No white filler — the two colours add up to 100%, pure 50/50 blend  -->
+    <section class="section-cta">
+        <div class="container">
+            <h2>Ready to ship faster?</h2>
+            <p>Join thousands of teams already using color-mix() and CSS Grid to build production-quality interfaces without a build step.</p>
+            <div class="cta-btn-group">
+                <button class="cta-btn-primary">Start for free</button>
+                <button class="cta-btn-outline">View docs</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑩ COLOR-MIX LEGEND ─────────────────────────────────────────────────
+         A reference grid listing every color-mix() used on this page         -->
+    <section class="section-legend">
+        <div class="container">
+            <p class="section-label" style="color:#818cf8">Color-mix reference</p>
+            <h2 class="section-title" style="color:#e2e8f0">Every mix used on this page</h2>
+            <div class="legend-grid">
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in oklch, #6366f1 55%, #0ea5e9)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">① Hero</div>
+                        <div class="legend-code">color-mix(in oklch, #6366f1 55%, #0ea5e9)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in srgb, #6366f1 30%, #ffffff)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">② Features section</div>
+                        <div class="legend-code">color-mix(in srgb, #6366f1 30%, #ffffff)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in oklch, #10b981 45%, #ffffff)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">③ Stats section</div>
+                        <div class="legend-code">color-mix(in oklch, #10b981 45%, #ffffff)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in srgb, #10b981 30%, #ffffff)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">③ Stat cards</div>
+                        <div class="legend-code">color-mix(in srgb, #10b981 30%, #ffffff)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in hsl, #f59e0b 40%, #ffffff)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">④ Bento section</div>
+                        <div class="legend-code">color-mix(in hsl, #f59e0b 40%, #ffffff)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in oklch, #6366f1 80%, #a855f7)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">④ Bento card A</div>
+                        <div class="legend-code">color-mix(in oklch, #6366f1 80%, #a855f7)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in srgb, #1e293b 90%, #6366f1)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">⑤ Gallery section</div>
+                        <div class="legend-code">color-mix(in srgb, #1e293b 90%, #6366f1)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in oklch, #ec4899 40%, #ffffff)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">⑥ Testimonials</div>
+                        <div class="legend-code">color-mix(in oklch, #ec4899 40%, #ffffff)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in oklch, #6366f1 85%, #0ea5e9)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">⑦ Featured pricing card</div>
+                        <div class="legend-code">color-mix(in oklch, #6366f1 85%, #0ea5e9)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in hsl, #10b981 35%, #ffffff)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">⑧ Team section</div>
+                        <div class="legend-code">color-mix(in hsl, #10b981 35%, #ffffff)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in oklch, #6366f1 60%, #ec4899 40%)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">⑨ CTA section</div>
+                        <div class="legend-code">color-mix(in oklch, #6366f1 60%, #ec4899 40%)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

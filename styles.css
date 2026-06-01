@@ -294,6 +294,7 @@ body {
     align-items: center;
     max-width: 1000px;
     margin: 0 auto;
+    background-color: #f0f4ff;
 }
 
 .anchor-section-text p {
