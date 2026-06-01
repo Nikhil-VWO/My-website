@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Start VWO Async V3.0 SmartCode -->
+<link rel="preconnect" href="https://dev.visualwebsiteoptimizer.com" />
+<script type="text/javascript" id="vwoCode">
+window._vwo_code || (function() {        
+    var account_id = 1209855,
+        version = 3.0,
+        settings_tolerance = 2000,
+        hide_element = 'body',
+        hide_element_style =
+        'opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;transition:none !important';
+    var t=window,n=document;if(-1<n.URL.indexOf('__vwo_disable__')||t._vwo_code)return;var i=!1,o=n.currentScript,e={sT:settings_tolerance,hES:hide_element_style,hE:hide_element};try{e=Object.assign(JSON.parse(localStorage.getItem('_vwo_'+account_id+'_config')),e)}catch(e){}var code={nonce:o.nonce,settings_tolerance:function(){return e.sT},hide_element:function(){return performance.getEntriesByName('first-contentful-paint')[0]?'':e.hE},hide_element_style:function(){return'{'+e.hES+'}'},getVersion:function(){return version},finish:function(){var e;!i&&(i=!0,e=n.getElementById('_vis_opt_path_hides'))&&e.parentNode.removeChild(e)},finished:function(){return i},addScript:function(e){var t=n.createElement('script');t.src=e,o.nonce&&t.setAttribute('nonce',o.nonce),t.fetchPriority='high',n.head.appendChild(t)},init:function(){t._vwo_settings_timer=setTimeout(function(){code.finish()},this.settings_tolerance());var e=n.createElement('style');e.id='_vis_opt_path_hides',o.nonce&&e.setAttribute('nonce',o.nonce),e.textContent=this.hide_element()+this.hide_element_style(),n.head.appendChild(e),this.addScript('https://dev.visualwebsiteoptimizer.com/tag/'+account_id+'.js')}};t._vwo_code=code;code.init();})();
+</script>
+<!--End VWO Async SmartCode -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Layout II — My Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ─── Reset & base ─── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { padding-top: 70px; font-family: system-ui, -apple-system, sans-serif; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+        /* ─── color-mix() palette
+             Warm spectrum: coral · rose · orange · amber · red · crimson
+             colorspaces used: srgb · oklch · hsl · display-p3
+        ─── */
+
+        /* 1 — Hero ─────────────────────────────────────────── */
+        .section-hero {
+            background: #d9401a;
+            background: color-mix(in oklch, #ef4444 60%, #f97316);
+            padding: 80px 1.5rem 60px;
+            text-align: center;
+            color: #fff;
+        }
+        .section-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -.02em;
+        }
+        .section-hero p {
+            font-size: 1.1rem;
+            opacity: .88;
+            max-width: 560px;
+            margin: 0 auto 2rem;
+            line-height: 1.65;
+        }
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: .5rem;
+            margin-bottom: 2.5rem;
+        }
+        .badge {
+            background: rgba(255,255,255,.18);
+            border: 1px solid rgba(255,255,255,.35);
+            color: #fff;
+            font-size: .75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .07em;
+            padding: .28rem .75rem;
+            border-radius: 999px;
+        }
+
+        /* 2 — Services 3-col ───────────────────────────────── */
+        .section-services {
+            background: #ffd6cc;
+            background: color-mix(in srgb, #ef4444 20%, #ffffff);
+            padding: 80px 1.5rem;
+        }
+        .section-label {
+            font-size: .72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: #ef4444;
+            margin-bottom: .6rem;
+        }
+        .section-title {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: .6rem;
+        }
+        .section-desc {
+            font-size: .95rem;
+            color: #6b7280;
+            max-width: 500px;
+            line-height: 1.65;
+            margin-bottom: 2.5rem;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            background: #f87171;
+            background: color-mix(in srgb, #ef4444 48%, #ffffff);
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+        /* Each service card steps from dark → light */
+        .service-card { border-radius: 16px; padding: 1.75rem 1.5rem; transition: box-shadow .25s, transform .25s; border: none; }
+        .service-card:nth-child(1) { background: #b91c1c; background: color-mix(in srgb, #ef4444 72%, #000); color: #fff; }
+        .service-card:nth-child(1) h3 { color: #fff; }
+        .service-card:nth-child(1) p  { color: rgba(255,255,255,.82); }
+        .service-card:nth-child(2) { background: #f87171; background: color-mix(in srgb, #ef4444 50%, #fff); }
+        .service-card:nth-child(3) { background: #fca5a5; background: color-mix(in srgb, #ef4444 32%, #fff); }
+        .service-card:nth-child(4) { background: #fecaca; background: color-mix(in srgb, #ef4444 20%, #fff); }
+        .service-card:nth-child(5) { background: #fee2e2; background: color-mix(in srgb, #ef4444 12%, #fff); }
+        .service-card:nth-child(6) { background: #fff5f5; background: color-mix(in srgb, #ef4444 5%, #fff); }
+        .service-card:hover {
+            box-shadow: 0 12px 30px rgba(239,68,68,.15);
+            transform: translateY(-4px);
+        }
+        .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .service-card h3 { font-size: 1rem; font-weight: 700; color: #111827; margin-bottom: .4rem; }
+        .service-card p  { font-size: .85rem; color: #6b7280; line-height: 1.6; }
+
+        /* 3 — Metrics 4-col ────────────────────────────────── */
+        .section-metrics {
+            background: #ffedd5;
+            background: color-mix(in oklch, #f97316 35%, #ffffff);
+            padding: 64px 1.5rem;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            background: #fb923c;
+            background: color-mix(in oklch, #f97316 55%, #ffffff);
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+        .metric-card { border-radius: 16px; padding: 2rem 1.25rem; text-align: center; border: none; }
+        .metrics-grid .metric-card:nth-child(1) { background: #7c2d12; background: color-mix(in srgb, #f97316 90%, #000); }
+        .metrics-grid .metric-card:nth-child(1) .metric-value,
+        .metrics-grid .metric-card:nth-child(1) .metric-label { color: #fff; }
+        .metrics-grid .metric-card:nth-child(2) { background: #fb923c; background: color-mix(in oklch, #f97316 60%, #fff); }
+        .metrics-grid .metric-card:nth-child(3) { background: #fdba74; background: color-mix(in oklch, #f97316 38%, #fff); }
+        .metrics-grid .metric-card:nth-child(4) { background: #fed7aa; background: color-mix(in oklch, #f97316 18%, #fff); }
+        .metric-card .metric-inner {
+            border: 1px solid color-mix(in srgb, #f97316 25%, transparent);
+            border-radius: 14px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+        }
+        .metric-value { font-size: 2.4rem; font-weight: 800; color: #c2410c; line-height: 1; margin-bottom: .35rem; }
+        .metric-label { font-size: .82rem; color: #374151; font-weight: 500; }
+
+        /* 4 — Bento / mixed-size grid ──────────────────────── */
+        .section-bento {
+            background: #fef9c3;
+            background: color-mix(in hsl, #eab308 28%, #ffffff);
+            padding: 80px 1.5rem;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto auto;
+            gap: 1.25rem;
+            background: #fde047;
+            background: color-mix(in hsl, #eab308 50%, #ffffff);
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+        .bento-wide  { grid-column: span 2; }
+        .bento-tall  { grid-row:    span 2; }
+        .bento-hero  { grid-column: span 2; grid-row: span 2; }
+
+        .bento-card {
+            border-radius: 18px;
+            padding: 2rem 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 160px;
+            position: relative;
+            overflow: hidden;
+        }
+        .bento-card .bento-emoji { font-size: 2.5rem; margin-bottom: 1rem; }
+        .bento-card h3 { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: .3rem; position: relative; z-index: 1; }
+        .bento-card p  { font-size: .8rem; color: rgba(255,255,255,.8); line-height: 1.5; position: relative; z-index: 1; }
+
+        /* Bento card colours */
+        .bc-a { background: #c2410c; background: color-mix(in oklch, #f97316 78%, #ef4444); }
+        .bc-b { background: #b45309; background: color-mix(in srgb,  #eab308 65%, #f97316); }
+        .bc-c { background: #9f1239; background: color-mix(in oklch, #ef4444 75%, #a855f7); }
+        .bc-d { background: #92400e; background: color-mix(in hsl,   #f97316 68%, #dc2626); }
+        .bc-e { background: #78350f; background: color-mix(in srgb,  #eab308 55%, #1e293b); }
+        .bc-f { background: #7c3aed; background: color-mix(in oklch, #a855f7 62%, #ef4444); }
+        .bc-dark { background: #0f0f0f; background: color-mix(in srgb, #000000 100%, #f97316); }
+
+        /* 5 — Portfolio grid ───────────────────────────────── */
+        .section-portfolio {
+            background: #1c0c06;
+            background: color-mix(in srgb, #1e293b 88%, #f97316);
+            padding: 80px 1.5rem;
+        }
+        .section-portfolio .section-title,
+        .section-portfolio .section-desc { color: #e2e8f0; }
+        .section-portfolio .section-label { color: #fb923c; }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 1rem;
+            background: #2d1a0e;
+            background: color-mix(in srgb, #1e293b 72%, #f97316);
+            padding: 1rem;
+            border-radius: 16px;
+        }
+        .portfolio-item {
+            border-radius: 14px;
+            overflow: hidden;
+            background: #3d2512;
+            background: color-mix(in srgb, #334155 78%, #f97316);
+            position: relative;
+        }
+        .portfolio-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .4s ease, filter .3s;
+            filter: brightness(.82) saturate(1.15);
+        }
+        .portfolio-item:hover img { transform: scale(1.06); filter: brightness(1) saturate(1.25); }
+        .portfolio-item.span-2 { grid-column: span 2; }
+        .portfolio-item.span-row { grid-row: span 2; }
+        .portfolio-label {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: .6rem .9rem;
+            background: color-mix(in srgb, #000000 55%, transparent);
+            color: #fff;
+            font-size: .75rem;
+            font-weight: 600;
+        }
+
+        /* 6 — Reviews 2-col ────────────────────────────────── */
+        .section-reviews {
+            background: #ffe4e6;
+            background: color-mix(in oklch, #f43f5e 30%, #ffffff);
+            padding: 80px 1.5rem;
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            background: #fb7185;
+            background: color-mix(in oklch, #f43f5e 50%, #ffffff);
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+        .review-card { border-radius: 16px; padding: 2rem; border: none; }
+        .reviews-grid .review-card:nth-child(1) { background: #be123c; background: color-mix(in oklch, #f43f5e 68%, #fff); }
+        .reviews-grid .review-card:nth-child(1) .review-quote,
+        .reviews-grid .review-card:nth-child(1) .review-name  { color: #fff; }
+        .reviews-grid .review-card:nth-child(1) .review-role  { color: rgba(255,255,255,.7); }
+        .reviews-grid .review-card:nth-child(2) { background: #fb7185; background: color-mix(in oklch, #f43f5e 48%, #fff); }
+        .reviews-grid .review-card:nth-child(3) { background: #fda4af; background: color-mix(in oklch, #f43f5e 30%, #fff); }
+        .reviews-grid .review-card:nth-child(4) { background: #ffe4e6; background: color-mix(in oklch, #f43f5e 12%, #fff); }
+        .review-stars { font-size: 1rem; color: #f59e0b; margin-bottom: 1rem; letter-spacing: 2px; }
+        .review-quote { font-size: .95rem; color: #374151; line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+        .review-author { display: flex; align-items: center; gap: .75rem; }
+        .review-avatar {
+            width: 42px; height: 42px; border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid color-mix(in srgb, #f43f5e 40%, #fff);
+        }
+        .review-name { font-size: .88rem; font-weight: 700; color: #111827; }
+        .review-role { font-size: .76rem; color: #9ca3af; }
+
+        /* 7 — Packages 3-col ───────────────────────────────── */
+        .section-packages {
+            background: #ffe8d6;
+            background: color-mix(in srgb, #f97316 22%, #fafafa);
+            padding: 80px 1.5rem;
+        }
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            align-items: start;
+            background: #fdba74;
+            background: color-mix(in srgb, #f97316 48%, #ffffff);
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+        .packages-grid .pkg-card:nth-child(1) { background: #9a3412; background: color-mix(in srgb, #f97316 78%, #000); border-color: transparent; }
+        .packages-grid .pkg-card:nth-child(1) .pkg-tier   { color: rgba(255,255,255,.7); }
+        .packages-grid .pkg-card:nth-child(1) .pkg-price  { color: #fff; }
+        .packages-grid .pkg-card:nth-child(1) .pkg-period { color: rgba(255,255,255,.6); }
+        .packages-grid .pkg-card:nth-child(1) .pkg-features li { color: rgba(255,255,255,.88); }
+        .packages-grid .pkg-card:nth-child(1) .pkg-btn { border-color: #fff; color: #fff; }
+        .packages-grid .pkg-card:nth-child(1) .pkg-btn:hover { background: rgba(255,255,255,.15); }
+        .packages-grid .pkg-card:nth-child(3) { background: #ffedd5; background: color-mix(in srgb, #f97316 13%, #fff); }
+        .pkg-card {
+            background: #fff;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 2rem 1.75rem;
+            transition: box-shadow .25s, transform .25s;
+        }
+        .pkg-card.featured {
+            background: #c2410c;
+            background: color-mix(in oklch, #f97316 82%, #ef4444);
+            border-color: transparent;
+            color: #fff;
+            transform: scale(1.04);
+        }
+        .pkg-card:hover:not(.featured) {
+            box-shadow: 0 10px 28px rgba(249,115,22,.14);
+            transform: translateY(-4px);
+        }
+        .pkg-tier { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .5rem; color: #f97316; }
+        .pkg-card.featured .pkg-tier { color: rgba(255,255,255,.75); }
+        .pkg-price { font-size: 2.4rem; font-weight: 800; color: #111827; line-height: 1; margin-bottom: .15rem; }
+        .pkg-card.featured .pkg-price { color: #fff; }
+        .pkg-period { font-size: .8rem; color: #9ca3af; margin-bottom: 1.5rem; }
+        .pkg-card.featured .pkg-period { color: rgba(255,255,255,.65); }
+        .pkg-features { list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: .65rem; }
+        .pkg-features li { font-size: .86rem; color: #374151; display: flex; align-items: center; gap: .5rem; }
+        .pkg-card.featured .pkg-features li { color: rgba(255,255,255,.9); }
+        .pkg-features li::before { content: '✓'; font-weight: 700; color: #f97316; flex-shrink: 0; }
+        .pkg-card.featured .pkg-features li::before { color: #fed7aa; }
+        .pkg-btn {
+            width: 100%; padding: .75rem; border-radius: 999px; font-size: .9rem;
+            font-weight: 600; border: 2px solid #f97316; background: transparent;
+            color: #f97316; cursor: pointer; transition: background .2s, color .2s;
+        }
+        .pkg-btn:hover { background: #f97316; color: #fff; }
+        .pkg-card.featured .pkg-btn { background: #fff; color: #f97316; border-color: #fff; }
+        .pkg-card.featured .pkg-btn:hover { background: rgba(255,255,255,.85); }
+
+        /* 8 — Contributors 4-col ───────────────────────────── */
+        .section-contributors {
+            background: #fef3c7;
+            background: color-mix(in hsl, #eab308 28%, #ffffff);
+            padding: 80px 1.5rem;
+        }
+        .contributors-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            background: #fde68a;
+            background: color-mix(in hsl, #eab308 48%, #ffffff);
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+        .contributors-grid .contributor-card:nth-child(1) { background: #78350f; background: color-mix(in hsl, #eab308 80%, #000); }
+        .contributors-grid .contributor-card:nth-child(1) .contributor-name { color: #fff; }
+        .contributors-grid .contributor-card:nth-child(1) .contributor-role { color: rgba(255,255,255,.7); }
+        .contributors-grid .contributor-card:nth-child(2) { background: #fbbf24; background: color-mix(in hsl, #eab308 58%, #fff); }
+        .contributors-grid .contributor-card:nth-child(3) { background: #fde68a; background: color-mix(in hsl, #eab308 36%, #fff); }
+        .contributors-grid .contributor-card:nth-child(4) { background: #fef9c3; background: color-mix(in hsl, #eab308 16%, #fff); }
+        .contributor-card {
+            border-radius: 16px;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            text-align: center;
+            transition: box-shadow .25s, transform .25s;
+        }
+        .contributor-card:hover { box-shadow: 0 10px 28px rgba(234,179,8,.14); transform: translateY(-4px); }
+        .contributor-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .contributor-info { padding: 1.25rem 1rem; }
+        .contributor-name { font-size: .95rem; font-weight: 700; color: #111827; margin-bottom: .2rem; }
+        .contributor-role { font-size: .78rem; color: #6b7280; margin-bottom: .75rem; }
+        .contributor-socials { display: flex; justify-content: center; gap: .5rem; }
+        .contributor-social-btn {
+            width: 30px; height: 30px; border-radius: 50%; border: none; cursor: pointer;
+            font-size: .75rem; display: flex; align-items: center; justify-content: center;
+            transition: opacity .2s;
+        }
+        .contributor-social-btn:hover { opacity: .75; }
+
+        /* 9 — CTA full-width ───────────────────────────────── */
+        .section-cta {
+            background: #9b1e4a;
+            background: color-mix(in oklch, #ef4444 55%, #a855f7 45%);
+            padding: 80px 1.5rem;
+            text-align: center;
+            color: #fff;
+        }
+        .section-cta h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; margin-bottom: .75rem; }
+        .section-cta p { font-size: 1rem; opacity: .88; max-width: 480px; margin: 0 auto 2rem; line-height: 1.6; }
+        .cta-btn-group { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+        .cta-btn-primary {
+            background: #fff; color: #ef4444;
+            border: none; border-radius: 999px;
+            font-size: .95rem; font-weight: 700;
+            padding: .8rem 2rem; cursor: pointer;
+            transition: opacity .2s, box-shadow .2s;
+        }
+        .cta-btn-primary:hover { opacity: .9; box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+        .cta-btn-outline {
+            background: transparent; color: #fff;
+            border: 2px solid rgba(255,255,255,.6); border-radius: 999px;
+            font-size: .95rem; font-weight: 700;
+            padding: .8rem 2rem; cursor: pointer;
+            transition: background .2s, border-color .2s;
+        }
+        .cta-btn-outline:hover { background: rgba(255,255,255,.12); border-color: #fff; }
+
+        /* ─── Color-mix legend ──────────────────────────────── */
+        .section-legend {
+            background: #0d0d0d;
+            background: color-mix(in srgb, #000000 100%, #ef4444);
+            padding: 60px 1.5rem;
+        }
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .legend-card {
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .legend-swatch {
+            width: 44px; height: 44px;
+            border-radius: 10px;
+            flex-shrink: 0;
+            border: 2px solid rgba(255,255,255,.15);
+        }
+        .legend-info { min-width: 0; }
+        .legend-section { font-size: .78rem; font-weight: 700; color: #e2e8f0; margin-bottom: .2rem; }
+        .legend-code { font-size: .7rem; color: #94a3b8; font-family: monospace; word-break: break-all; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .services-grid   { grid-template-columns: repeat(2, 1fr); }
+            .metrics-grid    { grid-template-columns: repeat(2, 1fr); }
+            .packages-grid   { grid-template-columns: 1fr; }
+            .pkg-card.featured { transform: none; }
+            .contributors-grid { grid-template-columns: repeat(2, 1fr); }
+            .bento-grid      { grid-template-columns: repeat(2, 1fr); }
+            .bento-hero      { grid-column: span 2; grid-row: span 1; }
+            .bento-tall      { grid-row: span 1; }
+            .portfolio-grid  { grid-template-columns: repeat(2, 1fr); }
+            .portfolio-item.span-2 { grid-column: span 1; }
+        }
+        @media (max-width: 600px) {
+            .services-grid, .metrics-grid, .reviews-grid,
+            .contributors-grid, .bento-grid, .portfolio-grid { grid-template-columns: 1fr; }
+            .bento-wide, .bento-hero { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+    <nav-bar></nav-bar>
+
+    <!-- ① HERO ─────────────────────────────────────────────────────────────
+         background: color-mix(in oklch, #ef4444 60%, #f97316)
+         oklch blends the red and orange without muddy brown transitions     -->
+    <section class="section-hero">
+        <div class="container">
+            <div class="badge-row">
+                <span class="badge">color-mix()</span>
+                <span class="badge">Warm Palette</span>
+                <span class="badge">CSS Grid II</span>
+            </div>
+            <h1>Warm Spectrum — Grid &amp; Color-Mix</h1>
+            <p>A second showcase page using the same <code style="background:rgba(255,255,255,.2);padding:.1em .4em;border-radius:4px">color-mix()</code> technique with a warm coral · orange · rose · amber palette — no preprocessors, no build step.</p>
+        </div>
+    </section>
+
+    <!-- ② SERVICES 3-COL ───────────────────────────────────────────────────
+         background: color-mix(in srgb, #ef4444 20%, #ffffff)               -->
+    <section class="section-services">
+        <div class="container">
+            <p class="section-label">What we deliver</p>
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-desc">Three-column grid where each card's background is a deeper tint of the same red — cards step from dark crimson to near-white going left-to-right, top-to-bottom.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>Strategy & Consulting</h3>
+                    <p>Data-driven roadmaps grounded in user research and competitive analysis before a single line of code is written.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🖌️</div>
+                    <h3>Brand Identity</h3>
+                    <p>Logo systems, color palettes, and type hierarchies built to scale from a business card to a billboard.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Full-Stack Engineering</h3>
+                    <p>End-to-end development using modern frameworks, edge functions, and zero-config CI/CD pipelines.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📈</div>
+                    <h3>Growth & SEO</h3>
+                    <p>Technical SEO audits, Core Web Vitals improvements, and content architecture that compounds over time.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Security & Compliance</h3>
+                    <p>Penetration testing, GDPR/CCPA implementation, and automated vulnerability scanning baked into every release.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>AI Integration</h3>
+                    <p>LLM-powered features, RAG pipelines, and model fine-tuning shipped into your existing product surface.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ③ METRICS 4-COL ────────────────────────────────────────────────────
+         background: color-mix(in oklch, #f97316 55%, #ffffff)              -->
+    <section class="section-metrics">
+        <div class="container">
+            <p class="section-label">Impact by numbers</p>
+            <h2 class="section-title">The Results Speak</h2>
+            <p class="section-desc" style="margin-bottom:2.5rem">Four-column grid. The first card uses a near-black oklch mix to anchor the scale; subsequent cards lighten through warm orange tones.</p>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-inner">
+                        <div class="metric-value">120+</div>
+                        <div class="metric-label">Projects Shipped</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-inner">
+                        <div class="metric-value">3.8s</div>
+                        <div class="metric-label">Avg. Time-to-Market</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-inner">
+                        <div class="metric-value">99.9%</div>
+                        <div class="metric-label">Deployment Success Rate</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-inner">
+                        <div class="metric-value">4.8★</div>
+                        <div class="metric-label">Client Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ④ BENTO MIXED-SIZE ──────────────────────────────────────────────────
+         Section: color-mix(in hsl, #eab308 28%, #ffffff)
+         Cards: warm oklch / srgb / hsl mixes in the red-orange-amber range  -->
+    <section class="section-bento">
+        <div class="container">
+            <p class="section-label">Highlights</p>
+            <h2 class="section-title">Bento Showcase</h2>
+            <p class="section-desc">Mixed-size bento layout. Every card uses a distinct <code>color-mix()</code> pair — all sourced from the warm red-orange-amber spectrum.</p>
+            <div class="bento-grid">
+                <div class="bento-card bento-hero bc-a">
+                    <div class="bento-emoji">🔥</div>
+                    <h3>oklch — red × orange</h3>
+                    <p><code style="opacity:.7;font-size:.7rem">color-mix(in oklch, #f97316 78%, #ef4444)</code></p>
+                </div>
+                <div class="bento-card bc-b">
+                    <div class="bento-emoji">🌻</div>
+                    <h3>srgb — amber × orange</h3>
+                    <p><code style="opacity:.7;font-size:.7rem">color-mix(in srgb, #eab308 65%, #f97316)</code></p>
+                </div>
+                <div class="bento-card bc-c">
+                    <div class="bento-emoji">🌹</div>
+                    <h3>oklch — red × violet</h3>
+                    <p><code style="opacity:.7;font-size:.7rem">color-mix(in oklch, #ef4444 75%, #a855f7)</code></p>
+                </div>
+                <div class="bento-card bento-wide bc-d">
+                    <div class="bento-emoji">🍊</div>
+                    <h3>hsl — orange × crimson (wide)</h3>
+                    <p><code style="opacity:.7;font-size:.7rem">color-mix(in hsl, #f97316 68%, #dc2626)</code></p>
+                </div>
+                <div class="bento-card bc-e">
+                    <div class="bento-emoji">🌾</div>
+                    <h3>srgb — amber × slate</h3>
+                    <p><code style="opacity:.7;font-size:.7rem">color-mix(in srgb, #eab308 55%, #1e293b)</code></p>
+                </div>
+                <div class="bento-card bento-wide bc-f">
+                    <div class="bento-emoji">💜</div>
+                    <h3>oklch — purple × coral (wide)</h3>
+                    <p><code style="opacity:.7;font-size:.7rem">color-mix(in oklch, #a855f7 62%, #ef4444)</code></p>
+                </div>
+                <div class="bento-card bento-wide bc-dark">
+                    <div class="bento-emoji">🖤</div>
+                    <h3>Pure black</h3>
+                    <p><code style="opacity:.7;font-size:.7rem">color-mix(in srgb, #000000 100%, #f97316)</code></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑤ PORTFOLIO GRID ───────────────────────────────────────────────────
+         background: color-mix(in srgb, #1e293b 88%, #f97316)
+         Dark slate with a warm orange tint — intentional moody contrast      -->
+    <section class="section-portfolio">
+        <div class="container">
+            <p class="section-label">Portfolio</p>
+            <h2 class="section-title">Selected Work</h2>
+            <p class="section-desc" style="margin-bottom:2rem">Dark-tinted portfolio mosaic. The grid container is slate mixed with orange; items use <code>span 2</code> and <code>grid-row: span 2</code> for visual rhythm.</p>
+            <div class="portfolio-grid">
+                <div class="portfolio-item span-2">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80" alt="Team working" loading="lazy">
+                    <div class="portfolio-label">Brand Redesign — Nexora</div>
+                </div>
+                <div class="portfolio-item span-row">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80" alt="Dashboard analytics" loading="lazy">
+                    <div class="portfolio-label">Analytics Dashboard</div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80" alt="Charts" loading="lazy">
+                    <div class="portfolio-label">Data Visualisation</div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=80" alt="E-commerce" loading="lazy">
+                    <div class="portfolio-label">E-commerce Platform</div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&q=80" alt="Code on screen" loading="lazy">
+                    <div class="portfolio-label">Developer Tooling</div>
+                </div>
+                <div class="portfolio-item span-2">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="Office interior" loading="lazy">
+                    <div class="portfolio-label">Workplace App — Meridian</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑥ REVIEWS 2-COL ────────────────────────────────────────────────────
+         background: color-mix(in oklch, #f43f5e 30%, #ffffff)              -->
+    <section class="section-reviews">
+        <div class="container">
+            <p class="section-label">Client voices</p>
+            <h2 class="section-title">What Clients Say</h2>
+            <p class="section-desc" style="margin-bottom:2rem">Two-column grid. Cards step from deep rose to barely-there blush — all sourced from the same <code>#f43f5e</code> with different oklch mix percentages.</p>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-quote">"Delivered our redesign in 6 weeks flat. The warm color system they chose has become a cornerstone of our brand identity."</p>
+                    <div class="review-author">
+                        <img class="review-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="Tom B.">
+                        <div>
+                            <div class="review-name">Tom B.</div>
+                            <div class="review-role">CEO, Nexora Digital</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-quote">"The AI integration they built cut our support ticket volume by 40% in the first month. Incredible ROI."</p>
+                    <div class="review-author">
+                        <img class="review-avatar" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&q=80" alt="Priya S.">
+                        <div>
+                            <div class="review-name">Priya S.</div>
+                            <div class="review-role">VP Product, CloudBase</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★☆</div>
+                    <p class="review-quote">"Their security audit caught three critical vulnerabilities before launch. Worth every penny and more."</p>
+                    <div class="review-author">
+                        <img class="review-avatar" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=100&q=80" alt="Carlos M.">
+                        <div>
+                            <div class="review-name">Carlos M.</div>
+                            <div class="review-role">CTO, Fortify Labs</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-quote">"The CSS Grid + color-mix() approach means our theme changes propagate globally in seconds. No design debt."</p>
+                    <div class="review-author">
+                        <img class="review-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Hana W.">
+                        <div>
+                            <div class="review-name">Hana W.</div>
+                            <div class="review-role">Design Lead, Palette Co.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑦ PACKAGES 3-COL ───────────────────────────────────────────────────
+         background: color-mix(in srgb, #f97316 48%, #ffffff)
+         featured card: color-mix(in oklch, #f97316 82%, #ef4444)           -->
+    <section class="section-packages">
+        <div class="container">
+            <p class="section-label">Pricing</p>
+            <h2 class="section-title">Flexible Packages</h2>
+            <p class="section-desc" style="margin-bottom:2rem">Three-column grid. The dark first card anchors the orange scale; the featured card uses an oklch red-orange blend for a vivid warm accent.</p>
+            <div class="packages-grid">
+                <div class="pkg-card">
+                    <div class="pkg-tier">Seed</div>
+                    <div class="pkg-price">$0</div>
+                    <div class="pkg-period">/ month, always free</div>
+                    <ul class="pkg-features">
+                        <li>1 active project</li>
+                        <li>500 MB storage</li>
+                        <li>Community forum access</li>
+                        <li>Basic reporting</li>
+                    </ul>
+                    <button class="pkg-btn">Get started</button>
+                </div>
+                <div class="pkg-card featured">
+                    <div class="pkg-tier">Growth</div>
+                    <div class="pkg-price">$49</div>
+                    <div class="pkg-period">/ month, billed annually</div>
+                    <ul class="pkg-features">
+                        <li>Unlimited projects</li>
+                        <li>100 GB storage</li>
+                        <li>Priority Slack support</li>
+                        <li>Advanced analytics</li>
+                        <li>Custom subdomain</li>
+                        <li>AI assistant (beta)</li>
+                    </ul>
+                    <button class="pkg-btn">Start free trial</button>
+                </div>
+                <div class="pkg-card">
+                    <div class="pkg-tier">Scale</div>
+                    <div class="pkg-price">$149</div>
+                    <div class="pkg-period">/ month, billed annually</div>
+                    <ul class="pkg-features">
+                        <li>Everything in Growth</li>
+                        <li>Unlimited storage</li>
+                        <li>Dedicated account manager</li>
+                        <li>SLA &amp; uptime guarantee</li>
+                        <li>SSO, SAML &amp; SCIM</li>
+                    </ul>
+                    <button class="pkg-btn">Contact sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑧ CONTRIBUTORS 4-COL ───────────────────────────────────────────────
+         background: color-mix(in hsl, #eab308 48%, #ffffff)                -->
+    <section class="section-contributors">
+        <div class="container">
+            <p class="section-label">The crew</p>
+            <h2 class="section-title">Core Contributors</h2>
+            <p class="section-desc" style="margin-bottom:2rem">Four-column grid washed in hsl-mixed amber. Cards lighten from near-black through warm gold to pale cream.</p>
+            <div class="contributors-grid">
+                <div class="contributor-card">
+                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400&q=80" alt="Kai Tanaka" loading="lazy">
+                    <div class="contributor-info">
+                        <div class="contributor-name">Kai Tanaka</div>
+                        <div class="contributor-role">Systems Architect</div>
+                        <div class="contributor-socials">
+                            <button class="contributor-social-btn" style="background:color-mix(in srgb,#1d9bf0 15%,#fff)">𝕏</button>
+                            <button class="contributor-social-btn" style="background:color-mix(in srgb,#0077b5 15%,#fff)">in</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="contributor-card">
+                    <img src="https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?w=400&q=80" alt="Nia Osei" loading="lazy">
+                    <div class="contributor-info">
+                        <div class="contributor-name">Nia Osei</div>
+                        <div class="contributor-role">Creative Director</div>
+                        <div class="contributor-socials">
+                            <button class="contributor-social-btn" style="background:color-mix(in srgb,#1d9bf0 15%,#fff)">𝕏</button>
+                            <button class="contributor-social-btn" style="background:color-mix(in srgb,#0077b5 15%,#fff)">in</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="contributor-card">
+                    <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=400&q=80" alt="Dev Patel" loading="lazy">
+                    <div class="contributor-info">
+                        <div class="contributor-name">Dev Patel</div>
+                        <div class="contributor-role">AI/ML Engineer</div>
+                        <div class="contributor-socials">
+                            <button class="contributor-social-btn" style="background:color-mix(in srgb,#1d9bf0 15%,#fff)">𝕏</button>
+                            <button class="contributor-social-btn" style="background:color-mix(in srgb,#0077b5 15%,#fff)">in</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="contributor-card">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Zara Flynn" loading="lazy">
+                    <div class="contributor-info">
+                        <div class="contributor-name">Zara Flynn</div>
+                        <div class="contributor-role">Growth &amp; Analytics</div>
+                        <div class="contributor-socials">
+                            <button class="contributor-social-btn" style="background:color-mix(in srgb,#1d9bf0 15%,#fff)">𝕏</button>
+                            <button class="contributor-social-btn" style="background:color-mix(in srgb,#0077b5 15%,#fff)">in</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑨ CTA ──────────────────────────────────────────────────────────────
+         background: color-mix(in oklch, #ef4444 55%, #a855f7 45%)
+         Warm red-to-purple blend — no white dilution, full vivid mix       -->
+    <section class="section-cta">
+        <div class="container">
+            <h2>Let's build something bold.</h2>
+            <p>Join teams that use color-mix() and CSS Grid to ship production-quality interfaces — fast, vivid, and without a build step.</p>
+            <div class="cta-btn-group">
+                <button class="cta-btn-primary">Start for free</button>
+                <button class="cta-btn-outline">See case studies</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑩ COLOR-MIX LEGEND ─────────────────────────────────────────────────
+         Reference grid for every color-mix() expression used on this page  -->
+    <section class="section-legend">
+        <div class="container">
+            <p class="section-label" style="color:#fb923c">Color-mix reference</p>
+            <h2 class="section-title" style="color:#e2e8f0">Every mix used on this page</h2>
+            <div class="legend-grid">
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in oklch, #ef4444 60%, #f97316)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">① Hero</div>
+                        <div class="legend-code">color-mix(in oklch, #ef4444 60%, #f97316)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in srgb, #ef4444 20%, #ffffff)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">② Services section</div>
+                        <div class="legend-code">color-mix(in srgb, #ef4444 20%, #ffffff)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in oklch, #f97316 35%, #ffffff)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">③ Metrics section</div>
+                        <div class="legend-code">color-mix(in oklch, #f97316 35%, #ffffff)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in hsl, #eab308 28%, #ffffff)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">④ Bento section</div>
+                        <div class="legend-code">color-mix(in hsl, #eab308 28%, #ffffff)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in oklch, #f97316 78%, #ef4444)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">④ Bento card A</div>
+                        <div class="legend-code">color-mix(in oklch, #f97316 78%, #ef4444)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in srgb, #1e293b 88%, #f97316)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">⑤ Portfolio section</div>
+                        <div class="legend-code">color-mix(in srgb, #1e293b 88%, #f97316)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in oklch, #f43f5e 30%, #ffffff)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">⑥ Reviews section</div>
+                        <div class="legend-code">color-mix(in oklch, #f43f5e 30%, #ffffff)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in oklch, #f97316 82%, #ef4444)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">⑦ Featured package card</div>
+                        <div class="legend-code">color-mix(in oklch, #f97316 82%, #ef4444)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in hsl, #eab308 28%, #ffffff)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">⑧ Contributors section</div>
+                        <div class="legend-code">color-mix(in hsl, #eab308 28%, #ffffff)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:color-mix(in oklch, #ef4444 55%, #a855f7 45%)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">⑨ CTA section</div>
+                        <div class="legend-code">color-mix(in oklch, #ef4444 55%, #a855f7 45%)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:#000000;border:1px solid rgba(255,255,255,.2)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">⑩ Black — dark metric card · bento card · legend bg</div>
+                        <div class="legend-code">color-mix(in srgb, #000000 100%, #f97316)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
