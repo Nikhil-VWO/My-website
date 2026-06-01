@@ -101,11 +101,8 @@ window._vwo_code || (function() {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
-            /* dark → light, left-to-right */
-            background: linear-gradient(to right, #4338ca, #c7cbfc);
-            background: linear-gradient(to right,
-                color-mix(in srgb, #6366f1 80%, #000),
-                color-mix(in srgb, #6366f1 15%, #fff));
+            background-color: #8183e8;
+            background-color: color-mix(in srgb, #6366f1 50%, #ffffff);
             padding: 1.5rem;
             border-radius: 16px;
         }
@@ -149,17 +146,14 @@ window._vwo_code || (function() {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
-            /* dark → light, left-to-right */
-            background: linear-gradient(to right, #065f46, #a7f3d0);
-            background: linear-gradient(to right,
-                color-mix(in oklch, #10b981 90%, #000),
-                color-mix(in oklch, #10b981 18%, #fff));
+            background-color: #34d399;
+            background-color: color-mix(in oklch, #10b981 55%, #ffffff);
             padding: 1.5rem;
             border-radius: 16px;
         }
         /* Each stat card steps from dark → light */
         .stat-card { border-radius: 16px; padding: 2rem 1.25rem; text-align: center; border: none; }
-        .stats-grid .stat-card:nth-child(1) { background: #047857; background: color-mix(in oklch, #10b981 80%, #000); }
+        .stats-grid .stat-card:nth-child(1) { background-color: #000000; background-color: color-mix(in srgb, #000000 100%, #10b981); }
         .stats-grid .stat-card:nth-child(1) .stat-number,
         .stats-grid .stat-card:nth-child(1) .stat-label { color: #fff; }
         .stats-grid .stat-card:nth-child(2) { background: #34d399; background: color-mix(in oklch, #10b981 60%, #fff); }
@@ -196,11 +190,8 @@ window._vwo_code || (function() {
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: auto auto;
             gap: 1.25rem;
-            /* dark → light, diagonal */
-            background: linear-gradient(135deg, #92400e, #fde68a);
-            background: linear-gradient(135deg,
-                color-mix(in hsl, #f59e0b 90%, #000),
-                color-mix(in hsl, #f59e0b 20%, #fff));
+            background-color: #fbbf24;
+            background-color: color-mix(in hsl, #f59e0b 55%, #ffffff);
             padding: 1.5rem;
             border-radius: 16px;
         }
@@ -245,6 +236,7 @@ window._vwo_code || (function() {
         .bc-4 { background: #c44b9e; background: color-mix(in hsl,   #ec4899 65%, #6366f1); }
         .bc-5 { background: #2856a8; background: color-mix(in srgb,  #3b82f6 70%, #1e293b); }
         .bc-6 { background: #a044c8; background: color-mix(in oklch, #8b5cf6 60%, #ec4899); }
+        .bc-black { background-color: #000000; background-color: color-mix(in srgb, #000000 100%, #ffffff); }
 
         /* 5 — Image mosaic grid ────────────────────────────── */
         .section-gallery {
@@ -260,11 +252,8 @@ window._vwo_code || (function() {
             grid-template-columns: repeat(4, 1fr);
             grid-auto-rows: 200px;
             gap: 1rem;
-            /* dark → light, left-to-right */
-            background: linear-gradient(to right, #0f172a, #475569);
-            background: linear-gradient(to right,
-                color-mix(in srgb, #1e293b 100%, #000),
-                color-mix(in srgb, #1e293b 40%, #6366f1));
+            background-color: #334155;
+            background-color: color-mix(in srgb, #1e293b 70%, #6366f1);
             padding: 1rem;
             border-radius: 16px;
         }
@@ -295,11 +284,8 @@ window._vwo_code || (function() {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
-            /* dark → light, top-to-bottom */
-            background: linear-gradient(to bottom, #9d174d, #fce7f3);
-            background: linear-gradient(to bottom,
-                color-mix(in oklch, #ec4899 85%, #000),
-                color-mix(in oklch, #ec4899 12%, #fff));
+            background-color: #f472b6;
+            background-color: color-mix(in oklch, #ec4899 50%, #ffffff);
             padding: 1.5rem;
             border-radius: 16px;
         }
@@ -335,11 +321,8 @@ window._vwo_code || (function() {
             grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
             align-items: start;
-            /* dark → light, left-to-right */
-            background: linear-gradient(to right, #1e3a8a, #bfdbfe);
-            background: linear-gradient(to right,
-                color-mix(in srgb, #3b82f6 90%, #000),
-                color-mix(in srgb, #3b82f6 18%, #fff));
+            background-color: #60a5fa;
+            background-color: color-mix(in srgb, #3b82f6 50%, #ffffff);
             padding: 1.5rem;
             border-radius: 16px;
         }
@@ -402,11 +385,8 @@ window._vwo_code || (function() {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
-            /* dark → light, left-to-right */
-            background: linear-gradient(to right, #064e3b, #d1fae5);
-            background: linear-gradient(to right,
-                color-mix(in hsl, #10b981 90%, #000),
-                color-mix(in hsl, #10b981 12%, #fff));
+            background-color: #34d399;
+            background-color: color-mix(in hsl, #10b981 50%, #ffffff);
             padding: 1.5rem;
             border-radius: 16px;
         }
@@ -468,8 +448,8 @@ window._vwo_code || (function() {
 
         /* ─── Color-mix legend ──────────────────────────────── */
         .section-legend {
-            background: #1c2133;
-            background: color-mix(in srgb, #1e293b 95%, #6366f1);
+            background-color: #000000;
+            background-color: color-mix(in srgb, #000000 100%, #6366f1);
             padding: 60px 1.5rem;
         }
         .legend-grid {
@@ -643,6 +623,11 @@ window._vwo_code || (function() {
                     <div class="bento-emoji">✨</div>
                     <h3>oklch — purple × pink (wide cell)</h3>
                     <p><code style="opacity:.7;font-size:.7rem">color-mix(in oklch, #8b5cf6 60%, #ec4899)</code></p>
+                </div>
+                <div class="bento-card bento-wide bc-black">
+                    <div class="bento-emoji">🖤</div>
+                    <h3>Pure black</h3>
+                    <p><code style="opacity:.7;font-size:.7rem">background-color: color-mix(in srgb, #000000 100%, #ffffff)</code></p>
                 </div>
             </div>
         </div>
@@ -939,6 +924,13 @@ window._vwo_code || (function() {
                     <div class="legend-info">
                         <div class="legend-section">⑨ CTA section</div>
                         <div class="legend-code">color-mix(in oklch, #6366f1 60%, #ec4899 40%)</div>
+                    </div>
+                </div>
+                <div class="legend-card" style="background:rgba(255,255,255,.05)">
+                    <div class="legend-swatch" style="background:#000000;border:1px solid rgba(255,255,255,.2)"></div>
+                    <div class="legend-info">
+                        <div class="legend-section">⑩ Black — stat card · bento card · legend bg</div>
+                        <div class="legend-code">background-color: color-mix(in srgb, #000000 100%, #ffffff)</div>
                     </div>
                 </div>
             </div>
