@@ -98,14 +98,10 @@ body {
     justify-content: space-between;
     padding: 120px 20px 80px;
     /*
-        Background image with gradient overlay for readability:
-        - The semi-transparent gradient sits on top of the photo
-        - background-size: cover  — scales image to fill the section
-        - background-position: center — keeps the focal point centred
-        - background-repeat: no-repeat — prevents tiling
+        Photo URL is injected by randomHeroImage() in index.html so it changes on every load.
+        This rule provides the gradient + solid colour fallback shown before JS runs.
     */
-    background:
-        url('https://picsum.photos/1600/900') center center / cover no-repeat;
+    background: #6366f1;
     color: var(--white);
     position: relative;
     overflow: hidden;

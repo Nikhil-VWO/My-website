@@ -76,30 +76,17 @@ window._vwo_code || (function() {
                             srcset provides 3 sizes (small/medium/large) so the browser
                             picks the best fit based on the viewport width (sizes attribute).
                         -->
-                        <picture>
-                            <!-- WebP source: smaller file size, better quality -->
-                            <source
-                                type="image/webp"
-                                srcset="
-                                    https://picsum.photos/400/267 400w,
-                                    https://picsum.photos/600/400 600w,
-                                    https://picsum.photos/900/600 900w
-                                "
-                                sizes="(max-width: 480px) 400px, (max-width: 768px) 600px, 900px"
-                            >
-                            <!-- JPG fallback for older browsers -->
+                        <picture id="featured-picture">
+                            <!-- WebP source — src set by randomFeaturedImage() below -->
+                            <source id="featured-source" type="image/webp" sizes="(max-width: 480px) 400px, (max-width: 768px) 600px, 900px">
+                            <!-- JPG fallback — src set by randomFeaturedImage() below -->
                             <img
-                                src="https://picsum.photos/600/400"
-                                srcset="
-                                    https://picsum.photos/400/267 400w,
-                                    https://picsum.photos/600/400 600w,
-                                    https://picsum.photos/900/600 900w
-                                "
-                                sizes="(max-width: 480px) 400px, (max-width: 768px) 600px, 900px"
+                                id="featured-img"
                                 alt="Featured image"
                                 width="600"
                                 height="400"
                                 loading="lazy"
+                                sizes="(max-width: 480px) 400px, (max-width: 768px) 600px, 900px"
                             >
                         </picture>
                     </div>
@@ -539,6 +526,68 @@ window._vwo_code || (function() {
         </div>
     </footer>
 
+    <script>
+        // ── Random featured image ─────────────────────────────────────────────
+        // Pool of direct Unsplash CDN photo IDs (no redirects).
+        // A different photo is picked on each page load.
+        (function randomFeaturedImage() {
+            const photos = [
+                'photo-1498050108023-c5249f4df085', // laptop on desk
+                'photo-1519389950473-47ba0277781c', // team working
+                'photo-1460925895917-afdab827c52f', // data charts
+                'photo-1551288049-bebda4e38f71',    // analytics dashboard
+                'photo-1556742049-0cfed4f6a45d',    // e-commerce shop
+                'photo-1517694712202-14dd9538aa97',  // code on screen
+                'photo-1497366216548-37526070297c',  // modern office
+                'photo-1522071820081-009f0129c71c',  // team meeting
+                'photo-1504384308090-c894fdcc538d',  // office space
+                'photo-1454165804606-c3d57bc86b40',  // person working
+            ];
+            const id = photos[Math.floor(Math.random() * photos.length)];
+            const base = 'https://images.unsplash.com/' + id;
+
+            const src   = document.getElementById('featured-source');
+            const img   = document.getElementById('featured-img');
+            if (!src || !img) return;
+
+            src.srcset = [
+                base + '?w=400&q=80&fm=webp 400w',
+                base + '?w=600&q=80&fm=webp 600w',
+                base + '?w=900&q=80&fm=webp 900w',
+            ].join(', ');
+
+            img.src    = base + '?w=600&q=80';
+            img.srcset = [
+                base + '?w=400&q=80 400w',
+                base + '?w=600&q=80 600w',
+                base + '?w=900&q=80 900w',
+            ].join(', ');
+        })();
+
+        // ── Random hero background ────────────────────────────────────────────
+        // Picks a different landscape / scenic photo on each load.
+        (function randomHeroImage() {
+            const photos = [
+                'photo-1506905925346-21bda4d32df4', // mountain lake
+                'photo-1441974231531-c6227db76b6e', // forest path
+                'photo-1477959858617-67f85cf4f1df', // city skyline
+                'photo-1434494878577-86c23bcb06b9', // aerial city
+                'photo-1469474968028-56623f02e42e', // sunrise hills
+                'photo-1500534314209-a25ddb2bd429', // ocean sunset
+                'photo-1501854140801-50d01698950b', // aerial landscape
+                'photo-1447752875215-b2761acb3c5d', // forest mist
+            ];
+            const id = photos[Math.floor(Math.random() * photos.length)];
+            const url = 'https://images.unsplash.com/' + id + '?w=1600&q=80';
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                // Set full background shorthand so position/size/repeat are all included.
+                // This overrides the CSS stylesheet rule completely via inline style.
+                hero.style.background =
+                    'url("' + url + '") center center / cover no-repeat #6366f1';
+            }
+        })();
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
