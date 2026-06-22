@@ -23,8 +23,6 @@ class NavBar extends HTMLElement {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    gap: 1.5rem;
-                    flex-wrap: wrap;
                 }
                 .logo {
                     font-size: 1.5rem;
@@ -35,6 +33,8 @@ class NavBar extends HTMLElement {
                     background-clip: text;
                     flex-shrink: 0;
                 }
+
+                /* ── Desktop nav links ── */
                 .nav-links {
                     display: flex;
                     flex-wrap: wrap;
@@ -44,8 +44,6 @@ class NavBar extends HTMLElement {
                     gap: 1rem 1.25rem;
                     margin: 0;
                     padding: 0;
-                    flex: 1 1 auto;
-                    min-width: 0;
                 }
                 .nav-links a {
                     text-decoration: none;
@@ -54,9 +52,7 @@ class NavBar extends HTMLElement {
                     transition: color 0.3s ease;
                     position: relative;
                 }
-                .nav-links a:hover {
-                    color: #6366f1;
-                }
+                .nav-links a:hover { color: #6366f1; }
                 .nav-links a::after {
                     content: '';
                     position: absolute;
@@ -67,10 +63,71 @@ class NavBar extends HTMLElement {
                     background: #6366f1;
                     transition: width 0.3s ease;
                 }
-                .nav-links a:hover::after {
+                .nav-links a:hover::after { width: 100%; }
+
+                /* ── Hamburger button ── */
+                .hamburger {
+                    display: none;
+                    flex-direction: column;
+                    justify-content: center;
+                    gap: 5px;
+                    width: 40px;
+                    height: 40px;
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    padding: 4px;
+                    border-radius: 6px;
+                    transition: background 0.2s;
+                    flex-shrink: 0;
+                }
+                .hamburger:hover { background: rgba(99,102,241,0.08); }
+                .hamburger span {
+                    display: block;
                     width: 100%;
+                    height: 2px;
+                    background: #1f2937;
+                    border-radius: 2px;
+                    transition: transform 0.3s ease, opacity 0.3s ease;
+                }
+                /* Animate to × when open */
+                .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+                .hamburger.open span:nth-child(2) { opacity: 0; }
+                .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+                /* ── Mobile drawer ── */
+                .mobile-menu {
+                    display: none;
+                    flex-direction: column;
+                    gap: 0;
+                    list-style: none;
+                    margin: 0;
+                    padding: 0.5rem 0 1rem;
+                    background: rgba(255,255,255,0.98);
+                    border-top: 1px solid #e5e7eb;
+                }
+                .mobile-menu.open { display: flex; }
+                .mobile-menu li a {
+                    display: block;
+                    padding: 0.75rem 1.25rem;
+                    text-decoration: none;
+                    color: #1f2937;
+                    font-weight: 500;
+                    font-size: 0.95rem;
+                    transition: background 0.2s, color 0.2s;
+                }
+                .mobile-menu li a:hover {
+                    background: rgba(99,102,241,0.07);
+                    color: #6366f1;
+                }
+
+                /* ── Responsive breakpoint ── */
+                @media (max-width: 768px) {
+                    .nav-links  { display: none; }
+                    .hamburger  { display: flex; }
                 }
             </style>
+
             <div class="container">
                 <div class="logo">MyWebsite</div>
                 <ul class="nav-links">
@@ -79,7 +136,6 @@ class NavBar extends HTMLElement {
                     <li><a href="#form-elements">Form Elements</a></li>
                     <li><a href="about.html" target="_blank" rel="noopener noreferrer">About Us ↗</a></li>
                     <li><a href="services.html" target="_blank" rel="noopener noreferrer">Services ↗</a></li>
-                    <!-- Opens contact.html in a new tab (same domain) -->
                     <li><a href="contact.html" target="_blank" rel="noopener noreferrer">Contact Us ↗</a></li>
                     <li><a href="dashboard.html" target="_blank" rel="noopener noreferrer">Dashboard ↗</a></li>
                     <li><a href="cart.html" target="_blank" rel="noopener noreferrer">Cart ↗</a></li>
@@ -87,8 +143,46 @@ class NavBar extends HTMLElement {
                     <li><a href="responsive.html" target="_blank" rel="noopener noreferrer">Responsive ↗</a></li>
                     <li><a href="courses.html" target="_blank" rel="noopener noreferrer">Courses ↗</a></li>
                 </ul>
+                <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
+
+            <ul class="mobile-menu" id="mobile-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#form-elements">Form Elements</a></li>
+                <li><a href="about.html" target="_blank" rel="noopener noreferrer">About Us ↗</a></li>
+                <li><a href="services.html" target="_blank" rel="noopener noreferrer">Services ↗</a></li>
+                <li><a href="contact.html" target="_blank" rel="noopener noreferrer">Contact Us ↗</a></li>
+                <li><a href="dashboard.html" target="_blank" rel="noopener noreferrer">Dashboard ↗</a></li>
+                <li><a href="cart.html" target="_blank" rel="noopener noreferrer">Cart ↗</a></li>
+                <li><a href="spa.html" target="_blank" rel="noopener noreferrer">SPA ↗</a></li>
+                <li><a href="responsive.html" target="_blank" rel="noopener noreferrer">Responsive ↗</a></li>
+                <li><a href="courses.html" target="_blank" rel="noopener noreferrer">Courses ↗</a></li>
+            </ul>
         `;
+
+        const hamburger = root.querySelector('.hamburger');
+        const mobileMenu = root.querySelector('.mobile-menu');
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        // Close menu when a mobile link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+
         root.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', (e) => {
                 e.preventDefault();
