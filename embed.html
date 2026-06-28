@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Start VWO Async V3.0 SmartCode -->
+<link rel="preconnect" href="https://dev.visualwebsiteoptimizer.com" />
+<script type="text/javascript" id="vwoCode">
+window._vwo_code || (function() {        
+    var account_id = 1209855,
+        version = 3.0,
+        settings_tolerance = 2000,
+        hide_element = 'body',
+        hide_element_style =
+        'opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;transition:none !important';
+    /* DO NOT EDIT BELOW THIS LINE */
+    var t=window,n=document;if(-1<n.URL.indexOf('__vwo_disable__')||t._vwo_code)return;var i=!1,o=n.currentScript,e={sT:settings_tolerance,hES:hide_element_style,hE:hide_element};try{e=Object.assign(JSON.parse(localStorage.getItem('_vwo_'+account_id+'_config')),e)}catch(e){}var code={nonce:o.nonce,settings_tolerance:function(){return e.sT},hide_element:function(){return performance.getEntriesByName('first-contentful-paint')[0]?'':e.hE},hide_element_style:function(){return'{'+e.hES+'}'},getVersion:function(){return version},finish:function(){var e;!i&&(i=!0,e=n.getElementById('_vis_opt_path_hides'))&&e.parentNode.removeChild(e)},finished:function(){return i},addScript:function(e){var t=n.createElement('script');t.src=e,o.nonce&&t.setAttribute('nonce',o.nonce),t.fetchPriority='high',n.head.appendChild(t)},init:function(){t._vwo_settings_timer=setTimeout(function(){code.finish()},this.settings_tolerance());var e=n.createElement('style');e.id='_vis_opt_path_hides',o.nonce&&e.setAttribute('nonce',o.nonce),e.textContent=this.hide_element()+this.hide_element_style(),n.head.appendChild(e),this.addScript('https://dev.visualwebsiteoptimizer.com/tag/'+account_id+'.js')}};t._vwo_code=code;code.init();})();
+</script> 
+<!--End VWO Async SmartCode -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Embedded demo</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 1.75rem;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            color: #92400e;
+        }
+        .card {
+            max-width: 100%;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.55);
+            border: 1px solid rgba(146, 64, 14, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(4px);
+        }
+        h2 { margin: 0 0 0.5rem; font-size: 1.4rem; }
+        .lead { margin: 0 0 1.25rem; opacity: 0.9; line-height: 1.5; }
+        ul { margin: 0 0 1.25rem; padding-left: 1.2rem; }
+        li { margin: 0.25rem 0; }
+        .counter { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+        button {
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            background: #92400e;
+            color: #fff;
+            transition: opacity 0.2s;
+        }
+        button:hover { opacity: 0.85; }
+        .count { font-weight: 700; font-size: 1.1rem; min-width: 1.5rem; text-align: center; }
+        .divider { height: 1px; background: rgba(146, 64, 14, 0.2); margin: 1.25rem 0; }
+        h3 { margin: 0 0 0.6rem; font-size: 1.05rem; }
+        .field { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.85rem; }
+        label { font-size: 0.85rem; font-weight: 600; }
+        input {
+            font: inherit;
+            padding: 0.5rem 0.65rem;
+            border: 1px solid rgba(146, 64, 14, 0.35);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            color: #92400e;
+        }
+        input:focus { outline: 2px solid #92400e; outline-offset: 1px; }
+        .greeting { margin: 0.5rem 0 0; font-weight: 600; min-height: 1.2em; }
+        .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0 0; }
+        .chip {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.3rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(146, 64, 14, 0.12);
+            border: 1px solid rgba(146, 64, 14, 0.25);
+        }
+        small { display: block; margin-top: 1rem; opacity: 0.7; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Inside the iframe</h2>
+        <p class="lead">This content lives in a separate document loaded via <code>&lt;iframe src&gt;</code>. Your customer is evolving every day. Decode their evolving behaviors, fine-tune with robust A/B testing, and personalize experiences that hit home. Boost conversions across your websites and mobile apps through data-driven UI and server-side enhancements.</p>
+        <ul>
+            <li>Independent DOM &amp; CSS scope</li>
+            <li>Own JavaScript execution context</li>
+            <li>Editable via VWO "Edit iframe content"</li>
+        </ul>
+        <div class="counter">
+            <button id="dec" type="button" aria-label="Decrease">&minus;</button>
+            <span class="count" id="count">0</span>
+            <button id="inc" type="button" aria-label="Increase">+</button>
+        </div>
+        <div class="divider"></div>
+        <h3>Live input demo</h3>
+        <div class="field">
+            <label for="nameInput">Your name</label>
+            <input id="nameInput" type="text" placeholder="Type your name&hellip;" />
+        </div>
+        <p class="greeting" id="greeting">Hello there!</p>
+        <div class="divider"></div>
+        <h3>Isolated technologies</h3>
+        <div class="chips">
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">DOM</span>
+        </div>
+        <small>Everything here&mdash;styling, the counter, and the live greeting&mdash;runs entirely inside the iframe.</small>
+    </div>
+    <script>
+        (function () {
+            var c = 0,
+                el = document.getElementById('count');
+            function render() { el.textContent = c; }
+            document.getElementById('inc').addEventListener('click', function () { c++; render(); });
+            document.getElementById('dec').addEventListener('click', function () { c--; render(); });
+            var input = document.getElementById('nameInput'),
+                greeting = document.getElementById('greeting');
+            input.addEventListener('input', function () {
+                var v = input.value.trim();
+                greeting.textContent = v ? 'Hello, ' + v + '!' : 'Hello there!';
+            });
+        })();
+    </script>
+</body>
+</html>

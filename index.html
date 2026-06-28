@@ -401,14 +401,33 @@ window._vwo_code || (function() {
     <section id="iframe" class="iframe-section">
         <div class="container">
             <h2 class="section-title">Embedded Content</h2>
-            <p class="iframe-section-desc">This section embeds content in an <code>&lt;iframe&gt;</code>. The iframe is a separate document with its own browsing context—scripts and styles from the parent page do not apply inside it.</p>
-            <div class="iframe-wrapper">
+            <p class="iframe-section-desc">This section embeds a same-origin page via <code>&lt;iframe src&gt;</code>. Because the embedded page (<code>embed.html</code>) carries the VWO SmartCode and is served from the same origin, its elements can be edited in the VWO Visual Editor using the <strong>"Edit iframe content"</strong> operation.</p>
+            <div class="iframe-wrapper" style="max-width:960px;width:100%;">
                 <iframe
+                    id="embedFrame"
                     title="Embedded demo"
-                    srcdoc="<!DOCTYPE html><html><head><meta charset='UTF-8'><style>body{font-family:system-ui;margin:0;padding:2rem;background:linear-gradient(135deg,#fef3c7,#fde68a);color:#92400e;display:flex;align-items:center;justify-content:center;min-height:200px;}h2{margin:0 0 0.5rem;}p{margin:0;opacity:0.9;}</style></head><body><div><h2>Inside the iframe</h2><p>This content is in a separate document.</p></div></body></html>"
+                    src="embed.html"
+                    onload="resizeEmbedFrame(this)"
+                    style="display:block;width:100%;"
+                    width="100%"
                     class="embed-iframe"
                 ></iframe>
             </div>
+            <script>
+                function resizeEmbedFrame(frame) {
+                    try {
+                        var doc = frame.contentDocument || frame.contentWindow.document;
+                        if (!doc || !doc.documentElement) return;
+                        frame.style.height = doc.documentElement.scrollHeight + 'px';
+                    } catch (e) {
+                        /* cross-origin or not ready — keep CSS fallback height */
+                    }
+                }
+                window.addEventListener('resize', function () {
+                    var frame = document.getElementById('embedFrame');
+                    if (frame) resizeEmbedFrame(frame);
+                });
+            </script>
         </div>
     </section>
 
