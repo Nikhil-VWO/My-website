@@ -496,31 +496,6 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Modal popup
-const modalOverlay = document.getElementById('modal-overlay');
-const modalTrigger = document.getElementById('modal-trigger');
-const modalClose = document.getElementById('modal-close');
-
-if (modalTrigger) {
-    modalTrigger.addEventListener('click', () => {
-        if (modalOverlay) {
-            modalOverlay.hidden = false;
-        }
-    });
-}
-
-if (modalClose) {
-    modalClose.addEventListener('click', () => {
-        if (modalOverlay) modalOverlay.hidden = true;
-    });
-}
-
-if (modalOverlay) {
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) modalOverlay.hidden = true;
-    });
-}
-
 // Accordion (collapsed by default)
 const accordionTrigger = document.getElementById('accordion-trigger');
 const accordionPanel = document.getElementById('accordion-panel');
