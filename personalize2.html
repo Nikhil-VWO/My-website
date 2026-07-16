@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Start VWO SmartCode -->
+    <script src="https://dev.visualwebsiteoptimizer.com/cloud-run-test/final/10000718.js"></script>
+    <!-- End VWO SmartCode -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalize 2</title>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #475569;
+            --primary: #2563eb;
+            --accent: #7c3aed;
+            --line: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+            color: #fff;
+            padding: 72px 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        h1 { margin: 0 0 12px; font-size: clamp(32px, 4vw, 52px); line-height: 1.1; }
+        .subtitle { margin: 0; opacity: 0.95; max-width: 580px; }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 16px;
+            padding: 18px;
+        }
+
+        .hero-card strong { display: block; margin-bottom: 8px; }
+
+        section { padding: 62px 0; }
+        .section-head { margin-bottom: 20px; }
+        .section-head h2 { margin: 0 0 6px; font-size: 30px; }
+        .section-head p { margin: 0; color: var(--muted); }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 18px;
+        }
+
+        .card h3 { margin: 0 0 8px; font-size: 18px; }
+        .card p { margin: 0; color: var(--muted); }
+        .card code { background: #e2e8f0; padding: 2px 6px; border-radius: 6px; }
+
+        .timeline {
+            border-left: 3px solid #cbd5e1;
+            margin-left: 8px;
+            padding-left: 18px;
+        }
+
+        .step { margin-bottom: 18px; }
+        .step h4 { margin: 0 0 6px; font-size: 17px; }
+        .step p { margin: 0; color: var(--muted); }
+
+        .cta {
+            background: #0f172a;
+            color: #fff;
+            border-radius: 16px;
+            padding: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .bg-image-demo {
+            border-radius: 16px;
+            min-height: 280px;
+            padding: 28px;
+            color: #fff;
+            display: flex;
+            align-items: end;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background:
+                linear-gradient(180deg, rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 0.75)),
+                url("https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=80")
+                center center / cover no-repeat;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .media-card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .media-card video,
+        .media-card iframe {
+            width: 100%;
+            height: 280px;
+            border: 0;
+            display: block;
+            background: #0f172a;
+        }
+
+        .media-body {
+            padding: 14px 16px;
+        }
+
+        .video-bg-wrap {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            min-height: 300px;
+            border: 1px solid var(--line);
+        }
+
+        .video-bg-wrap video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-bg-overlay {
+            position: relative;
+            z-index: 1;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        .shadow-host {
+            background: #fff;
+            border: 1px dashed #94a3b8;
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 18px 0 40px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid, .grid-3 { grid-template-columns: 1fr; }
+            .media-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="wrap hero-grid">
+            <div>
+                <span class="pill">Personalized Experience</span>
+                <h1>Personalize 2 Landing Page</h1>
+                <p class="subtitle">
+                    This page is intentionally different from your existing personalize page.
+                    It includes unique sections and layout content designed for experimentation.
+                </p>
+            </div>
+            <aside class="hero-card">
+                <strong>Experiment Focus</strong>
+                <p>Variant-oriented content blocks, conversion-style CTA, and clear section separation.</p>
+            </aside>
+        </div>
+    </header>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Why This Version Is Different</h2>
+                <p>New copy, structure, and visual hierarchy compared with `personalize.html`.</p>
+            </div>
+            <div class="grid-3">
+                <article class="card">
+                    <h3>Distinct Hero</h3>
+                    <p>This version uses a focused hero with test-specific messaging instead of the default homepage copy.</p>
+                </article>
+                <article class="card">
+                    <h3>New Content Blocks</h3>
+                    <p>Feature cards and timeline sections provide a different reading flow and interaction pattern.</p>
+                </article>
+                <article class="card">
+                    <h3>Dedicated CTA</h3>
+                    <p>A conversion-first CTA block at the bottom helps compare engagement against other variants.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Personalization Journey</h2>
+                <p>Example sequence users can follow through this variant.</p>
+            </div>
+            <div class="timeline">
+                <div class="step">
+                    <h4>Step 1: Detect intent</h4>
+                    <p>Capture source context (campaign, location, and returning behavior).</p>
+                </div>
+                <div class="step">
+                    <h4>Step 2: Adapt messaging</h4>
+                    <p>Show value propositions tailored to a user segment.</p>
+                </div>
+                <div class="step">
+                    <h4>Step 3: Optimize CTA</h4>
+                    <p>Guide users toward one clear, measurable action.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap cta">
+            <div>
+                <h2 style="margin: 0 0 6px;">Run This as a Separate Variant</h2>
+                <p style="margin: 0; color: #cbd5e1;">Use `personalize2.html` independently in your tests.</p>
+            </div>
+            <button class="btn" type="button" id="start-test">Start Personalization Test</button>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Background Image Section</h2>
+                <p>Hero-style block with image background and overlay text.</p>
+            </div>
+            <div class="bg-image-demo">
+                <div>
+                    <h3 style="margin: 0 0 8px;">Scenic Background</h3>
+                    <p style="margin: 0;">Useful for campaign-specific visual messaging and A/B hero comparisons.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Background Video</h2>
+                <p>Autoplaying muted looping video used as a background layer.</p>
+            </div>
+            <div class="video-bg-wrap">
+                <video autoplay muted loop playsinline preload="metadata" aria-label="Background demo video">
+                    <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+                </video>
+                <div class="video-bg-overlay">
+                    <div>
+                        <h3 style="margin: 0 0 8px;">Video Background Overlay</h3>
+                        <p style="margin: 0;">Readable foreground content over motion media.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Video and Iframe Embeds</h2>
+                <p>Separate examples for direct media playback and third-party embed rendering.</p>
+            </div>
+            <div class="media-grid">
+                <article class="media-card">
+                    <video controls preload="metadata">
+                        <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm">
+                        <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+                    </video>
+                    <div class="media-body">
+                        <h3 style="margin: 0 0 6px;">Self-hosted style video block</h3>
+                        <p style="margin: 0; color: var(--muted);">Direct <code>&lt;video&gt;</code> player with controls for interaction testing.</p>
+                    </div>
+                </article>
+                <article class="media-card">
+                    <iframe
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                        title="YouTube video player"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                    <div class="media-body">
+                        <h3 style="margin: 0 0 6px;">Iframe embed block</h3>
+                        <p style="margin: 0; color: var(--muted);">Example third-party embed for frame and consent behavior checks.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Shadow DOM Demo</h2>
+                <p>Custom element with isolated style scope for robust selector testing.</p>
+            </div>
+            <div class="shadow-host">
+                <personalize-shadow-card></personalize-shadow-card>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <p>Personalize 2 page - standalone variant content.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('start-test').addEventListener('click', function () {
+            alert('Personalization test trigger clicked.');
+        });
+
+        class PersonalizeShadowCard extends HTMLElement {
+            connectedCallback() {
+                const root = this.attachShadow({ mode: 'open' });
+                root.innerHTML = `
+                    <style>
+                        .shadow-card {
+                            font-family: Inter, system-ui, sans-serif;
+                            border: 1px solid #cbd5e1;
+                            border-radius: 12px;
+                            padding: 16px;
+                            background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+                        }
+                        h3 {
+                            margin: 0 0 8px;
+                            color: #1e3a8a;
+                            font-size: 18px;
+                        }
+                        p {
+                            margin: 0;
+                            color: #334155;
+                        }
+                    </style>
+                    <article class="shadow-card">
+                        <h3>Inside Shadow Root</h3>
+                        <p>This content is isolated from page-level CSS selectors.</p>
+                    </article>
+                `;
+            }
+        }
+
+        customElements.define('personalize-shadow-card', PersonalizeShadowCard);
+    </script>
+</body>
+</html>

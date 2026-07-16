@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Start VWO SmartCode --> 
+<script src="https://dev.visualwebsiteoptimizer.com/cloud-run-test/final/10000718.js"></script> 
+<!-- End VWO SmartCode -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalize</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav-bar></nav-bar>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-heading">Welcome to My Website</h1>
+            <p class="hero-subtitle">A modern, beautiful website built with care</p>
+            <button class="cta-button" onclick="scrollToSection('contact')">Get Started</button>
+        </div>
+        <div class="hero-image">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <about-us-text></about-us-text>
+                <div class="about-stats">
+                    <div class="stat">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Clients</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="feature" class="anchor-section">
+        <div class="container">
+            <h2 class="section-title">Featured</h2>
+            <a href="#contact" class="anchor-section-link">
+                <div class="anchor-section-content">
+                    <div class="anchor-section-text">
+                        <p>This section combines text and an image. You can use it to highlight a product, team photo, or any visual that supports your message. Replace the image source with your own asset.</p>
+                        <p>This block is wrapped in an anchor tag—click anywhere to go to the Contact section.</p>
+                    </div>
+                    <div class="anchor-section-image">
+                        <!--
+                            <picture> element for image optimization:
+                            - <source type="image/webp">: served to browsers that support WebP
+                            - <img> fallback: served to browsers that don't support WebP
+                            srcset provides 3 sizes (small/medium/large) so the browser
+                            picks the best fit based on the viewport width (sizes attribute).
+                        -->
+                        <picture id="featured-picture">
+                            <!-- WebP source — src set by randomFeaturedImage() below -->
+                            <source id="featured-source" type="image/webp" sizes="(max-width: 480px) 400px, (max-width: 768px) 600px, 900px">
+                            <!-- JPG fallback — src set by randomFeaturedImage() below -->
+                            <img
+                                id="featured-img"
+                                alt="Featured image"
+                                width="600"
+                                height="400"
+                                loading="lazy"
+                                sizes="(max-width: 480px) 400px, (max-width: 768px) 600px, 900px"
+                            >
+                        </picture>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Web Design</h3>
+                    <p>Beautiful, responsive designs that work on all devices</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Development</h3>
+                    <p>Clean, efficient code that powers your website</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>Optimization</h3>
+                    <p>Fast loading times and excellent performance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- #reviews: SPA-style anchor target, scrolled to from the nav "Reviews" link -->
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <h2 class="section-title">Client Reviews</h2>
+            <p class="section-desc">Real feedback from real clients about our work.</p>
+            <div class="reviews-grid">
+                <blockquote class="review-item">
+                    <p>"Working with this team was an absolute pleasure. They delivered beyond our expectations."</p>
+                    <footer>— Sarah T., CEO at NovaCo</footer>
+                </blockquote>
+                <blockquote class="review-item">
+                    <p>"Fast, clean, and professional. Our site performance improved drastically after their optimization work."</p>
+                    <footer>— James R., Founder at Buildify</footer>
+                </blockquote>
+                <blockquote class="review-item">
+                    <p>"Highly responsive team with a strong eye for design. We've now worked together on 3 projects."</p>
+                    <footer>— Priya M., Product Lead at Loopbase</footer>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <section id="carousel" class="carousel-section">
+        <div class="container">
+            <div class="reviews-header">
+                <div class="reviews-stars">★★★★★</div>
+                <h2 class="reviews-title">50+ 5-STAR REVIEWS FROM HAPPY CLIENTS</h2>
+                <div class="reviews-stars">★★★★★</div>
+            </div>
+        </div>
+        <div class="carousel-viewport" id="carousel-viewport">
+            <div class="carousel-track" id="carousel-track">
+                <article class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <h3 class="review-title">Exactly what we needed</h3>
+                    <p class="review-text">Beautiful, responsive design that works flawlessly on all devices. They took our vision and turned it into a modern, clean website. Highly recommend!</p>
+                    <span class="review-verified">✓ Verified Client</span>
+                </article>
+                <article class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <h3 class="review-title">Clean code, fast delivery</h3>
+                    <p class="review-text">The development quality was excellent—efficient code that powers our site smoothly. Professional team that delivered on time. Will work with them again.</p>
+                    <span class="review-verified">✓ Verified Client</span>
+                </article>
+                <article class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <h3 class="review-title">Performance went through the roof</h3>
+                    <p class="review-text">After their optimization work, our site loads in under 2 seconds. Bounce rate dropped and conversions improved. Worth every penny.</p>
+                    <span class="review-verified">✓ Verified Client</span>
+                </article>
+                <article class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <h3 class="review-title">User experience focus</h3>
+                    <p class="review-text">They really understand user experience and clean design. Our new site is both functional and visually appealing. Customers love it.</p>
+                    <span class="review-verified">✓ Verified Client</span>
+                </article>
+                <article class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <h3 class="review-title">5+ years of trust</h3>
+                    <p class="review-text">We've worked together on multiple projects. Consistently professional, creative, and attentive to detail. Couldn't ask for a better partner.</p>
+                    <span class="review-verified">✓ Verified Client</span>
+                </article>
+            </div>
+        </div>
+        <div class="container">
+            <div class="carousel-bottom">
+                <button type="button" class="reviews-cta-id" id="reviews-cta-id">SEE ALL TESTIMONIALS</button>
+                <div class="carousel-arrows">
+                    <button type="button" class="carousel-arrow carousel-prev" id="carousel-prev" aria-label="Previous reviews">&lt;</button>
+                    <button type="button" class="carousel-arrow carousel-next" id="carousel-next" aria-label="Next reviews">&gt;</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pseudo" class="pseudo-section">
+        <div class="container">
+            <h2 class="section-title">::before / ::after Content</h2>
+            <p class="section-desc">Content and decoration added via CSS pseudo-elements.</p>
+            <div class="pseudo-demo">
+                <span class="pseudo-before-after">Quote</span>
+                <span class="pseudo-before-after">Label</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="parent-child" class="parent-child-section">
+        <div class="container">
+            <h2 class="section-title">Parent-Child</h2>
+            <p class="section-desc">Nested DOM structure: parent container with child elements.</p>
+            <div class="parent-demo-grid">
+                <div class="parent-demo">
+                    <div class="parent-node">
+                        <span class="node-label">Parent</span>
+                        <p class="node-desc">Main container</p>
+                        <div class="child-node">
+                            <span class="node-label">Child 1</span>
+                            <p class="node-desc">First item</p>
+                            <div class="grandchild-node">Grandchild 1a</div>
+                            <div class="grandchild-node">Grandchild 1b</div>
+                        </div>
+                        <div class="child-node">
+                            <span class="node-label">Child 2</span>
+                            <p class="node-desc">Second item</p>
+                        </div>
+                        <div class="child-node">
+                            <span class="node-label">Child 3</span>
+                            <p class="node-desc">Third item</p>
+                            <div class="grandchild-node">Grandchild 3a</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="parent-demo">
+                    <div class="parent-node">
+                        <span class="node-label">Sidebar</span>
+                        <p class="node-desc">Another parent tree</p>
+                        <div class="child-node">Link A</div>
+                        <div class="child-node">Link B</div>
+                        <div class="child-node">Link C</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="deep-nesting" class="deep-nesting-section">
+        <div class="container">
+            <h2 class="section-title">Deeply Nested (15 levels)</h2>
+            <p class="section-desc">A long nested DOM example for testing robust selectors and scroll/visibility behavior.</p>
+            <div class="deep-nesting-root" aria-label="15-level nested container">
+                <div class="nest nest-1">
+                    <div class="nest nest-2">
+                        <div class="nest nest-3">
+                            <div class="nest nest-4">
+                                <div class="nest nest-5">
+                                    <div class="nest nest-6">
+                                        <div class="nest nest-7">
+                                            <div class="nest nest-8">
+                                                <div class="nest nest-9">
+                                                    <div class="nest nest-10">
+                                                        <div class="nest nest-11">
+                                                            <div class="nest nest-12">
+                                                                <div class="nest nest-13">
+                                                                    <div class="nest nest-14">
+                                                                        <div class="nest nest-15">
+                                                                            <div class="deep-nesting-target" id="deep-nesting-target">
+                                                                                <h3 class="deep-nesting-title">Target at level 15</h3>
+                                                                                <p class="deep-nesting-text">If you can click this button reliably, your selectors are probably solid.</p>
+                                                                                <button type="button" class="deep-nesting-button" id="deep-nesting-button">Deep nested button</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rapid-mutation" class="rapid-mutation-section">
+        <div class="container">
+            <h2 class="section-title">Rapid DOM Mutation</h2>
+            <p class="section-desc">DOM updates on a slow interval (counter and list change every 10 seconds).</p>
+            <div class="rapid-demo">
+                <div class="rapid-counter" id="rapid-counter">0</div>
+                <ul class="rapid-list" id="rapid-list"></ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="accordion" class="accordion-section">
+        <div class="container">
+            <h2 class="section-title">Accordion (Collapsed)</h2>
+            <p class="section-desc">Accordion panel starts collapsed; click to expand.</p>
+            <div class="accordion" id="accordion-demo">
+                <button type="button" class="accordion-trigger" id="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel">Accordion header (collapsed)</button>
+                <div class="accordion-panel" id="accordion-panel" hidden>
+                    <p>Accordion content appears here when expanded.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="form-elements" class="form-elements-section">
+        <div class="container">
+            <h2 class="section-title">Form Elements</h2>
+            <p class="section-desc">Checkboxes and radio buttons for selection inputs.</p>
+            <div class="form-elements-grid">
+
+                <!-- Checkboxes -->
+                <fieldset class="form-elements-group">
+                    <legend class="form-elements-legend">Select your interests</legend>
+                    <label class="form-check-label">
+                        <input type="checkbox" id="check-design" name="interests" value="design">
+                        <span class="form-check-custom"></span>
+                        Web Design
+                    </label>
+                    <label class="form-check-label">
+                        <input type="checkbox" id="check-dev" name="interests" value="development" checked>
+                        <span class="form-check-custom"></span>
+                        Development
+                    </label>
+                    <label class="form-check-label">
+                        <input type="checkbox" id="check-seo" name="interests" value="seo">
+                        <span class="form-check-custom"></span>
+                        SEO &amp; Performance
+                    </label>
+                    <label class="form-check-label">
+                        <input type="checkbox" id="check-branding" name="interests" value="branding">
+                        <span class="form-check-custom"></span>
+                        Branding
+                    </label>
+                </fieldset>
+
+                <!-- Radio buttons -->
+                <fieldset class="form-elements-group">
+                    <legend class="form-elements-legend">Preferred contact method</legend>
+                    <label class="form-check-label">
+                        <input type="radio" id="radio-email" name="contact-method" value="email" checked>
+                        <span class="form-radio-custom"></span>
+                        Email
+                    </label>
+                    <label class="form-check-label">
+                        <input type="radio" id="radio-phone" name="contact-method" value="phone">
+                        <span class="form-radio-custom"></span>
+                        Phone
+                    </label>
+                    <label class="form-check-label">
+                        <input type="radio" id="radio-chat" name="contact-method" value="chat">
+                        <span class="form-radio-custom"></span>
+                        Live Chat
+                    </label>
+                    <label class="form-check-label">
+                        <input type="radio" id="radio-meeting" name="contact-method" value="meeting">
+                        <span class="form-radio-custom"></span>
+                        Video Meeting
+                    </label>
+                </fieldset>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="display-none" class="display-none-section">
+        <div class="container">
+            <h2 class="section-title">display:none Section</h2>
+            <p class="section-desc">This section is in the DOM but hidden with <code>display: none</code>.</p>
+        </div>
+    </section>
+
+    <section id="shadow-open" class="shadow-section">
+        <feature-section></feature-section>
+    </section>
+
+    <section id="iframe" class="iframe-section">
+        <div class="container">
+            <h2 class="section-title">Embedded Content</h2>
+            <p class="iframe-section-desc">This section embeds a same-origin page via <code>&lt;iframe src&gt;</code>. Because the embedded page (<code>embed.html</code>) carries the VWO SmartCode and is served from the same origin, its elements can be edited in the VWO Visual Editor using the <strong>"Edit iframe content"</strong> operation.</p>
+            <div class="iframe-wrapper" style="max-width:960px;width:100%;">
+                <iframe
+                    id="embedFrame"
+                    title="Embedded demo"
+                    src="embed.html"
+                    onload="resizeEmbedFrame(this)"
+                    style="display:block;width:100%;"
+                    width="100%"
+                    class="embed-iframe"
+                ></iframe>
+            </div>
+            <script>
+                function resizeEmbedFrame(frame) {
+                    try {
+                        var doc = frame.contentDocument || frame.contentWindow.document;
+                        if (!doc || !doc.documentElement) return;
+                        frame.style.height = doc.documentElement.scrollHeight + 'px';
+                    } catch (e) {
+                        /* cross-origin or not ready — keep CSS fallback height */
+                    }
+                }
+                window.addEventListener('resize', function () {
+                    var frame = document.getElementById('embedFrame');
+                    if (frame) resizeEmbedFrame(frame);
+                });
+            </script>
+        </div>
+    </section>
+
+    <!-- ── VIDEO: Background / Hero autoplay ── -->
+    <section id="video-bg" class="video-bg-section">
+        <video class="video-bg-el" autoplay muted loop playsinline aria-hidden="true">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        </video>
+        <div class="video-bg-overlay"></div>
+        <div class="video-bg-content">
+            <span class="video-type-badge">Background / Hero Video</span>
+            <h2 class="video-bg-title">Build Something Extraordinary</h2>
+            <p class="video-bg-desc">Decorative autoplay video used as a full-width section background. Muted, looping, no controls — purely visual.</p>
+        </div>
+    </section>
+
+    <!-- ── VIDEO: Self-hosted HTML5 <video> ── -->
+    <section id="video" class="video-section">
+        <div class="container">
+            <h2 class="section-title">Watch Our Work</h2>
+            <p class="section-desc">Self-hosted video using the HTML5 <code>&lt;video&gt;</code> element — full browser-native controls, no third-party dependency.</p>
+            <span class="video-type-badge video-type-badge--dark">Self-hosted &lt;video&gt;</span>
+            <div class="video-wrapper">
+                <video
+                    class="site-video"
+                    controls
+                    poster="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&auto=format&fit=crop"
+                    preload="none"
+                    aria-label="Website walkthrough video"
+                >
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Your browser does not support the video element.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── VIDEO: YouTube embed ── -->
+    <section id="video-youtube" class="video-section video-section--alt">
+        <div class="container">
+            <h2 class="section-title">YouTube Embed</h2>
+            <p class="section-desc">Video hosted on YouTube and embedded via <code>&lt;iframe&gt;</code>. YouTube handles encoding, CDN delivery, and adaptive streaming — zero bandwidth cost on your server.</p>
+            <span class="video-type-badge video-type-badge--dark">YouTube &lt;iframe&gt;</span>
+            <div class="video-wrapper">
+                <iframe
+                    class="site-video"
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy"
+                ></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── VIDEO: Vimeo embed ── -->
+    <section id="video-vimeo" class="video-section">
+        <div class="container">
+            <h2 class="section-title">Vimeo Embed</h2>
+            <p class="section-desc">Video hosted on Vimeo and embedded via <code>&lt;iframe&gt;</code>. Preferred by creative agencies for its cleaner player and privacy-friendly options.</p>
+            <span class="video-type-badge video-type-badge--dark">Vimeo &lt;iframe&gt;</span>
+            <div class="video-wrapper">
+                <iframe
+                    class="site-video"
+                    src="https://player.vimeo.com/video/76979871"
+                    title="Vimeo video player"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy"
+                ></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services Page</a>
+                <a href="#pseudo">Pseudo</a>
+                <a href="#parent-child">Parent-Child</a>
+                <a href="#rapid-mutation">Rapid DOM</a>
+                <a href="#accordion">Accordion</a>
+                <a href="#form-elements">Form Elements</a>
+                <a href="#iframe">Embed</a>
+                <a href="#video-bg">Video: BG</a>
+                <a href="#video">Video: Self-hosted</a>
+                <a href="#video-youtube">Video: YouTube</a>
+                <a href="#video-vimeo">Video: Vimeo</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <p>&copy; 2024 MyWebsite. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ── Random featured image ─────────────────────────────────────────────
+        // Pool of direct Unsplash CDN photo IDs (no redirects).
+        // A different photo is picked on each page load.
+        (function randomFeaturedImage() {
+            const photos = [
+                'photo-1498050108023-c5249f4df085', // laptop on desk
+                'photo-1519389950473-47ba0277781c', // team working
+                'photo-1460925895917-afdab827c52f', // data charts
+                'photo-1551288049-bebda4e38f71',    // analytics dashboard
+                'photo-1556742049-0cfed4f6a45d',    // e-commerce shop
+                'photo-1517694712202-14dd9538aa97',  // code on screen
+                'photo-1497366216548-37526070297c',  // modern office
+                'photo-1522071820081-009f0129c71c',  // team meeting
+                'photo-1504384308090-c894fdcc538d',  // office space
+                'photo-1454165804606-c3d57bc86b40',  // person working
+            ];
+            const id = photos[Math.floor(Math.random() * photos.length)];
+            const base = 'https://images.unsplash.com/' + id;
+
+            const src   = document.getElementById('featured-source');
+            const img   = document.getElementById('featured-img');
+            if (!src || !img) return;
+
+            src.srcset = [
+                base + '?w=400&q=80&fm=webp 400w',
+                base + '?w=600&q=80&fm=webp 600w',
+                base + '?w=900&q=80&fm=webp 900w',
+            ].join(', ');
+
+            img.src    = base + '?w=600&q=80';
+            img.srcset = [
+                base + '?w=400&q=80 400w',
+                base + '?w=600&q=80 600w',
+                base + '?w=900&q=80 900w',
+            ].join(', ');
+        })();
+
+        // ── Random hero background ────────────────────────────────────────────
+        // Picks a different landscape / scenic photo on each load.
+        (function randomHeroImage() {
+            const photos = [
+                'photo-1506905925346-21bda4d32df4', // mountain lake
+                'photo-1441974231531-c6227db76b6e', // forest path
+                'photo-1477959858617-67f85cf4f1df', // city skyline
+                'photo-1434494878577-86c23bcb06b9', // aerial city
+                'photo-1469474968028-56623f02e42e', // sunrise hills
+                'photo-1500534314209-a25ddb2bd429', // ocean sunset
+                'photo-1501854140801-50d01698950b', // aerial landscape
+                'photo-1447752875215-b2761acb3c5d', // forest mist
+            ];
+            const id = photos[Math.floor(Math.random() * photos.length)];
+            const url = 'https://images.unsplash.com/' + id + '?w=1600&q=80';
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                // Set full background shorthand so position/size/repeat are all included.
+                // This overrides the CSS stylesheet rule completely via inline style.
+                hero.style.background =
+                    'url("' + url + '") center center / cover no-repeat #6366f1';
+            }
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

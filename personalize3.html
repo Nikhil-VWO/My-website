@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Start VWO SmartCode -->
+    <script src="https://dev.visualwebsiteoptimizer.com/cloud-run-test/final/10000718.js"></script>
+    <!-- End VWO SmartCode -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalize 3</title>
+    <style>
+        :root {
+            --bg: #0b1020;
+            --surface: #111831;
+            --surface-soft: #172142;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --primary: #22d3ee;
+            --accent: #a78bfa;
+            --line: #263155;
+            --ok: #22c55e;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            background: radial-gradient(circle at top right, #1f2b52, #0b1020 40%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: 0 auto;
+        }
+
+        header {
+            padding: 64px 0 28px;
+        }
+
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 26px;
+        }
+
+        .chip {
+            border: 1px solid #2c3b6f;
+            background: #121a36;
+            color: #cbd5e1;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0 0 14px;
+            font-size: clamp(34px, 5vw, 58px);
+            line-height: 1.05;
+        }
+
+        .hero-sub {
+            margin: 0;
+            max-width: 700px;
+            color: var(--muted);
+            font-size: 18px;
+        }
+
+        .hero-panels {
+            margin-top: 28px;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 16px;
+        }
+
+        .panel {
+            background: linear-gradient(165deg, var(--surface), #0f1834);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 18px;
+        }
+
+        .panel h3 {
+            margin: 0 0 8px;
+            font-size: 18px;
+        }
+
+        section {
+            padding: 34px 0;
+        }
+
+        .section-title {
+            margin: 0 0 12px;
+            font-size: 28px;
+        }
+
+        .section-desc {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .kpi {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .kpi .num {
+            display: block;
+            font-size: 26px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .kpi .label {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .list li {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+        }
+
+        .list strong {
+            color: #fff;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .banner {
+            border: 1px solid #27505f;
+            background: linear-gradient(130deg, rgba(34, 211, 238, 0.18), rgba(167, 139, 250, 0.18));
+            border-radius: 14px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: 0;
+            border-radius: 10px;
+            font-weight: 700;
+            padding: 11px 16px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #0f172a;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: #cbd5e1;
+            border: 1px solid #3a4b81;
+        }
+
+        .pill-ok {
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 12px;
+            color: #052e16;
+            background: var(--ok);
+            border-radius: 999px;
+            padding: 2px 8px;
+            font-weight: 700;
+        }
+
+        footer {
+            padding: 18px 0 30px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        @media (max-width: 920px) {
+            .hero-panels,
+            .kpi-grid,
+            .split {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="top-row">
+                <span class="chip">Variant C</span>
+                <button class="btn btn-ghost" type="button" id="toggle-highlight">Toggle Highlight</button>
+            </div>
+            <h1>Personalize 3: Performance-Focused Variant</h1>
+            <p class="hero-sub">
+                A completely different page variant with dashboard-style storytelling,
+                compact KPI blocks, and action-first content for campaign testing.
+            </p>
+            <div class="hero-panels">
+                <article class="panel" id="message-panel">
+                    <h3>Primary Message</h3>
+                    <p>Lead with concise value statements and lower visual noise for faster decision making.</p>
+                </article>
+                <article class="panel">
+                    <h3>Target Segment</h3>
+                    <p>Users arriving from paid campaigns who respond better to short copy and trust signals.</p>
+                </article>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Variant KPI Snapshot</h2>
+            <p class="section-desc">Placeholders for reporting metrics that this variant should improve.</p>
+            <div class="kpi-grid">
+                <article class="kpi">
+                    <span class="num">+18%</span>
+                    <span class="label">CTA Click-through</span>
+                </article>
+                <article class="kpi">
+                    <span class="num">-12%</span>
+                    <span class="label">Bounce Rate</span>
+                </article>
+                <article class="kpi">
+                    <span class="num">2.6x</span>
+                    <span class="label">Scroll Depth</span>
+                </article>
+                <article class="kpi">
+                    <span class="num">+9%</span>
+                    <span class="label">Form Starts</span>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container split">
+            <div>
+                <h2 class="section-title">Content Priorities</h2>
+                <ul class="list">
+                    <li>
+                        <strong>Clarity First</strong>
+                        Keep core value visible above the fold.
+                    </li>
+                    <li>
+                        <strong>Speed to Action</strong>
+                        Reduce page friction and focus on one CTA.
+                    </li>
+                    <li>
+                        <strong>Proof Signals</strong>
+                        Surface metrics and trust markers early.
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="section-title">Test Checklist</h2>
+                <ul class="list">
+                    <li>
+                        <strong>Audience match</strong>
+                        Confirm traffic routing for the right segment.
+                    </li>
+                    <li>
+                        <strong>Event tracking</strong>
+                        Validate clicks, scroll depth, and conversion events.
+                    </li>
+                    <li>
+                        <strong>Cross-device QA</strong>
+                        Review mobile rendering and interaction parity.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="banner" id="cta-banner">
+                <div>
+                    <h2 style="margin: 0 0 4px;">Launch Variant C for live traffic</h2>
+                    <p style="margin: 0; color: #cbd5e1;">This page is intentionally different from Personalize and Personalize 2.</p>
+                </div>
+                <div>
+                    <button class="btn btn-primary" id="launch-btn" type="button">Launch Experiment</button>
+                    <span class="pill-ok" id="status-pill" hidden>Launched</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            Personalize 3 standalone page - unique variant content.
+        </div>
+    </footer>
+
+    <script>
+        const messagePanel = document.getElementById('message-panel');
+        const toggleHighlightBtn = document.getElementById('toggle-highlight');
+        const launchBtn = document.getElementById('launch-btn');
+        const statusPill = document.getElementById('status-pill');
+
+        let highlighted = false;
+        toggleHighlightBtn.addEventListener('click', function () {
+            highlighted = !highlighted;
+            messagePanel.style.outline = highlighted ? '2px solid #22d3ee' : 'none';
+        });
+
+        launchBtn.addEventListener('click', function () {
+            statusPill.hidden = false;
+            launchBtn.disabled = true;
+            launchBtn.textContent = 'Experiment Running';
+        });
+    </script>
+</body>
+</html>
